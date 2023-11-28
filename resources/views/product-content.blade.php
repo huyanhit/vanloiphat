@@ -7,9 +7,16 @@
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <div class="product-image">
                     <div id="p-carousel" class="owl-carousel owl-theme">
-                        <div class="item ">
+                        <div class="item">
                             <img src="{{route('get-image', $product->image_id)}}" class="img-responsive" alt="{{$product->keywords}}" />
                         </div>
+                        @if(!empty($product->images))
+                            @foreach (explode(',',$product->images) as $item)
+                                <div class="item">
+                                    <img src="{{route('get-image', $item)}}" class="img-responsive"/>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <script>
@@ -19,6 +26,7 @@
                             loop:true,
                             margin:10,
                             nav:true,
+                            lazyLoad:true,
                             responsive:{
                                 1000:{
                                     items:1

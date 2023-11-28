@@ -25,13 +25,14 @@ class ProductController extends MyController
             ),
             'code'         => array('title'=> 'Mã', 'type' => self::TEXT, 'validate' => 'max:50'),
             'title'        => array('title'=> 'Tên', 'type' => self::TEXT, 'validate' => 'required|max:255'),
-            'image_id'     => array('title'=> 'Hình', 'type' => self::IMAGE_ID),
+            'image_id'     => array('title'=> 'Hình chính', 'type' => self::IMAGE_ID),
+            'images'       => array('title'=> 'Hình phụ', 'type' => self::IMAGES),
             'description'  => array('title'=> 'Mô tả ngắn', 'type' => self::AREA, 'validate' => 'max:1000'),
             'keywords'     => array('title'=> 'Từ khóa tìm kiếm', 'type' => self::TEXT, 'validate' => 'max:1000'),
             'content'      => array('title'=> 'Chi tiết', 'type' => self::AREA),
-            'new'          => array('title'=> 'Sản phẩm mới', 'type' => self::TEXT, 'validate' => 'numeric|max:1'),
-            'promotion'    => array('title'=> 'Khuyến mãi', 'type' => self::TEXT, 'validate' => 'numeric|max:1'),
-            'hot'          => array('title'=> 'Bán chạy', 'type' => self::TEXT, 'validate' => 'numeric|max:1'),
+            'new'          => array('title'=> 'Sản phẩm mới', 'type' => self::CHECK, 'validate' => 'numeric|max:1'),
+            'promotion'    => array('title'=> 'Khuyến mãi', 'type' => self::CHECK, 'validate' => 'numeric|max:1'),
+            'hot'          => array('title'=> 'Bán chạy', 'type' => self::CHECK, 'validate' => 'numeric|max:1'),
             'price'        => array('title'=> 'Giá gốc', 'type' => self::TEXT, 'validate' => 'numeric|max:11'),
             'price_sale'   => array('title'=> 'Giá bán', 'type' => self::TEXT, 'validate' => 'numeric|max:11'),
             'active'       => array('title'=> 'Trạng thái', 'type' => 'check')
@@ -71,6 +72,7 @@ class ProductController extends MyController
             'image_id' => array(
                 'title' => 'Hình Ảnh',
                 'width' => 6,
+                'update'=> true,
                 'views' => array(
                     'type' => self::IMAGE_ID,
                 ),

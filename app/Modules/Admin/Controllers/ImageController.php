@@ -78,4 +78,8 @@ class ImageController extends MyController
         // process token
         return $this->service->getImage($id);
     }
+
+    public function imagesDestroy(){
+        return $this->service->imagesDestroy();
+    }
 }

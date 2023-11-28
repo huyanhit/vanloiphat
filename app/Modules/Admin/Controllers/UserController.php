@@ -21,7 +21,7 @@ class UserController extends MyController
             'email' => array('title'=> 'Email', 'type' => self::TEXT, 'validate' => 'required|email|max:255'),
             'password' => array('title'=> 'Mật khẩu', 'type' => self::PASSWORD, 'validate' => 'required|max:255'),
             'confirm' => array('title'=> 'Nhập lại mật khẩu', 'type' => self::CONFIRM, 'validate' => 'required|same:password|max:255'),
-            'image' => array('title'=> 'Image', 'type' => self::IMAGE, 'validate' =>'max:255'),
+            'image_id' => array('title'=> 'Image', 'type' => self::IMAGE_ID),
             'active' => array('title'=>'Trạng thái', 'type' => 'check')
         );
         $this->view['list'] = array(
@@ -33,11 +33,11 @@ class UserController extends MyController
                     'value' => '',
                 ),
             ),
-            'image' => array(
+            'image_id' => array(
                 'title' => 'Hình ảnh',
                 'width' => 6,
                 'views' => array(
-                    'type' => self::IMAGE,
+                    'type' => self::IMAGE_ID,
                 ),
                 'sort' => 'hidden'
             ),

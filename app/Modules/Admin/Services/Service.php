@@ -8,27 +8,15 @@
 
 namespace App\Modules\Admin\Services;
 
-use App\Modules\Admin\Helpers\Common;
-use App\Modules\Admin\Models\CategoryModel;
-use App\Modules\Admin\Models\ImageModel;
-use App\Modules\Admin\Models\MenuModel;
-use App\Modules\Admin\Models\PageModel;
-use App\Modules\Admin\Models\PostModel;
-use App\Modules\Admin\Models\ProductCategoryModel;
-use App\Modules\Admin\Models\ProductModel;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-
 use Intervention\Image\Facades\Image;
 
-use Validator;
 use Exception;
-
-use function Laravel\Prompts\select;
 
 class Service {
     const UN_ACTIVE = 0;
@@ -44,10 +32,8 @@ class Service {
     const PUCLIC_STORAGE     = '/storage/';
 
     public $model;
-    private $common;
     function __construct($model){
         $this->model = $model;
-        $this->common = new Common();
     }
 
     public function generateList($data){
@@ -127,14 +113,7 @@ class Service {
         if($this->validateData($request, $data)){
             DB::beginTransaction();
             try{
-                $id = $request->input('id');
-                if(isset($id)){
-                    $data['data'] = (array)$this->model->where(['id'=> $id])->first()->toArray();
-                    $data['data'] = array_merge($data['data'], $request->input());
-                }else{
-                    $data['data'] = $request->input();
-                }
-
+                $data['data'] = $request->input();
                 foreach($data['form'] as $key => $value){
                     if(isset($value['type'])){
                         if($value['type'] === 'password'){
@@ -148,56 +127,54 @@ class Service {
                         }
                     }
                 }
-                $arrayInsert = array();
-                $dataReference = array();
 
+                $arrayInsert = array();
                 foreach($data["form"] as $key => $value){
                     if(!isset($value['reference']) && isset($data["data"][$key])){
                         $arrayInsert[$key] = $data["data"][$key];
                     }
                 }
-                
-                $this->uploadFiles($arrayInsert, $request->file());
-                $result = $this->model->insertGetId($arrayInsert);
-                foreach($data["form"] as $key => $value){
-                    if($result && isset($value['reference'])){
-                        $dataReference['table'] = $key;
-                        $dataReference['data']  = $request->input($key);
-                        $dataReference['reference'] = $value['reference'];
-                        $dataInsertReference = array();
-                        if(isset($dataReference['data'][$dataReference['reference']['foreign_id']])){
-                            foreach ($dataReference['data'][$dataReference['reference']['foreign_id']] as $re_key => $re_value){
-                                $arrayMergeUpdate = array();
-                                foreach ($dataReference['reference'] as $re_data){
-                                    if(empty($dataReference['data'][$re_data][$re_key]) && ($re_data == $dataReference['reference']['primary_id'])){
-                                        $dataReference['data'][$re_data][$re_key] = $result;
-                                    }
-                                    if(empty($dataReference['data'][$re_data][$re_key])
-                                        && $re_data != $dataReference['reference']['primary_id']
-                                        && $re_data != $dataReference['reference']['foreign_id']){
-                                        $dataReference['data'][$re_data][$re_key] = 0;
-                                    }
-                                    $arrayMergeUpdate = array_merge($arrayMergeUpdate, array($re_data => $dataReference['data'][$re_data][$re_key]));
-                                }
-                                $dataInsertReference[] = $arrayMergeUpdate;
-                            }
-                        }
-                        $this->insertReference($dataReference['table'], $dataInsertReference);
-                    }
+
+                if(!empty($request->file())){
+                    $arrayInsert = $this->uploadFiles($data['form'], $arrayInsert, $request->file());
                 }
 
-                DB::commit();
-                return $result;
+                $result = $this->model->insertGetId($arrayInsert);
+
+                if($result){
+                    DB::commit();
+                    return $result;
+                }
 
             }catch (Exception $e){
+                dd($e);
                 DB::rollBack();
             }
         }
         return false;
     }
 
+    private function editImages($id, $data){
+        $delete_images = $data['data']['delete_images'];
+        foreach($data['form'] as $key => $value){
+            if ($value['type'] === 'images' && $delete_images) {
+                $images = $this->model->find($id)->$key;
+                if(!empty($images)){
+                    $images = str_replace([','.$delete_images, $delete_images.',', $delete_images], '', $images);
+                    $this->model->where('id', $id)->update([$key => $images]);
+                    $this->importModel('images')->where('id',  $delete_images)->delete();
+                }
+            }
+        }
+    }
+
     public function editData($request, $id, $data){
         $data['data'] = $request->input();
+        
+        if(isset($data['data']['delete_images'])){
+            return $this->editImages($id, $data);
+        }
+        
         foreach($data['form'] as $key => $value){
             if(isset($value['type'])) {
                 if ($value['type'] === 'password') {
@@ -208,61 +185,48 @@ class Service {
                         unset($data['form']['confirm']);
                     }
                 }
+
                 if ($value['type'] === 'confirm') {
                     unset($data['data'][$key]);
                 }
+
                 if ($value['type'] === 'date') {
                     $data['data'][$key] = date('Y-m-d h:i:s', strtotime($data['data'][$key]));
                 }
             }
         }
+
         if($this->validateData($request, $data, true)){
             DB::beginTransaction();
             try{
                 $arrayUpdate = array();
                 foreach($data["form"] as $key => $value){
-                    if(isset($value['reference'])){
-                        $dataUpdateReference = array();
-                        $where = array('key' => $value['reference']['primary_id'], 'value' => $id);
-                        $inputReference = $request->input($key);
-                        if(!empty($inputReference) && isset($inputReference[$value['reference']['foreign_id']])){
-                            foreach ($inputReference[$value['reference']['foreign_id']] as $re_key => $re_value){
-                                $arrayMergeUpdate = array();
-                                foreach ($value['reference'] as $re_data){
-                                    $arrayMergeUpdate = array_merge($arrayMergeUpdate,
-                                        array($re_data => empty($inputReference[$re_data][$re_key])? null :$inputReference[$re_data][$re_key]));
-                                }
-                                $dataUpdateReference[] = $arrayMergeUpdate;
-                            }
-                        }
-                        $this->updateReference($key, $dataUpdateReference , $where , $value['reference']['foreign_id']);
-                    }elseif(array_key_exists($key, $data["data"])){
+                    if(array_key_exists($key, $data["data"])){
                         $arrayUpdate[$key] = $data["data"][$key];
                     }
                 }
-       
-                $this->uploadFiles($arrayUpdate, $request->file());
-                $result = $this->model->where('id', $id)->update($arrayUpdate);
-                DB::commit();
-                return $result;
 
+                if(!empty($request->file())){
+                    $arrayUpdate = $this->uploadFiles($data["form"], $arrayUpdate, $request->file(), $this->model->find($id));
+                }
+               
+                if($this->model->where('id', $id)->update($arrayUpdate)){
+                    DB::commit();
+                    return $arrayUpdate;
+                }
             }catch (Exception $e){
+                dd($e);
                 DB::rollBack();
             }
         }
+
         return false;
     }
 
-    public function deleteData($id, $form){
+    public function deleteData($id){
         DB::beginTransaction();
         try{
-            foreach ($form as $key => $val){
-                if(isset($val['reference'])){
-                    $this->importModel($key)->where($val['reference']['primary_id'], $id)->delete();
-                }
-            }
             $result = $this->model->where('id', $id)->delete();
-
             DB::commit();
             return $result;
 
@@ -273,46 +237,16 @@ class Service {
         return false;
     }
 
-    public function uploadFile($request, $type){
-        if($type == self::FILE){
-            foreach ($request->file() as $key => $value) {
-                return $this->common->uploadFile($value);
-            }
-        }elseif($type == self::IMAGE || $type == self::VIDEO){
-            foreach ($request->file() as $key => $value) {
-                return $this->common->uploadImage($value);
-            }
-        }
-
-        return false;
-    }
-   
     public function importModel($key){
-        switch ($key){
-            case 'pages':
-                return new PageModel();
-                break;
-            case 'menus':
-                return new MenuModel();
-                    break;
-            case 'categories':
-                return new CategoryModel();
-                break;
-            case 'posts':
-                return new PostModel();
-                break;
-            case 'products':
-                return new ProductModel();
-                break;
-            case 'product_categories':
-                return new ProductCategoryModel();
-                break;
-            case 'images':
-                return new ImageModel();
-                break;
-            default:
-                return new MyData($key);
-                break;
+        $baseClass = "App\Modules\Admin\Models";
+        $pathClass = "app/Modules/Admin/Models";
+        $path      = base_path($pathClass).'/*.php';
+        $models    = collect(glob($path))->map(function($file) use ($baseClass){
+            $class = $baseClass."\\".basename($file, ".php");
+            return new $class();
+        });
+        foreach( $models as $model){
+            if($key == $model->getTable()) return $model;
         }
     }
     
@@ -354,21 +288,6 @@ class Service {
         return $request->validate($arrayValidate);
     }
 
-    private function validateField($request, $data){
-        $arrayValidate = array();
-        foreach($data as $key => $value){
-            if(isset($value['validate']) && ($key == $request->input('field'))){
-                $arrayValidate[$key] = $value['validate'];
-                break;
-            }
-        }
-        $request->merge(array($request->input('field')=> $request->input('value')));
-        if(!empty($arrayValidate)){
-            return $request->validate($arrayValidate);
-        }
-        return true;
-    }
-
     private function validateFile(&$arrayData, $file){
         foreach($file as $key => $value){
             if(is_array($value)){
@@ -406,7 +325,7 @@ class Service {
                 Storage::disk($store)->put($pathStore, file_get_contents($file));
                 if($type === 'image'){
                     Storage::disk($store)->put(self::THUMBNAIL_SEPARATE.$pathStore,
-                    Image::make($file)->orientate()->resize(null, 100, function ($constraint) {
+                    Image::make($file)->orientate()->resize(null, 270, function ($constraint) {
                         $constraint->aspectRatio();
                     })->stream());
                 }
@@ -417,21 +336,24 @@ class Service {
         return $pathStore;
     }
 
-    private function uploadFiles(&$fileData, $file){
+    private function uploadFiles($form, $fileData, $file, $data = null){
         // create new image item
         foreach ($file as $key => $value) {
             if(is_array($value)){
+                $files = [];
                 foreach ($value as $k => $val){
-                    $uri = self::PUCLIC_STORAGE.$this->upload($val);
-                    if(key($file) === 'image_id'){
-                        $fileData['files'][$k] = $this->importModel('images')->insertGetId(['uri' => $uri, 'active' => 1]);
-                    }else{
-                        $fileData['files'][$k] = $uri;
-                    }
+                    $uri     = self::PUCLIC_STORAGE.$this->upload($val);
+                    $files[] = $this->importModel('images')->insertGetId(['uri' => $uri, 'active' => 1]);
+                }
+                if(isset($data)){
+                    $fileData[$key] = empty($data->$key)? implode(',', $files): $data->$key.','.implode(',', $files);
+                }else{
+                    $fileData[$key] = implode(',', $files);
                 }
             }else{
                 $uri = self::PUCLIC_STORAGE.$this->upload($value);
-                if(key($file) === 'image_id'){
+                if($form[$key]['type'] === 'image_id'){
+                    if(isset($data)) $this->importModel('images')->where('id', $data->$key)->delete();
                     $fileData[$key] = $this->importModel('images')->insertGetId(['uri' => $uri, 'description' => 'image post', 'active' => 1]);
                 }else{
                     $fileData[$key] = $uri;
@@ -439,47 +361,7 @@ class Service {
             }
         }
         
-    }
-
-    private function updateReference($table, $data, $where, $reference){
-        $dataDB = $this->importModel($table)->where($where['key'], $where['value'])->get()->toArray();
-        foreach ($data as $key => $value){
-            $hasKey = false;
-            foreach ($dataDB as $k => $v){
-                if($v[$reference] == $value[$reference]){
-                    $this->importModel($table)->where('id', $v['id'])->update($data[$key]);
-                    unset($dataDB[$k]);
-                    $hasKey = true;
-                    break;
-                }
-            }
-
-            if(!$hasKey){
-                $this->importModel($table)->insert($data[$key]);
-            }
-        }
-
-        foreach ($dataDB as $value){
-            if(!empty($value)){
-                $this->importModel($table)->where('id', $value['id'])->delete();
-            }
-        }
-    }
-
-    private function insertReference($table, $data){
-        foreach ($data as $key => $value) {
-            $this->importModel($table)->insert($data[$key]);
-        }
-    }
-
-    public function updateField($request, $data){
-        if($this->validateField($request, $data)) {
-            $data = $request->input();
-            $id = $request->input('id');
-            return $this->model->where('id', $id)->update([$data['field']=> $data['value']]);
-        }
-
-        return false;
+        return $fileData;
     }
 
     public function getDataTable($table, $where, $select){
@@ -489,11 +371,19 @@ class Service {
 
         return $model->get();
     }
-}
 
-class MyData{
-    function __construct($key){
-    }
-    public function get(){
+    private function getFileLocal($name, $choose = true){
+        $result = [];
+        if($choose)
+            $result[null] = self::CHOOSE;
+
+        $allFile = Storage::disk($name)->files('');
+        foreach ($allFile as $value){
+            if($value = str_replace('.blade.php','',$value)){
+                $result[$value] = $value;
+            }
+        }
+
+        return $result;
     }
 }

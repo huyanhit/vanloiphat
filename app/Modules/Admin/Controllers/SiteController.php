@@ -17,7 +17,7 @@ class SiteController extends MyController
         parent::__construct($request, new SiteService());
         $this->view['resource'] = $this->request->segment(2);
         $this->view['form'] = array(
-            'logo'     => array('title'=> 'Logo', 'type' => self::IMAGE, 'validate' =>'max:255'),
+            'image_id' => array('title'=> 'Logo', 'type' => self::IMAGE_ID),
             'meta'     => array('title'=> 'Meta', 'type' => self::TEXT, 'validate' => 'max:1000'),
             'keyword'  => array('title'=> 'Từ khóa seo', 'type' => self::TEXT, 'validate' => 'max:1000'),
             'description'  => array('title'=> 'Mô tả site', 'type' => self::TEXT, 'validate' => 'max:1000'),
@@ -32,11 +32,11 @@ class SiteController extends MyController
             'map'      => array('title'=> 'Google map', 'type' => self::TEXT, 'validate' => 'max:4000'),
         );
         $this->view['list'] = array(
-            'logo' => array(
+            'image_id' => array(
                 'title' => 'Logo',
                 'width' => 6,
                 'views' => array(
-                    'type' => self::IMAGE,
+                    'type' => self::IMAGE_ID,
                 ),
                 'sort' => 'hidden'
             ),

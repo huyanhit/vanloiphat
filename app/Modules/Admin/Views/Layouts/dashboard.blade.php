@@ -29,6 +29,13 @@
                         <div class="area-analytics red">
                             <p class="name">Dung lượng</p>
                             <p class="count"><span class="title">upload:</span> <span>{{ number_format($size['upload'] / 1048576, 2) }} MB </span></p>
+                            <p class="refesh">
+                                <form method="POST" action="{{ route('images-destroy') }}" style="display: inline-block;">
+                                    @csrf
+                                    <span class="title pull-left">xóa file không còn sử dụng: </span>
+                                    <a class="btn" onclick="event.preventDefault(); if(confirm('Bạn muốn xóa file không còn sử dụng.')) this.closest('form').submit()" style="margin: -5px 10px;"> Xóa </a> 
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

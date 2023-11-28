@@ -69,7 +69,7 @@
     			<div class="col-md-3">
     				<div class="avata">
     					<a href="#">
-    						<img onerror="this.src='/images/no-image.png'" src="{{Auth::user()->image}}" alt="Magazine">
+    						<img onerror="this.src='/images/no-image.png'" src="{{route('get-image', Auth::user()->image_id)}}" alt="Magazine">
     					</a>
     				</div>
     				<div class="logout">

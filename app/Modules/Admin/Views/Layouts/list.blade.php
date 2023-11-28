@@ -66,12 +66,12 @@
 				@endforeach
 				<td colspan="2" class="text-center">
 					<div class="group-button">
-						<input type="submit" name="submit" value="Lọc Dữ Liệu">
+						<input type="submit" name="submit" value="Lọc">
 						@if(isset($control['add_reference']))
 							<a class="btn btn-insert" href="{{Request::root()}}/{{$control['add_reference']['link']}}"> {{$control['add_reference']['title']}} </a>
 						@endif
 						@if(!isset($control['add']))
-							<a class="btn btn-insert" href="{{route($resource.'.create')}}"> Thêm Mới </a>
+							<a class="btn btn-insert" href="{{route($resource.'.create')}}"> Thêm </a>
 						@endif
 					</div>
 				</td>
@@ -87,6 +87,15 @@
 					@if(!isset($val['hidden']))
 						@if(isset($val['views']) && isset($val['views']['type']))
 							@switch($val['views']['type'])
+								@case('images')
+									<td class="text-center">
+										@if(!empty($l_value[$key]))
+											@foreach (explode(',', $l_value[$key]) as $item)
+												<span><img onerror="this.src='/images/no-image.png'" src="{{route('get-image-thumbnail', $item)}}"></span>
+											@endforeach
+										@endif
+									</td>
+								@break
 								@case('image')
 									<td class="text-center">
 									@if(empty($val['update']) )
@@ -149,10 +158,10 @@
 								@case('area')
 									<td class="text-left">
 										@if(empty($val['update']) )
-											<span class="no-update">{!! html_entity_decode($l_value[$key])  !!}</span>
+											<span class="no-update">{!! $l_value[$key] !!}</span>
 										@else
-											<span class="can_update_text" type="{{$val['views']['type']}}" data="{{json_encode($l_value[$key])}}" field="{{$key}}" uid="{{$l_value['id']}}">
-												<span class="inline">{!! html_entity_decode($l_value[$key])  !!}</span>
+											<span class="can_update_text" type="{{$val['views']['type']}}" field="{{$key}}" uid="{{$l_value['id']}}">
+												<span class="inline">{!! $l_value[$key] !!}</span>
 											</span>
 										@endif
 									</td>
@@ -160,27 +169,27 @@
 								@case('text')
 									<td class="text-left">
 										@if(empty($val['update']) )
-											<span class="p-2">{!! html_entity_decode($l_value[$key]) !!}</span>
+											<span class="p-2">{!! $l_value[$key] !!}</span>
 										@else
-											<span class="can_update_text" type="{{$val['views']['type']}}" data="{{json_encode($l_value[$key])}}" field="{{$key}}" uid="{{$l_value['id']}}">
-												<span class="p-2">{!! html_entity_decode($l_value[$key]) !!}</span>
+											<span class="can_update_text" type="{{$val['views']['type']}}" field="{{$key}}" uid="{{$l_value['id']}}">
+												<span class="p-2">{!! $l_value[$key] !!}</span>
 											</span>
 										@endif
 									</td>
 								@break
                                 @default
                                     <td class="text-left">
-                                        <span class="p-2">{!! html_entity_decode($l_value[$key]) !!}</span>
+                                        <span class="p-2">{!! $l_value[$key] !!}</span>
                                     </td>
                                 @break
 							@endswitch
 						@else
 							<td class="text-left">
 							@if(empty($val['update']) )
-								<span class="no-update">{!! html_entity_decode($l_value[$key]) !!}</span>
+								<span class="no-update">{!! $l_value[$key] !!}</span>
 							@else
-								<span class="can_update_text" data="{{json_encode($l_value[$key])}}" field="{{$key}}" uid="{{$l_value['id']}}">
-									<span class="inline">{!! html_entity_decode($l_value[$key]) !!}</span>
+								<span class="can_update_text" field="{{$key}}" type="text" uid="{{$l_value['id']}}">
+									<span class="inline">{!! $l_value[$key] !!}</span>
 								</span>
 							@endif
 							</td>
@@ -188,16 +197,6 @@
 					@endif
 				@endforeach
 				<td class="action_row text-center">
-					@if(isset($control['add_reference']) || isset($control['edit_reference']))
-					<span class="option-order">
-						@if(isset($control['add_reference']))
-							<a href="{{Request::root()}}/{{$control['add_reference']['link']}}/{{$l_value['id']}}"><i title="{{$control['add_reference']['title']}}" class="fa fa-clone" aria-hidden="true"></i></a>
-						@endif
-						@if(isset($control['edit_reference']))
-							<a href="{{Request::root()}}/{{$control['edit_reference']['link']}}/{{$l_value['id']}}"><i title="{{$control['edit_reference']['title']}}" class="fa fa-copy" aria-hidden="true"></i></a>
-						@endif
-					</span>
-					@endif
 					<a title="Sao Chép" href="{{route($resource.'.show', $l_value['id'])}}"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
 					<a title="Chỉnh Sửa" href="{{route($resource.'.edit', $l_value['id'])}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a title="Xóa" class="ajax_delete" href="javascript:void(0)" url="{{ route($resource.'.destroy', $l_value['id'])}} "><i class="fa fa-minus-square-o" aria-hidden="true"></i></a>

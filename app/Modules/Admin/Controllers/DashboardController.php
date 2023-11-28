@@ -32,7 +32,6 @@ class DashboardController extends MyController
 
     public function index(){
         $page = PageModel::count();
-       
         return view('Admin::Layouts.dashboard', [
             'data'=>[
                 [
@@ -122,7 +121,6 @@ class DashboardController extends MyController
                 'total' => CounterModel::count(),
             ],
             'size' => [
-               
                 'upload' => $this->getFileSize(),
             ]
         ]);
@@ -130,7 +128,7 @@ class DashboardController extends MyController
 
     private function getFileSize(){
         $file_size = 0;
-        foreach(File::allFiles(public_path()) as $file){
+        foreach(File::allFiles(storage_path()) as $file){
                 $file_size += $file->getSize();
         }
 

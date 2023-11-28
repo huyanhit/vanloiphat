@@ -7,16 +7,14 @@ use Illuminate\Support\Facades\Session;
 
 class MyController extends BaseController
 {   
-    const CHOOSE      = 'Choose';
-    const CHECK       = 'check';
-    const CHECK_GROUP = 'check_group';
-    const ROW_INSERT  = 'row_insert';
-    const RADIO_GROUP = 'radio_group';
-    const IMAGE       = 'image';
-    const PASSWORD       = 'password';
-    const CONFIRM       = 'confirm';
-    const IMAGE_ID    = 'image_id';
+    const CHOOSE      = 'choose';
 
+    const CHECK       = 'check';
+    const IMAGE_ID    = 'image_id';
+    const IMAGE       = 'image';
+    const IMAGES      = 'images';
+    const PASSWORD    = 'password';
+    const CONFIRM     = 'confirm';
     const SELECT      = 'select';
     const AREA        = 'area';
     const CODE        = 'code';
@@ -193,67 +191,6 @@ class MyController extends BaseController
     public function getDataTable($table, $where = null, $select = null){
         return $this->service->getDataTable($table, $where, $select);
     }
-
-    public function getDataSelectByTable(){
-        //return $this->service->getDataTable($request->get('table'), $request->get('where'), $request->get('select'));
-    }
-
-    // public function getSelect($data, $choose = true){
-    //     return $this->service->getSelect($data, $choose);
-    // }
-
-    // public function updateData(){
-    //     return $this->service->updateField($this->request, $this->view['form']);
-    // }
-
-    // public function activeData(){
-    //     return $this->service->activeData($this->request);
-    // }
-
-    // public function applyData(){
-    //     return $this->service->applyData($this->request);
-    // }
-
-    // public function uploadData($type){
-    //     return $this->service->uploadFile($this->request, $type);
-    // }
-
-    // public function getDataPostSelect($table, $post_type_id, $choose = false){
-    //     return $this->service->getDataPostSelect($table, $post_type_id, $choose);
-    // }
-
-    // public function getSelect($data, $choose = true){
-    //     return $this->service->getSelect($data, $choose);
-    // }
-
-    // public function getDataList($table, $post_type_id = null){
-    //     return $this->service->getDataList($table, $post_type_id);
-    // }
-
-  
-
-    // public function getPostTypeByRouter(){
-    //     foreach ($this->service->importModel('post_type')->get() as $value){
-    //         if($this->request->route()->getPrefix() == 'admin/'.$value['router']){
-    //             return $value['id'];
-    //         }
-    //     }
-    //     return null;
-    // }
-
-    // public function getPostTypeByRouterCategory(){
-
-    //     foreach ($this->service->importModel('post_type')->get() as $value){
-    //         if($this->request->route()->getPrefix() == 'admin/'.$value['router_category']){
-    //             return $value['id'];
-    //         }
-    //     }
-    //     return null;
-    // }
-
-    // public function hookSetData($data){
-    //     $this->hookData = $data;
-    // }
 
     private function getDataReference($id, $view){
         foreach ($view['form'] as $key => $val){

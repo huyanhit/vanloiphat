@@ -23,6 +23,11 @@
         <script src="{{Request::root()}}/js/owl.carousel.js" type="text/javascript"></script>
         <script src="{{Request::root()}}/js/ajax.js" type="text/javascript"></script>
         <script src="{{Request::root()}}/js/main.js" type="text/javascript"></script>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
     </head>
     <body>
         <header>
@@ -47,7 +52,7 @@
                 <div class="container">
                     <div class="row">
                         <div id="logo" class="col-3">
-                            <a href="{{ route('home.index') }}" rel="trang chu"><img src="/images/logo.png"></a>
+                            <a href="{{ route('home.index') }}" rel="trang chu"><img onerror="this.src='/images/logo.png'" src="{{route('get-image', $sites->image_id)}}"></a>
                         </div>
                         <!-- Navigation Links -->
                         <div id="menu" class="col-9">
@@ -78,7 +83,7 @@
         <main>
            @yield('content')
         </main>
-        <div class="zalo-chat-widget" data-oaid="1488307458291278151" 
+        <div class="zalo-chat-widget" data-oaid="1411373341567801021" 
             data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="300" data-height="300"> 
         </div> 
         <script src="https://sp.zalo.me/plugins/sdk.js"> </script> 

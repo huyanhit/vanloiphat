@@ -85,9 +85,9 @@ CREATE TABLE IF NOT EXISTS `counter` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.counter: ~6 rows (approximately)
+-- Dumping data for table vlp.counter: ~18 rows (approximately)
 INSERT INTO `counter` (`id`, `ip`, `created_at`, `updated_at`) VALUES
 	(1, '127.0.0.1', '2023-11-19 20:16:02', NULL),
 	(2, '127.0.0.1', '2023-11-19 20:24:30', NULL),
@@ -97,7 +97,16 @@ INSERT INTO `counter` (`id`, `ip`, `created_at`, `updated_at`) VALUES
 	(6, '127.0.0.1', '2023-11-19 21:21:56', NULL),
 	(7, '127.0.0.1', '2023-11-19 21:28:11', NULL),
 	(8, '127.0.0.1', '2023-11-19 21:45:32', NULL),
-	(9, '127.0.0.1', '2023-11-19 21:53:14', NULL);
+	(9, '127.0.0.1', '2023-11-19 21:53:14', NULL),
+	(10, '127.0.0.1', '2023-11-20 02:52:50', NULL),
+	(11, '127.0.0.1', '2023-11-20 20:24:28', NULL),
+	(12, '127.0.0.1', '2023-11-20 21:46:14', NULL),
+	(13, '127.0.0.1', '2023-11-20 21:54:34', NULL),
+	(14, '127.0.0.1', '2023-11-20 22:19:44', NULL),
+	(15, '127.0.0.1', '2023-11-21 02:49:58', NULL),
+	(16, '127.0.0.1', '2023-11-21 02:56:38', NULL),
+	(17, '127.0.0.1', '2023-11-21 03:14:48', NULL),
+	(18, '127.0.0.1', '2023-11-21 19:29:44', NULL);
 
 -- Dumping structure for table vlp.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -124,9 +133,9 @@ CREATE TABLE IF NOT EXISTS `images` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.images: ~194 rows (approximately)
+-- Dumping data for table vlp.images: ~195 rows (approximately)
 INSERT INTO `images` (`id`, `uri`, `description`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, '/storage/vanloiphat/DSCN0063.JPG', 'Eaque illo dolores vitae praesentium. Voluptatibus eveniet in doloribus. Incidunt exercitationem culpa fuga consequatur iusto alias et.', 1, NULL, '2023-11-16 22:43:53', NULL),
 	(2, '/storage/vanloiphat/DSCN0064.JPG', 'Quos possimus quis doloremque eos excepturi ut hic. Aperiam blanditiis quis eveniet minima. Aspernatur dolorem quo asperiores ut. Et perspiciatis voluptatem dolores excepturi.', 1, NULL, '2023-11-16 22:29:58', NULL),
@@ -321,7 +330,10 @@ INSERT INTO `images` (`id`, `uri`, `description`, `active`, `created_at`, `updat
 	(192, '/storage/vanloiphat/DSCN0064-3.JPG', 'image post', 1, NULL, NULL, NULL),
 	(193, '/storage/vanloiphat/DSCN0063-1.JPG', 'image post', 1, NULL, NULL, NULL),
 	(194, '/storage/vanloiphat/DSCN0050.JPG', 'image post', 1, NULL, NULL, NULL),
-	(195, '/storage/vanloiphat/walle-4.jpg', 'image post', 1, NULL, NULL, NULL);
+	(195, '/storage/vanloiphat/walle-4.jpg', 'image post', 1, NULL, NULL, NULL),
+	(196, '/storage/vanloiphat/6268308593-1.png', 'image post', 1, NULL, NULL, NULL),
+	(197, '/storage/vanloiphat/user.png', 'image post', 1, NULL, NULL, NULL),
+	(198, '/storage/vanloiphat/untitled1-1550813521-1-1.jpg', 'image post', 1, NULL, NULL, NULL);
 
 -- Dumping structure for table vlp.menus
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -338,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.menus: ~12 rows (approximately)
+-- Dumping data for table vlp.menus: ~10 rows (approximately)
 INSERT INTO `menus` (`id`, `title`, `icon`, `router`, `parent_id`, `index`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'TRANG CHỦ', '<i class="fa fa-home"></i>', 'home', '0', 1, 1, NULL, NULL, NULL),
 	(2, 'GIỚI THIỆU', NULL, 'gioi-thieu', '0', 1, 1, NULL, NULL, NULL),
@@ -361,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.migrations: ~19 rows (approximately)
+-- Dumping data for table vlp.migrations: ~11 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(38, '2014_10_12_000000_create_users_table', 1),
 	(39, '2014_10_12_100000_create_password_reset_tokens_table', 1),
@@ -481,7 +493,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `image_id` varchar(255) NOT NULL,
+  `image_id` int(11) NOT NULL DEFAULT 0,
   `category_id` varchar(255) NOT NULL,
   `active` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -492,15 +504,15 @@ CREATE TABLE IF NOT EXISTS `posts` (
 
 -- Dumping data for table vlp.posts: ~9 rows (approximately)
 INSERT INTO `posts` (`id`, `title`, `description`, `content`, `image_id`, `category_id`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Dr. Gianni Thompson', 'Sed vitae ad molestiae quisquam. Nulla velit asperiores dolorem quasi quibusdam. Modi repellendus maiores quia accusantium. Quis voluptas sit ullam non totam odio qui.', 'Voluptate ut qui delectus itaque. Iusto voluptatem sit iure. Non libero aut autem consequatur.', '1', '1', 1, NULL, NULL, NULL),
-	(2, 'Hazle Mayert', 'Quaerat maxime consequatur voluptas voluptas doloribus esse dolor. Ex earum rerum et fugit non. Et pariatur rem earum distinctio facilis ut. Minus nam similique officiis quod voluptate.', 'Facere est quibusdam et. Fugit voluptas aliquam magni qui ab. Tenetur beatae ut sit.', '2', '2', 1, NULL, NULL, NULL),
-	(3, 'Alisha Brekke', 'Amet consequatur aut reiciendis ea adipisci dolorem. Tenetur ducimus nihil officia debitis quia. Illum ab pariatur omnis esse aut.', 'Voluptatem minima minus temporibus ut saepe. Voluptas molestiae esse quasi ex sit rem suscipit.', '3', '3', 1, NULL, NULL, NULL),
-	(4, 'Justina Greenholt', 'Nostrum nihil fugiat facilis. Quas impedit ducimus delectus quae sunt aut. Non perferendis doloribus sit ipsum aut qui dolorem.', 'Quia quidem sed dolorem esse. Molestiae iste minus ut rem. Laborum et non rem.', '4', '4', 1, NULL, NULL, NULL),
-	(5, 'Dr. Freddie McKenzie MD', 'Necessitatibus numquam assumenda ut repellat consequatur occaecati. Id rem ipsam sed aut. Cumque nihil magnam vel qui.', 'Harum possimus illum rerum pariatur ut. Nihil eius incidunt nisi omnis sunt similique reprehenderit. Consectetur et sit aut quisquam natus.', '5', '5', 1, NULL, NULL, NULL),
-	(6, 'Geoffrey Kutch', 'A voluptatem hic qui. Accusantium magni omnis illo aut sunt quos. Blanditiis incidunt magnam error neque ipsum quasi itaque.', 'Facere dicta beatae consectetur consequuntur soluta fugit consequatur. Voluptatem amet animi ut.', '6', '6', 1, NULL, NULL, NULL),
-	(7, 'Roberta VonRueden', 'Labore impedit et rem cum. Non aut sunt perferendis illum quia voluptatem officiis et. Qui officia nemo quis quis molestiae sit tempore et. Omnis ut non laudantium sint sunt natus autem.', 'Accusamus inventore cupiditate aliquam sapiente. Esse laboriosam iure vel. Autem aut molestias impedit quas.', '7', '7', 1, NULL, NULL, NULL),
-	(8, 'Isobel Gerlach', 'Alias voluptas beatae sed quis fuga. Qui perferendis tenetur repudiandae aperiam aliquid placeat quia. Ut nihil qui quia est et possimus illo. Adipisci est rem sit in.', 'Veritatis aliquam eum rerum non placeat. Quo rem ut iusto voluptatem. Fuga natus quos rem dolore.', '8', '8', 1, NULL, NULL, NULL),
-	(9, 'Earline Gorczany', 'Ducimus aut quia ea eius quia harum voluptas consequatur. Repellat consequatur unde autem. Ab doloremque qui aut occaecati et doloremque commodi. Iure cum tenetur earum et alias soluta rerum.', 'Quae error et rem et rerum alias. Minima repellat nam ipsum provident quo inventore ducimus qui. Sed voluptatem excepturi non vero sit consequatur est. Quos quia quia voluptates ex ex qui.', '9', '9', 1, NULL, NULL, NULL);
+	(1, 'Dr. Gianni Thompson', 'Sed vitae ad molestiae quisquam. Nulla velit asperiores dolorem quasi quibusdam. Modi repellendus maiores quia accusantium. Quis voluptas sit ullam non totam odio qui.', 'Voluptate ut qui delectus itaque. Iusto voluptatem sit iure. Non libero aut autem consequatur.', 1, '1', 1, NULL, NULL, NULL),
+	(2, 'Hazle Mayert', 'Quaerat maxime consequatur voluptas voluptas doloribus esse dolor. Ex earum rerum et fugit non. Et pariatur rem earum distinctio facilis ut. Minus nam similique officiis quod voluptate.', 'Facere est quibusdam et. Fugit voluptas aliquam magni qui ab. Tenetur beatae ut sit.', 2, '2', 1, NULL, NULL, NULL),
+	(3, 'Alisha Brekke', 'Amet consequatur aut reiciendis ea adipisci dolorem. Tenetur ducimus nihil officia debitis quia. Illum ab pariatur omnis esse aut.', 'Voluptatem minima minus temporibus ut saepe. Voluptas molestiae esse quasi ex sit rem suscipit.', 3, '3', 1, NULL, NULL, NULL),
+	(4, 'Justina Greenholt', 'Nostrum nihil fugiat facilis. Quas impedit ducimus delectus quae sunt aut. Non perferendis doloribus sit ipsum aut qui dolorem.', 'Quia quidem sed dolorem esse. Molestiae iste minus ut rem. Laborum et non rem.', 4, '4', 1, NULL, NULL, NULL),
+	(5, 'Dr. Freddie McKenzie MD', 'Necessitatibus numquam assumenda ut repellat consequatur occaecati. Id rem ipsam sed aut. Cumque nihil magnam vel qui.', 'Harum possimus illum rerum pariatur ut. Nihil eius incidunt nisi omnis sunt similique reprehenderit. Consectetur et sit aut quisquam natus.', 5, '5', 1, NULL, NULL, NULL),
+	(6, 'Geoffrey Kutch', 'A voluptatem hic qui. Accusantium magni omnis illo aut sunt quos. Blanditiis incidunt magnam error neque ipsum quasi itaque.', 'Facere dicta beatae consectetur consequuntur soluta fugit consequatur. Voluptatem amet animi ut.', 6, '6', 1, NULL, NULL, NULL),
+	(7, 'Roberta VonRueden', 'Labore impedit et rem cum. Non aut sunt perferendis illum quia voluptatem officiis et. Qui officia nemo quis quis molestiae sit tempore et. Omnis ut non laudantium sint sunt natus autem.', 'Accusamus inventore cupiditate aliquam sapiente. Esse laboriosam iure vel. Autem aut molestias impedit quas.', 7, '7', 1, NULL, NULL, NULL),
+	(8, 'Isobel Gerlach', 'Alias voluptas beatae sed quis fuga. Qui perferendis tenetur repudiandae aperiam aliquid placeat quia. Ut nihil qui quia est et possimus illo. Adipisci est rem sit in.', 'Veritatis aliquam eum rerum non placeat. Quo rem ut iusto voluptatem. Fuga natus quos rem dolore.', 8, '8', 1, NULL, NULL, NULL),
+	(9, 'Earline Gorczany', 'Ducimus aut quia ea eius quia harum voluptas consequatur. Repellat consequatur unde autem. Ab doloremque qui aut occaecati et doloremque commodi. Iure cum tenetur earum et alias soluta rerum.', 'Quae error et rem et rerum alias. Minima repellat nam ipsum provident quo inventore ducimus qui. Sed voluptatem excepturi non vero sit consequatur est. Quos quia quia voluptates ex ex qui.', 9, '9', 1, NULL, NULL, NULL);
 
 -- Dumping structure for table vlp.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -527,7 +539,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table vlp.products: 103 rows
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `product_category_id`, `code`, `title`, `image_id`, `description`, `keywords`, `content`, `new`, `promotion`, `hot`, `price_sale`, `price`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(726, 1, '', 'Máy lọc nước nóng lạnh VAFA-SV332', 65, 'máy lọc nước nóng lạnh,may loc nuoc nong lanh,máy lọc nước nóng lạnhsv332,may loc nuoc nong lanhsv332,máy lọc nước,may loc nuoc,máy nóng lạnh,may nong lanh,bình lọc nước,binh loc nuoc,bình lọc nước nóng lạnh,binh loc nuoc nong lanh,sửa máy lọc nước,sua may loc nuoc, sửa máy nóng lạnh,sua may nong lanh', 'máy lọc nước nóng lạnh,may loc nuoc nong lanh,máy lọc nước nóng lạnhsv332,may loc nuoc nong lanhsv332,máy lọc nước,may loc nuoc,máy nóng lạnh,may nong lanh,bình lọc nước,binh loc nuoc,bình lọc nước nóng lạnh,binh loc nuoc nong lanh,sửa máy lọc nước,sua may loc nuoc, sửa máy nóng lạnh,sua may nong lanh', '<ul>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh VAFA SV332 sử dụng nước cấp l&agrave; nước m&aacute;y sinh hoạt</li>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh lọc trực tiếp qua 01 bộ lọc nước tinh sau đ&oacute; qua hệ thống l&agrave;m n&oacute;ng v&agrave; lạnh</li>\r\n	<li>Kiểu d&aacute;ng trang nh&atilde;, hiện đại.</li>\r\n	<li>Vỏ m&aacute;y l&agrave;m bằng inox</li>\r\n	<li>Nguồn điện tự ngắt khi đạt nhiệt độ cần thiết, &iacute;t tốn điện năng.</li>\r\n	<li>C&ocirc;ng suất lọc :&nbsp; Nước n&oacute;ng : 8 l&iacute;t/h ( từ 6 - 10oC )<br />\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nước lạnh : 8 l&iacute;t/h ( từ 85 - 100oC )</li>\r\n	<li>L&agrave;m lạnh bằng compressor</li>\r\n	<li>Điện trở 220V &ndash; 800W</li>\r\n	<li>K&iacute;ch thước : 300 x 425 x 1060mm</li>\r\n	<li>C&ocirc;ng suất nhiệt : 800W</li>\r\n	<li>C&ocirc;ng suất lạnh : 200W</li>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh SV334 được bảo h&agrave;nh 12 th&aacute;ng tận nơi n&ecirc;n Qu&yacute; kh&aacute;ch an t&acirc;m về dịch vụ sau bảo h&agrave;nh.</li>\r\n	<li>Xuất xứ : linh kiện Taiwan, lắp r&aacute;p tại VN</li>\r\n	<li>Bảo h&agrave;nh : 12 th&aacute;ng</li>\r\n</ul>\r\n', 0, 0, 1, 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+	(726, 1, NULL, 'Máy lọc nước nóng lạnh VAFA-SV332', 65, 'm&aacute;y lọc nước n&oacute;ng lạnh,may loc nuoc nong lanh,m&aacute;y lọc nước n&oacute;ng lạnhsv332,may loc nuoc nong lanhsv332,m&aacute;y lọc nước,may loc nuoc,m&aacute;y n&oacute;ng lạnh,may nong lanh,b&igrave;nh lọc nước,binh loc nuoc,b&igrave;nh lọc nước n&oacute;ng lạnh,binh loc nuoc nong lanh,sửa m&aacute;y lọc nước,sua may loc nuoc, sửa m&aacute;y n&oacute;ng lạnh,sua may nong lanh', 'máy lọc nước nóng lạnh,may loc nuoc nong lanh,máy lọc nước nóng lạnhsv332,may loc nuoc nong lanhsv332,máy lọc nước,may loc nuoc,máy nóng lạnh,may nong lanh,bình lọc nước,binh loc nuoc,bình lọc nước nóng lạnh,binh loc nuoc nong lanh,sửa máy lọc nước,sua may loc nuoc, sửa máy nóng lạnh,sua may nong lanh', '<ul>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh VAFA SV332 sử dụng nước cấp l&agrave; nước m&aacute;y sinh hoạt</li>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh lọc trực tiếp qua 01 bộ lọc nước tinh sau đ&oacute; qua hệ thống l&agrave;m n&oacute;ng v&agrave; lạnh</li>\r\n	<li>Kiểu d&aacute;ng trang nh&atilde;, hiện đại.</li>\r\n	<li>Vỏ m&aacute;y l&agrave;m bằng inox</li>\r\n	<li>Nguồn điện tự ngắt khi đạt nhiệt độ cần thiết, &iacute;t tốn điện năng.</li>\r\n	<li>C&ocirc;ng suất lọc :&nbsp; Nước n&oacute;ng : 8 l&iacute;t/h ( từ 6 - 10oC )<br />\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nước lạnh : 8 l&iacute;t/h ( từ 85 - 100oC )</li>\r\n	<li>L&agrave;m lạnh bằng compressor</li>\r\n	<li>Điện trở 220V &ndash; 800W</li>\r\n	<li>K&iacute;ch thước : 300 x 425 x 1060mm</li>\r\n	<li>C&ocirc;ng suất nhiệt : 800W</li>\r\n	<li>C&ocirc;ng suất lạnh : 200W</li>\r\n	<li>M&aacute;y lọc nước n&oacute;ng lạnh SV334 được bảo h&agrave;nh 12 th&aacute;ng tận nơi n&ecirc;n Qu&yacute; kh&aacute;ch an t&acirc;m về dịch vụ sau bảo h&agrave;nh.</li>\r\n	<li>Xuất xứ : linh kiện Taiwan, lắp r&aacute;p tại VN</li>\r\n	<li>Bảo h&agrave;nh : 12 th&aacute;ng</li>\r\n</ul>', 1, 1, 1, 0, 0, 1, '0000-00-00 00:00:00', '2023-11-20 21:55:02', NULL),
 	(839, 1, '', '', 66, 'Máy lọc từ nước máy uống trực tiếp không cần đun sôi', 'may nong lanh, may loc nuoc nong lanh, voi nóng lanh, voi may nong lanh, ', '<p style=\\"margin-left:.25in\\">Thiết kế kiểu d&aacute;ng trang nh&atilde; , hiện đại, vỏ m&aacute;y l&agrave;m bằng nhựa ABS v&agrave; th&eacute;p sơn tĩnh điện bền đẹp</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Gắn trực tiếp v&agrave;o nguồn nước m&aacute;y với hệ thống qua 4 bước lọc &nbsp;: lọc th&ocirc;/ lọc carbon/ lọc tinh/ lọc diệt khuẩn hợp vệ sinh v&agrave; kh&ocirc;ng c&oacute; nước thải.</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Cung cấp trực tiếp 2 v&ograve;i n&oacute;ng lạnh.</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Dung t&iacute;ch b&igrave;nh lạnh : 9.8 l&iacute;t</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Dung t&iacute;ch b&igrave;nh n&oacute;ng &nbsp;: 2.2 l&iacute;t</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Tiết kiệm năng lượng điện , ph&ugrave; hợp tiện dung cho mọi tư gia, văn ph&ograve;ng l&agrave;m việc, trường học,&hellip;.</p>\r\n\r\n<p style=\\"margin-left:.25in\\">K&iacute;ch thước &nbsp;: 38*36.5*119 cm</p>\r\n\r\n<p style=\\"margin-left:.25in\\">Xuất xứ : Korea</p>\r\n', 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 	(727, 1, '', 'Máy Nóng Lạnh Legend LH 2011R', 67, 'máy nóng lạnh, may nong lanh,máy lọc nước nóng lạnh, may loc nuoc nong lanh,may loc nuoc,máy lọc nước,sua may loc nuoc,sửa máy lọc nước,sửa máy nóng lạnh, sua may nong lanh,lõi lọc nước,loi loc nuoc,bóng đèn diệt khuẩn, bong den diet khuan,máy lọc nước giá rẻ, may loc nuoc gia re', 'máy nóng lạnh, may nong lanh,máy lọc nước nóng lạnh, may loc nuoc nong lanh,may loc nuoc,máy lọc nước,sua may loc nuoc,sửa máy lọc nước,sửa máy nóng lạnh, sua may nong lanh,lõi lọc nước,loi loc nuoc,bóng đèn diệt khuẩn, bong den diet khuan,máy lọc nước giá rẻ, may loc nuoc gia re', '<p style=\\"margin-left:0.5in\\">M&aacute;y n&oacute;ng lạnh LH2011R tiện dụng với 3 chế độ nước: n&oacute;ng ,nguội ,lạnh</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">Sử dụng nước b&igrave;nh tinh khiết</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">M&aacute;y n&oacute;ng lạnh c&oacute; ngăn đựng ly b&ecirc;n dưới</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">L&agrave;m lạnh nhanh bằng compressor</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">Nguồn điện tự ngắt khi đạt được nhiệt độ cần thiết</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">Nhiệt độ nước lạnh từ 3<sup>o</sup>C &ndash; 10<sup>o</sup>C</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">Nhiệt độ nước n&oacute;ng : 95<sup>o</sup>C &ndash; 100<sup>o</sup>C</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">C&ocirc;ng suất tổng : 570W</p>\r\n\r\n<p style=\\"margin-left:0.5in\\">Lượng cung cấp :N&oacute;ng 3 l&iacute;t / h &ndash; Lạnh 2 l&iacute;t/h</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Qui c&aacute;ch : 890 x 365 x 365mm</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M&aacute;y n&oacute;ng lạnh Legend LH2011R được bảo h&agrave;nh 12 th&aacute;ng kể từ ng&agrave;y mua m&aacute;y.</p>\r\n', 0, 0, 1, 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 	(806, 1, '', 'Bộ lọc nước FTBB03-20', 68, 'bộ lọc nước,bo loc nuoc,máy lọc nước,may loc nuoc,máy lọc nước nóng lạnh,may loc nuoc nong lanh,máy nóng lạnh,may nong lanh,sửa máy lọc nước,sua may loc nuoc, cột lọc nước,cot loc nuoc,máy lọc nước giá rẻ,may loc nuoc gia re,lõi lọc nước,loi loc nuoc,bóng đèn diệt khuẩn,bong den diet khuan', 'bộ lọc nước,bo loc nuoc,máy lọc nước,may loc nuoc,máy lọc nước nóng lạnh,may loc nuoc nong lanh,máy nóng lạnh,may nong lanh,sửa máy lọc nước,sua may loc nuoc, cột lọc nước,cot loc nuoc,máy lọc nước giá rẻ,may loc nuoc gia re,lõi lọc nước,loi loc nuoc,bóng đèn diệt khuẩn,bong den diet khuan', '<ul>\r\n	<li>Bộ lọc nước FTBB03-20 d&ugrave;ng lọc trực tiếp từ nguồn nước sinh hoạt ( nước m&aacute;y)</li>\r\n	<li>Vỏ lọc l&agrave;m bằng nhựa PVC chuy&ecirc;n dụng đảm bảo an to&agrave;n vệ sinh độ bền cao</li>\r\n	<li>Bộ l&otilde;i lọc b&ecirc;n trong : Lọc th&ocirc; / Lọc carbon/ Lọc tinh</li>\r\n	<li>K&iacute;ch thước : 20 x 70 x 65cm</li>\r\n	<li>Bộ lọc nước xuất xứ : Taiwan</li>\r\n</ul>\r\n', 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
@@ -645,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.product_categories: ~5 rows (approximately)
+-- Dumping data for table vlp.product_categories: ~4 rows (approximately)
 INSERT INTO `product_categories` (`id`, `name`, `title`, `index`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'may-loc-nuoc-nong-lanh', 'MÁY LỌC NƯỚC - NÓNG LẠNH', 1, 1, NULL, NULL, NULL),
 	(2, 'may-nuoc-nong-lanh', 'MÁY NƯỚC NÓNG LẠNH', 2, 1, NULL, NULL, NULL),
@@ -679,7 +691,7 @@ INSERT INTO `services` (`id`, `title`, `description`, `content`, `image_id`, `in
 CREATE TABLE IF NOT EXISTS `sites` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `company` varchar(255) DEFAULT NULL,
-  `logo` varchar(255) NOT NULL,
+  `image_id` int(11) NOT NULL DEFAULT 0,
   `hotline` varchar(255) DEFAULT NULL,
   `phone` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -697,9 +709,9 @@ CREATE TABLE IF NOT EXISTS `sites` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.sites: ~1 rows (approximately)
-INSERT INTO `sites` (`id`, `company`, `logo`, `hotline`, `phone`, `address`, `email`, `sites`, `meta`, `keyword`, `analytic`, `description`, `facebook`, `map`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'CÔNG TY TNHH Vạn Lợi Phát', '/storage/vanloiphat/logo.png', '0908.044746 - 0908.334.314', '(028) 2236.1675 Fax :(028) 6283.5707', '<p>Địa chỉ: 751 X&ocirc; Viết Nghệ Tĩnh , Phường 26, Quận B&igrave;nh Thạnh, Tp.HCM<br />\r\nKho vận : 95/4 đường Hiệp B&igrave;nh, P.Hiệp B&igrave;nh Ch&aacute;nh, Q Thủ Đức, tp.HCM</p>', 'vanloiphat@gmail.com', 'www.vanloiphat.com & www.vafa.vn', '<meta property="og:image" content=""><meta property="og:title" content="CÔNG TY TNHH Vạn Lợi Phát"><meta property="og:site_name" content="CÔNG TY TNHH Vạn Lợi Phát"><meta property="og:url" content="http://vanloiphat.com"><meta property="og:description" content="CÔNG TY TNHH Vạn Lợi Phát">', 'máy lọc nước công nghiệp,máy lọc nước,máy nóng lạnh,máy lọc nước nóng lạnh,sửa máy lọc nước,sửa máy lọc nước,sửa máy nóng lạnh,', NULL, 'may loc nuoc dan dung,máy lọc nước dân dụng,máy lọc nước công nghiệp, may lọc nuoc công nghiệp, may loc nuoc, máy lọc nước, máy nóng lạnh, may nong lanh, máy lọc nước nóng lạnh,', '<div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/M%C3%81Y-L%E1%BB%8CC-N%C6%AF%E1%BB%9AC-169585686540023/"                          data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"                          fb-xfbml-state="rendered"                          fb-iframe-plugin-query="adapt_container_width=true&app_id=186412151696182&container_width=400&hide_cover=false&href=https%3A%2F%2Fwww.facebook.com%2FM%25C3%2581Y-L%25E1%25BB%258CC-N%25C6%25AF%25E1%25BB%259AC-169585686540023%2F&locale=vi_VN&sdk=joey&show_facepile=true&small_header=false&width=500"><span style="vertical-align: bottom; width: 295px; height: 130px;"><iframe name="f98dcbaee5d46"                              width="500px" height="1000px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin"                              frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media"                              src="https://www.facebook.com/v2.5/plugins/page.php?adapt_container_width=true&app_id=186412151696182&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df19809e854b30e%26domain%3Dvanloiphat.com%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Fvanloiphat.com%252Ff10146ce20ab4f%26relation%3Dparent.parent&container_width=295&hide_cover=false&href=https%3A%2F%2Fwww.facebook.com%2FM%25C3%2581Y-L%25E1%25BB%258CC-N%25C6%25AF%25E1%25BB%259AC-169585686540023%2F&locale=vi_VN&sdk=joey&show_facepile=true&small_header=false&width=500"                              style="border: none; visibility: visible; width: 400px; height: 130px;" class=""></iframe></span></div>', '<div style="overflow:hidden;resize:none;max-width:100%;width:100%;height:200px;">                             <div id="embed-ded-map-canvas" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;"                              frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=751+Xô+Viết+Nghệ+Tĩnh,+phường+26,+quận+Bình+Thạnh,+Ho+Chi+Minh+City,+Vietnam&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">                         </iframe></div><a class="google-map-code-enabler" href="https://www.bootstrapskins.com/themes" id="enable-map-data">                             premium bootstrap themes</a><style>#embed-ded-map-canvas img.text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style>                         </div>', NULL, '2023-11-18 09:46:23', NULL);
+-- Dumping data for table vlp.sites: ~0 rows (approximately)
+INSERT INTO `sites` (`id`, `company`, `image_id`, `hotline`, `phone`, `address`, `email`, `sites`, `meta`, `keyword`, `analytic`, `description`, `facebook`, `map`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'CÔNG TY TNHH Vạn Lợi Phát', 198, '0908.044746 - 0908.334.314', '(028) 2236.1675 Fax :(028) 6283.5707', '<p>Địa chỉ: 751 X&ocirc; Viết Nghệ Tĩnh , Phường 26, Quận B&igrave;nh Thạnh, Tp.HCM<br />\r\nKho vận : 95/4 đường Hiệp B&igrave;nh, P.Hiệp B&igrave;nh Ch&aacute;nh, Q Thủ Đức, tp.HCM</p>', 'vanloiphat@gmail.com', 'www.vanloiphat.com & www.vafa.vn', '<meta property="og:image" content=""><meta property="og:title" content="CÔNG TY TNHH Vạn Lợi Phát"><meta property="og:site_name" content="CÔNG TY TNHH Vạn Lợi Phát"><meta property="og:url" content="http://vanloiphat.com"><meta property="og:description" content="CÔNG TY TNHH Vạn Lợi Phát">', 'máy lọc nước công nghiệp,máy lọc nước,máy nóng lạnh,máy lọc nước nóng lạnh,sửa máy lọc nước,sửa máy lọc nước,sửa máy nóng lạnh,', NULL, 'may loc nuoc dan dung,máy lọc nước dân dụng,máy lọc nước công nghiệp, may lọc nuoc công nghiệp, may loc nuoc, máy lọc nước, máy nóng lạnh, may nong lanh, máy lọc nước nóng lạnh,', '<div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/M%C3%81Y-L%E1%BB%8CC-N%C6%AF%E1%BB%9AC-169585686540023/"                          data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"                          fb-xfbml-state="rendered"                          fb-iframe-plugin-query="adapt_container_width=true&app_id=186412151696182&container_width=400&hide_cover=false&href=https%3A%2F%2Fwww.facebook.com%2FM%25C3%2581Y-L%25E1%25BB%258CC-N%25C6%25AF%25E1%25BB%259AC-169585686540023%2F&locale=vi_VN&sdk=joey&show_facepile=true&small_header=false&width=500"><span style="vertical-align: bottom; width: 295px; height: 130px;"><iframe name="f98dcbaee5d46"                              width="500px" height="1000px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin"                              frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media"                              src="https://www.facebook.com/v2.5/plugins/page.php?adapt_container_width=true&app_id=186412151696182&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df19809e854b30e%26domain%3Dvanloiphat.com%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Fvanloiphat.com%252Ff10146ce20ab4f%26relation%3Dparent.parent&container_width=295&hide_cover=false&href=https%3A%2F%2Fwww.facebook.com%2FM%25C3%2581Y-L%25E1%25BB%258CC-N%25C6%25AF%25E1%25BB%259AC-169585686540023%2F&locale=vi_VN&sdk=joey&show_facepile=true&small_header=false&width=500"                              style="border: none; visibility: visible; width: 400px; height: 130px;" class=""></iframe></span></div>', '<div style="overflow:hidden;resize:none;max-width:100%;width:100%;height:200px;">                             <div id="embed-ded-map-canvas" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;"                              frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=751+Xô+Viết+Nghệ+Tĩnh,+phường+26,+quận+Bình+Thạnh,+Ho+Chi+Minh+City,+Vietnam&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">                         </iframe></div><a class="google-map-code-enabler" href="https://www.bootstrapskins.com/themes" id="enable-map-data">                             premium bootstrap themes</a><style>#embed-ded-map-canvas img.text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style>                         </div>', NULL, '2023-11-21 19:58:05', NULL);
 
 -- Dumping structure for table vlp.sliders
 CREATE TABLE IF NOT EXISTS `sliders` (
@@ -725,7 +737,7 @@ INSERT INTO `sliders` (`id`, `title`, `image_id`, `index`, `active`, `created_at
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `image` text DEFAULT NULL,
+  `image_id` int(11) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -736,11 +748,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table vlp.users: ~1 rows (approximately)
-INSERT INTO `users` (`id`, `name`, `image`, `email`, `email_verified_at`, `password`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Lê Anh Huy', '/storage/vanloiphat/DSCN0106-1.JPG', 'huyanhit@gmail.com', '2023-11-16 20:19:06', '$2y$12$HAWhZ34RAkVSL8.k.5dXo.l43lYoLSiMvH8OsecYr5MvquDyaZkN6', 1, 'GusuIlMj3IBclkw36nUy3RQltDCtBSSq6ewmJwtfTiomGFFyCMTibZ3B1cBK', NULL, '2023-11-19 20:57:51', NULL);
+-- Dumping data for table vlp.users: ~2 rows (approximately)
+INSERT INTO `users` (`id`, `name`, `image_id`, `email`, `email_verified_at`, `password`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Lê Anh Huy', 197, 'huyanhit@gmail.com', '2023-11-16 20:19:06', '$2y$12$HAWhZ34RAkVSL8.k.5dXo.l43lYoLSiMvH8OsecYr5MvquDyaZkN6', 1, 'GusuIlMj3IBclkw36nUy3RQltDCtBSSq6ewmJwtfTiomGFFyCMTibZ3B1cBK', NULL, '2023-11-21 19:32:39', NULL),
+	(2, 'Hương', 0, 'vanloiphat@gmail.com', NULL, '$2y$12$3glydp4QGQNIxrmzb7ykKuhJgDxris2Fthsjewfcqr9f55.GXihMC', 1, NULL, NULL, NULL, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

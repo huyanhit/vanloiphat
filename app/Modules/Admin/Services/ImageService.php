@@ -10,7 +10,6 @@ namespace App\Modules\Admin\Services;
 
 use App\Modules\Admin\Models\ImageModel;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class ImageService extends Service{
     const STORE_FILE         = 'local';
@@ -38,5 +37,33 @@ class ImageService extends Service{
     
             return response($file)->header('Content-Type', $type);
         }
+    }
+
+    public function imagesDestroy(){
+        $trashed  = $this->model->onlyTrashed()->get();
+        $used     = $this->model->get();
+
+        $destroys = [];
+        foreach($trashed as $item){
+            $destroys[] = $item->uri;
+        }
+
+        $keeps = [];
+        foreach($used as $item){
+            $keeps[] = $item->uri;
+        }
+
+        foreach($destroys as $destroy){
+            if(!in_array($destroy, $keeps)){
+                $path     = str_replace(self::PUCLIC_STORAGE, '', $destroy);
+                $files[]  = $path;
+                $thumbs[] = self::THUMBNAIL_SEPARATE.$path;
+            }
+        }
+       
+        Storage::delete($files);
+        Storage::delete($thumbs);
+
+        return redirect('admin/dashboard');
     }
 }

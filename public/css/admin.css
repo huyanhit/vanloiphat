@@ -600,12 +600,23 @@ button:active,
   margin-top: 10px;
 }
 
-#insert span.image_box {
-  min-width: 10%;
+#insert .image_box_images .images-group{
+  position: relative;
+  display: inline-block;
 }
-
-#insert span.image_box img {
-  border: 1px #31708f solid;
+#insert .image_box_images .images-group span{
+  position: absolute;
+  right: 7px;
+  top: 2px;
+  color: #ffffff;
+  background: #484848;
+  font-size: 9px;
+  border-radius: 50%;
+  line-height: 17px;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  cursor: pointer;
 }
 
 #insert .js_render .image_box {

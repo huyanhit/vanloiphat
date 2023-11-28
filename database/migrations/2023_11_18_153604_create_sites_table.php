@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('logo');
+            $table->integer('image_id');
             $table->string('phone');
             $table->string('address');
             $table->string('email');
