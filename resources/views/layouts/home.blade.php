@@ -41,12 +41,12 @@
             <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px] sm:h-auto">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-3 col-xl-2 sm:text-center">
-                            <a href="{{ route('home') }}" rel="trang chu" class="sm:inline-block">
+                        <div class="col-sm-12 col-md-3 col-xl-2 sm:text-center xl:text-left">
+                            <a href="{{ route('home') }}" rel="trang chu" class="xl:block sm:inline-block">
                                 <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image', $sites->image_id)}}">
                             </a>
                         </div>
-                        <div class="col-sx-12 col-md-9 col-xl-5 flex">
+                        <div class="col-sm-12 col-md-9 col-xl-5 flex">
                             <form class="inline-block pt-1 flex-auto sm:text-center" method="post" action="{{route('product.search')}}">
                                 {{csrf_field()}}
                                 <input class="md:w-[250px] xl:w-[150px] 2xl:w-[260px] lg:w-[250px] " type="text" name="keyword"
