@@ -210,7 +210,7 @@
             <!-- Logo -->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-lg-4 col-lg-3 mb-3">
+                    <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
                         <h3><strong class="text-uppercase text-cyan-100">{{$sites->company}}</strong></h3>
                         <ul class="mt-2 text-sm">
                             <li><strong>Địa chỉ: </strong>{{$sites->address}}</li>
@@ -220,7 +220,7 @@
                             <li><strong>Website: </strong>{{$sites->sites}}</li>
                         </ul>
                     </div>
-                    <div class="col-sm-6 col-lg-4 col-lg-2">
+                    <div class="col-sm-6 col-lg-4 col-xl-2">
                         <strong class="text-uppercase mb-2 text-cyan-100">Lĩnh vực hoạt động</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/gioi-thieu-cong-ty" title="Giới thiêu công ty">Giới thiêu công ty</a></li>
@@ -230,7 +230,7 @@
                             <li> <a href="/lien-he" title="Liên hệ">Liên hệ</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-6 col-lg-4 col-lg-2">
+                    <div class="col-sm-6 col-lg-4 col-xl-2">
                         <strong class="text-uppercase mb-2 text-cyan-100">Quy định kinh doanh</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/hoan-tien" rel="nofollow" title="Quy định hoàn tiền">Quy định hoàn tiền</a></li>
@@ -250,7 +250,7 @@
                             <li> <a href="/cau-hoi-thuong-gap" title="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
                         </ul>
                     </div>
-                    <div class="sm:hidden col-lg-6 col-xl-3">
+                    <div class="md:hidden lg:block col-lg-6 col-xl-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Mạng xã hội</strong>
                         {!!$sites->facebook!!}
                     </div>
