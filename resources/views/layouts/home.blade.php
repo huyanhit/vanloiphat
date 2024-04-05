@@ -40,7 +40,7 @@
                  style="background: url({{empty($sites->banner_top)? '/images/banner.png': $sites->banner_top}}); background-position: center;"></div>
             <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px]">
                 <div class="container">
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-xl-2">
                             <a href="{{ route('home') }}" rel="trang chu">
                                 <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image', $sites->image_id)}}">
@@ -104,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="cart-container relative w-50"></div>
 			</div>
             {{-- Header Navigation --}}
             <div id="navigation" class="mb-1">

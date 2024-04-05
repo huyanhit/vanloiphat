@@ -10,7 +10,8 @@ $(document).ready(function () {
 
     $("[data-toggle=popover]").popover({
         html: true,
-        container: 'body',
+        container: '.cart-container',
+        offset: '0 -100px',
         content: function () {
             return getCart("my-cart");
         }
