@@ -7,7 +7,7 @@
                  src="{{ route('get-image-thumbnail', $item->image_id) }}"
                  alt="{{ $item->keywords }}">
         </a>
-        <div class="bg-gray-100 h-[100px] relative">
+        <div class="bg-gray-100 h-[120px] relative">
             <h3 class="text-sm px-2">
                 <a href="{{route('san-pham', Str::slug($item->title))}}-{{$item->id}}" title="{{ $item->title }}">
                     <strong>{{ $item->title }}</strong>
