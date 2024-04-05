@@ -7,6 +7,7 @@
 		{{'Edit'}}
 	@endif
 	</h3>
+
 	<form class="form-horizontal" method="POST" action="{{ route($resource.'.update', $data['id']) }}" enctype="multipart/form-data">
 		{{ csrf_field() }}{{ method_field('put') }}
 		@foreach($form as $key => $val)
@@ -15,6 +16,37 @@
 					@case('hidden')
 						{{Form::input('hidden', $key, isset($data[$key])?$data[$key]:(isset($val['value'])?$val['value']:null), array())}}
 					@break
+                    @case('has_many')
+                        <label class="control-label col-sm-3">{{$val['title']}}</label>
+                        <div class="col-sm-9">
+                            <div id="product_option"></div>
+                            <div class="options_append">
+                                <div class="row append">
+                                    @foreach($data->$key as $k => $items)
+                                        <div class="col-12 mt-1">
+                                        @foreach($val['update'] as $field)
+                                            {{ Form::input('text', $key.'_update['.$k.']['.$field.']' , $items->$field)}}
+                                        @endforeach
+                                            <span onclick="removeOption(this)" class="bg-info text-white px-2 py-1"> Xóa </span>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                                <div class="d-flex mt-3">
+                                    <div class="mr-2"><span onclick="addHtmlOption(this)" class="bg-info text-white px-2 py-1"> Thêm lựa chọn </span></div>
+                                </div>
+                            </div>
+                            <script>
+                                function addHtmlOption(e){
+                                    let html = '<div class="col-12 mt-1">@foreach($val['update'] as $field) {{ Form::input('text', $key.'_insert['.$field.'][]' , '')}} @endforeach </div>';
+                                    $(e).parents(".options_append").find(".append").append(html);
+                                }
+                                function removeOption(e){
+                                    $(e).parent().remove();
+                                }
+                            </script>
+                        </div>
+                    @break
 					@case('text')
 						<label class="control-label col-sm-3">{{$val['title']}}</label>
 						<div class="col-sm-9">
@@ -116,7 +148,7 @@
 					@case('image')
                         <label class="control-label col-sm-3">{{$val['title']}}</label>
                         <div class="col-sm-9">
-							<span class="inline image_box_{{$key}}"><img onerror="this.src='/images/no-image.png'" src="{{$data[$key]}}"> </span>
+							<span class="inline image_box_{{$key}}"><img onerror="this.src='/images/no-image.png'" src="{{$data[$key]}}"></span>
 							<span class="inline">
                                 {{Form::file($key, array('key'=> $key, 'class'=>'upload_images_field', 'value' => isset($data[$key])? $data[$key]: (isset($val['value'])? $val['value']: null)))}}
                             </span>
@@ -130,7 +162,7 @@
 						<div class="col-sm-9">
 							<span class="inline image_box_{{$key}}"><img onerror="this.src='/images/no-image.png'" src="{{route('get-image-thumbnail', $data[$key])}}"></span>
 							<span class="inline">
-								{{Form::file($key, array('key'=> $key, 'class'=>'upload_images_field', 
+								{{Form::file($key, array('key'=> $key, 'class'=>'upload_images_field',
 								'value'=> isset($data[$key])? route('get-image-thumbnail', $data[$key]): (isset($val['value'])? route('get-image-thumbnail', $val['value']): null)))}}
 							</span>
 							@error($key)
@@ -150,7 +182,7 @@
 							@enderror
 						</div>
 					@break
-					
+
 					@case('check')
 						<label class="control-label col-sm-3">{{$val['title']}}</label>
 						<div class="col-sm-9">

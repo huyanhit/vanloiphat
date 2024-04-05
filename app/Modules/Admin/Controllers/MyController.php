@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
 
 class MyController extends BaseController
-{   
+{
     const CHOOSE      = 'choose';
 
     const CHECK       = 'check';
@@ -19,6 +19,10 @@ class MyController extends BaseController
     const AREA        = 'area';
     const CODE        = 'code';
     const TEXT        = 'text';
+    const HAS_MANY     = 'has_many';
+    const HAS_PIVOT     = 'has_pivot';
+
+
 
     public $request;
     public $service;
@@ -112,7 +116,7 @@ class MyController extends BaseController
         return view('Admin::Layouts.list', $this->view);
 	}
 
-    public function create(){ 
+    public function create(){
         return view('Admin::Layouts.insert', $this->view);
     }
 
@@ -134,7 +138,7 @@ class MyController extends BaseController
         }else{
             $this->view['data'] = $this->hookData;
         }
-        $this->view = $this->getDataReference($id, $this->view);
+        //$this->view = $this->getDataReference($id, $this->view);
 
         return view('Admin::Layouts.insert', $this->view);
     }
@@ -145,13 +149,13 @@ class MyController extends BaseController
         }else{
             $this->view['data'] = $this->hookData;
         }
-        $this->view = $this->getDataReference($id, $this->view);
-        
+        // $this->view = $this->getDataReference($id, $this->view);
+
         return view('Admin::Layouts.edit', $this->view);
     }
 
     public function update($id){
-        $this->view = $this->getDataReference($id, $this->view);
+        // $this->view = $this->getDataReference($id, $this->view);
         $this->service->editData($this->request, $id, $this->view);
         if($this->request->get('submit')){
             if($this->request->get('back')){
@@ -166,7 +170,7 @@ class MyController extends BaseController
 
         return $id;
     }
-    
+
     public function destroy($id){
         return $this->service->deleteData($id, $this->view['form']);
     }
@@ -192,7 +196,7 @@ class MyController extends BaseController
         return $this->service->getDataTable($table, $where, $select);
     }
 
-    private function getDataReference($id, $view){
+    /*private function getDataReference($id, $view){
         foreach ($view['form'] as $key => $val){
             if(isset($val['reference'])){
                 if(isset($val['reference']['text'])){
@@ -218,5 +222,5 @@ class MyController extends BaseController
         }
 
         return $view;
-    }
+    }*/
 }

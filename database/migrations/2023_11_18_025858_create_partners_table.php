@@ -1,4 +1,4 @@
-<?php
+9000000000000000<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

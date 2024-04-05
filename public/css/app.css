@@ -1,7 +1,7 @@
 
 body{
     background-color: #eef4fb;
-    background: url('/images/background.jpg');    
+    background: url('/images/background.jpg');
     background-position: center;
 }
 #header-top{
@@ -38,6 +38,28 @@ body{
     position: relative;
     top: 1px;
 }
+#header-top .cart{
+    text-align: right;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+}
+#header-top .cart .bag{
+    text-align: right;
+    font-size: 12px;
+    color: #ffffff;
+    padding: 5px;
+    text-transform: capitalize;
+}
+
+#header-top #logo a img{
+    height: 20px;
+}
+
+#header-top #logo a{
+    display: inline-block;
+}
+
 #navigation.sticky{
     position: fixed;
     top: 0;
@@ -50,13 +72,8 @@ body{
     border-bottom: 1px #6c757d solid;
 }
 
-#navigation #logo a{
-    display: inline-block;
-    padding: 10px 0;
-}
-#navigation #logo a img{
-    height:45px;
-}
+
+
 
 #navigation #menu{
     height: 30px;
@@ -135,7 +152,7 @@ body{
 }
 .service-carousel .item a{
     display: block;
-    height: 100%; 
+    height: 100%;
 }
 
 .customer-carousel{
@@ -151,7 +168,7 @@ body{
 }
 .customer-carousel .item a{
     display: block;
-    height: 100%; 
+    height: 100%;
 }
 
 .owl-carousel .owl-item img {
@@ -162,7 +179,7 @@ body{
     height: 100%;
 }
 
-.service-carousel .s-content{    
+.service-carousel .s-content{
     position: absolute;
     z-index: 1000;
     top: 150px;
@@ -174,7 +191,7 @@ body{
     transition: .5s;
 }
 
-.service-carousel .s-content:hover{    
+.service-carousel .s-content:hover{
     position: absolute;
     z-index: 1000;
     top: 0px;
@@ -198,7 +215,7 @@ body{
     font-size: 14px;
     text-transform: capitalize;
     color: #fff;
-    text-decoration: none; 
+    text-decoration: none;
     text-transform: uppercase;
 }
 
@@ -560,7 +577,7 @@ h3.p-title::before{
 }
 
 .profile-message ul {
-  list-style: none ;  
+  list-style: none ;
 }
 
 .pro-content{
@@ -665,7 +682,7 @@ h3.p-title::before{
 .services .s-content{
     display: inline-block;
 }
-.services .s-content{    
+.services .s-content{
     text-align: left;
     padding-left: 15px;
     width: calc(100% - 150px);
@@ -679,7 +696,7 @@ h3.p-title::before{
     font-size: 14px;
     text-transform: capitalize;
     color: #495057;
-    text-decoration: none; 
+    text-decoration: none;
     text-transform: uppercase;
 }
 
@@ -718,7 +735,7 @@ h3.p-title::before{
 .news .s-content{
     display: inline-block;
 }
-.news .s-content{    
+.news .s-content{
     text-align: left;
     padding-left: 15px;
     width: calc(100% - 150px);
@@ -732,7 +749,7 @@ h3.p-title::before{
     font-size: 14px;
     text-transform: capitalize;
     color: #495057;
-    text-decoration: none; 
+    text-decoration: none;
     text-transform: uppercase;
 }
 

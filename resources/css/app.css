@@ -1,3 +1,45 @@
+
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'nivo-slider.css';
+@import 'owl.carousel.min.css';
+@import 'lightbox2/dist/CSS/lightbox.min.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-color: #fff8f8;
+    background-position: center;
+}
+.product-spec__table table{
+    width: auto !important;
+}
+
+.nivo-slider{
+    margin-top: 15px;
+    box-shadow: 2px -2px 4px 0px #999;
+}
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+.my-cart{
+    max-width: 1000px;
+}
+#header-fixed.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+#navigation #menus > li > .sub-menu-content{
+    display: none;
+}
+
+#navigation #menus > li.active > .sub-menu-content{
+    display: flex;
+}
+
+#navigation #menus > li.active > .sub-menu-title{
+    background: #ccc;
+}

@@ -13,12 +13,28 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->integer('image_id');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('email');
-            $table->string('facebook');
-            $table->string('map');
+
+            $table->integer('image_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('warehouse')->nullable();
+            $table->string('email')->nullable();
+            $table->string('sites')->nullable();
+
+            $table->string('company')->nullable();
+            $table->string('hotline')->nullable();
+            $table->string('technique')->nullable();
+
+            $table->string('banner_top')->nullable();
+            $table->string('url_banner')->nullable();
+
+            $table->string('meta')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('description')->nullable();
+
+            $table->text('analytic')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('map')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

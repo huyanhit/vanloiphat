@@ -45,7 +45,6 @@ class Service {
     protected function filter($data){
         $filter = [];
         foreach($data["list"] as $key => $value){
-            $select[] = $key;
             if(isset($value['filter']['type']) ){
                 switch ($value['filter']['type']){
                     case 'text':
@@ -109,28 +108,42 @@ class Service {
         return $this->paginateArray($data['items'], $data['paginate']['page']);
     }
 
+    public function filerFormType(&$data): array
+    {
+        foreach($data['form'] as $key => $value){
+            if(isset($value['type'])){
+                if($value['type'] === 'password'){
+                    if(!empty($data['data'][$key])){
+                        $data['data'][$key] = Hash::make($data['data'][$key]);
+                    }else{
+                        unset($data['form'][$key]);
+                    }
+                }
+
+                if($value['type'] === 'confirm'){
+                    unset($data['data'][$key]);
+                }
+                if($value['type'] === 'date'){
+                    $data['data'][$key] = strtotime($data['data'][$key]);
+                }
+            }
+        }
+
+        return $data;
+    }
     public function addData($request, $data){
         if($this->validateData($request, $data)){
             DB::beginTransaction();
             try{
                 $data['data'] = $request->input();
-                foreach($data['form'] as $key => $value){
-                    if(isset($value['type'])){
-                        if($value['type'] === 'password'){
-                            $data['data'][$key] = Hash::make($data['data'][$key]);
-                        }
-                        if($value['type'] === 'confirm'){
-                            unset($data['data'][$key]);
-                        }
-                        if($value['type'] === 'date'){
-                            $data['data'][$key] = strtotime($data['data'][$key]);
-                        }
-                    }
-                }
+                $this->filerFormType($data);
 
                 $arrayInsert = array();
+                $keyHasMany  = '';
                 foreach($data["form"] as $key => $value){
-                    if(!isset($value['reference']) && isset($data["data"][$key])){
+                    if($value['type'] === 'has_many'){
+                        $keyHasMany = $key;
+                    }elseif(isset($data["data"][$key])){
                         $arrayInsert[$key] = $data["data"][$key];
                     }
                 }
@@ -139,11 +152,12 @@ class Service {
                     $arrayInsert = $this->uploadFiles($data['form'], $arrayInsert, $request->file());
                 }
 
-                $result = $this->model->insertGetId($arrayInsert);
+                $id = $this->model->insertGetId($arrayInsert);
+                $this->updateHasMany($keyHasMany, $id, $data);
 
-                if($result){
+                if($id){
                     DB::commit();
-                    return $result;
+                    return $id;
                 }
 
             }catch (Exception $e){
@@ -154,54 +168,62 @@ class Service {
         return false;
     }
 
-    private function editImages($id, $data){
-        $delete_images = $data['data']['delete_images'];
-        foreach($data['form'] as $key => $value){
-            if ($value['type'] === 'images' && $delete_images) {
-                $images = $this->model->find($id)->$key;
-                if(!empty($images)){
-                    $images = str_replace([','.$delete_images, $delete_images.',', $delete_images], '', $images);
-                    $this->model->where('id', $id)->update([$key => $images]);
-                    $this->importModel('images')->where('id',  $delete_images)->delete();
+    private function editImages($id, $data): void{
+        if(isset($data['data']['delete_images'])){
+            $delete_images = $data['data']['delete_images'];
+            foreach($data['form'] as $key => $value){
+                if ($value['type'] === 'images' && $delete_images) {
+                    $images = $this->model->find($id)->$key;
+                    if(!empty($images)){
+                        $images = str_replace([','.$delete_images, $delete_images.',', $delete_images], '', $images);
+                        $this->model->where('id', $id)->update([$key => $images]);
+                        $this->importModel('images')->where('id',  $delete_images)->delete();
+                    }
                 }
             }
         }
     }
 
-    public function editData($request, $id, $data){
-        $data['data'] = $request->input();
-        
-        if(isset($data['data']['delete_images'])){
-            return $this->editImages($id, $data);
-        }
-        
-        foreach($data['form'] as $key => $value){
-            if(isset($value['type'])) {
-                if ($value['type'] === 'password') {
-                    if (!empty($data['data'][$key])) {
-                        $data['data'][$key] = Hash::make($data['data'][$key]);
-                    } else {
-                        unset($data['form'][$key]);
-                        unset($data['form']['confirm']);
+    public function updateHasMany($key, $id, $data): void
+    {
+        $model = $this->model->find($id);
+        if(isset($data['data'][$key.'_update'])) {
+            foreach ($model->$key as $k => $item) {
+                if (isset($data['data'][$key.'_update'][$k])) {
+                    foreach ($data["form"][$key]['update'] as $field) {
+                        $model->$key[$k]->$field = $data['data'][$key.'_update'][$k][$field];
                     }
-                }
-
-                if ($value['type'] === 'confirm') {
-                    unset($data['data'][$key]);
-                }
-
-                if ($value['type'] === 'date') {
-                    $data['data'][$key] = date('Y-m-d h:i:s', strtotime($data['data'][$key]));
+                } else {
+                    $model->$key()->whereId($model->$key[$k]->id)->delete();
                 }
             }
+
+            $model->push();
         }
 
+        if(isset($data['data'][$key.'_insert'])){
+            $group = [];
+            foreach ($data['data'][$key.'_insert'] as $ks =>  $fields) {
+                foreach ($fields as $k => $field) {
+                    $group[$k][$ks] = $field;
+                }
+            }
+            $model->$key()->createMany($group);
+        }
+    }
+
+    public function editData($request, $id, $data){
+        $data['data'] = $request->input();
+        $this->editImages($id, $data);
+        $this->filerFormType($data);
         if($this->validateData($request, $data, true)){
             DB::beginTransaction();
             try{
                 $arrayUpdate = array();
                 foreach($data["form"] as $key => $value){
-                    if(array_key_exists($key, $data["data"])){
+                    if($value['type'] === 'has_many'){
+                        $this->updateHasMany($key, $id, $data);
+                    }elseif(array_key_exists($key, $data["data"])){
                         $arrayUpdate[$key] = $data["data"][$key];
                     }
                 }
@@ -209,7 +231,7 @@ class Service {
                 if(!empty($request->file())){
                     $arrayUpdate = $this->uploadFiles($data["form"], $arrayUpdate, $request->file(), $this->model->find($id));
                 }
-               
+
                 if($this->model->where('id', $id)->update($arrayUpdate)){
                     DB::commit();
                     return $arrayUpdate;
@@ -249,7 +271,7 @@ class Service {
             if($key == $model->getTable()) return $model;
         }
     }
-    
+
     private function paginateArray($items, $perPage = 15, $page = null, $options = []){
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -283,8 +305,8 @@ class Service {
 
         if(empty($arrayValidate)){
             return true;
-        } 
-        
+        }
+
         return $request->validate($arrayValidate);
     }
 
@@ -300,7 +322,7 @@ class Service {
         }
     }
 
-    private function upload($file, $type = null, $path = 'vanloiphat/'){
+    public function upload($file, $type = null, $path = 'vanloiphat/'){
         $name       = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $ext        = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         $store      = self::STORE_FILE;
@@ -360,7 +382,7 @@ class Service {
                 }
             }
         }
-        
+
         return $fileData;
     }
 

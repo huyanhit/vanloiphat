@@ -38,7 +38,7 @@ $(document).ready(function(){
         }else{
             if(type == 'select'){
                 renderSelect(this);
-            }else if(type == 'image_id' || type == 'image' || type == 'file'){
+            }else if(type == 'image_id'|| type == 'image' || type == 'file'){
                 $(this).html('<input class="form-control" id="update_text_change" type="file" data="'+ $(this).find('img').attr('src')+'">' );
             }else if(type == 'area'){
                 renderArea(this);
@@ -152,14 +152,14 @@ $(document).ready(function(){
         let urlUpload = window.location.pathname+'/'+id;
         let file      = element[0].files[0];
         let type      = element.parent().attr('type');
-        let src       = element.attr('data');
         let parent    = element.parent();
         let token     = $('input[name="_token"]').val();
+
         if(file === undefined){
-            if(type == 'image' || type == 'image_id'){
-                parent.html('<span><img src="'+ src +'"></span>');
+            if(type == 'image'){
+                parent.html('<span><img src="'+ data +'"></span>');
             }else if(type == 'file'){
-                parent.html('<span>'+ src +'</span>');
+                parent.html('<span>'+ data +'</span>');
             }
             return false;
         }

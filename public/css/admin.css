@@ -865,3 +865,6 @@ button:active,
   color: #dc3545;
 }
 
+.popover {
+    min-width: 500px;
+}

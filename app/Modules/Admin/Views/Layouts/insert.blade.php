@@ -12,6 +12,28 @@
 						@case('hidden')
 							{{Form::input('hidden', $key, isset($val['value'])?$val['value']:(isset($data[$key])?$data[$key]:(isset($val['value'])?$val['value']:null)), array())}}
 						@break
+                        @case('has_many')
+                            <label class="control-label col-sm-3">{{$val['title']}}</label>
+                            <div class="col-sm-9">
+                                <div id="product_option"></div>
+                                <div class="options_append">
+                                    <div class="row append">
+                                    </div>
+                                    <div class="d-flex mt-3">
+                                        <div class="mr-2"><span onclick="addHtmlOption(this)" class="bg-info text-white px-2 py-1"> Thêm lựa chọn </span></div>
+                                    </div>
+                                </div>
+                                <script>
+                                    function addHtmlOption(e){
+                                        let html = '<div class="col-12 mt-1">@foreach($val['update'] as $field) {{ Form::input('text', $key.'_insert['.$field.'][]' , '')}} @endforeach </div>';
+                                        $(e).parents(".options_append").find(".append").append(html);
+                                    }
+                                    function removeOption(e){
+                                        $(e).parent().remove();
+                                    }
+                                </script>
+                            </div>
+                        @break
 						@case('text')
 							<label class="control-label col-sm-3">{{$val['title']}}</label>
 							<div class="col-sm-9">

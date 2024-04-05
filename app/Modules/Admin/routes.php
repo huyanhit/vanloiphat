@@ -32,5 +32,10 @@ Route::middleware(['web'])->group(function () {
         Route::resource('contacts', 'ContactController');
         Route::resource('menus', 'MenuController');
         Route::resource('dashboard', 'DashboardController');
+
+        Route::resource('producer', 'ProducerController');
+        Route::resource('order-status', 'OrderStatusController');
+        Route::resource('order', 'OrderController');
+        Route::resource('product-option', 'ProductOptionController');
     });
 });

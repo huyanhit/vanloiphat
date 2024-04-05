@@ -215,18 +215,6 @@
 		</div>
 	</div>
 </div>
-<div id="footer">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-8 menu">
-				Admin theme
-			</div>
-			<div class="col-md-4 text-right">
-				Copyright @ Huy Le
-			</div>
-		</div>
-	</div>
-</div>
 @endsection
 
 
