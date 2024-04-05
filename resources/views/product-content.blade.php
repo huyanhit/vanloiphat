@@ -118,34 +118,34 @@
         <div class="basis-7/12 mr-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active  text-gray-500" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                    <button class="nav-link text-gray-400 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                         <h3 class="font-bold text-xl text-uppercase">Chi tiết sản phẩm</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                    <button class="nav-link text-gray-400" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                         <h3 class="font-bold text-xl text-uppercase">Thông tin bảo hành</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+                    <button class="nav-link text-gray-400" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
                         <h3 class="font-bold text-xl text-uppercase">Chứng nhận</h3>
                     </button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1">
+                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->content !!}
                     </article >
                 </div>
                 <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1">
+                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->warning !!}
                     </article >
                 </div>
                 <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1">
+                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->certificate !!}
                     </article >
                 </div>
