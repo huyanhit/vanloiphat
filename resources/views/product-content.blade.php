@@ -89,14 +89,14 @@
                         </div>
                     </div>
                     <div class="w-full my-4">
-                        <a class="px-3 py-2 rounded-2 bg-red-500 text-white hover:bg-red-600 mr-3"
+                        <a class="px-3 py-2 rounded-2 bg-yellow-500 text-white hover:bg-red-600 mr-3"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"
-                           href="javascript:void(0)" ><i class="bi bi-bag-check"></i>
-                            <span>Mua ngay</span>
+                           href="javascript:void(0)"><i class="bi bi-bag-check mr-1 relative -top-[1px]"></i><span>Mua ngay</span>
                         </a>
-                        <a class="px-3 py-2 rounded-2 bg-yellow-500 text-white hover:bg-yellow-700"
+                        <a class="px-3 py-2 add-cart rounded-2 bg-red-500 text-white hover:bg-yellow-700"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"
-                           href="javascript:void(0)"><i class="bi bi-cart mr-1"></i>Add cart</a>
+                           href="javascript:void(0)"><i class="bi bi-cart mr-1  relative -top-[1px]"></i><span>Thêm vào giỏ</span>
+                        </a>
                     </div>
 
                 @else

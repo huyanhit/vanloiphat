@@ -8,6 +8,7 @@ use App\Models\Product;
 use http\Client\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Jackiedo\Cart\Cart;
 use Psy\Util\Json;
 
@@ -46,6 +47,7 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
                 'options'  => $request->option?? [],
                 'extra_info' =>  [
+                    'link'  => route('san-pham',Str::slug($product->title).'-'.$product->id),
                     'image_id'  => $product->image_id,
                 ],
             ]);

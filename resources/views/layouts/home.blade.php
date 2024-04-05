@@ -302,10 +302,10 @@
             for (const index in items) {
                 html +=
                     '<tr class="align-middle">'+
-                    '<td class="text-center"><img class="inline-block w-[100px]" alt="'+items[index].title+'" ' +
+                    '<td class="text-center"><a href="'+items[index].extra_info.link+'"><img class="inline-block w-[100px]" alt="'+items[index].title+'" ' +
                     'onerror="this.src=\'/images/no-image.png\'" ' +
-                    'src="/admin/get-image-thumbnail/'+items[index].extra_info.image_id+'"/></td>' +
-                    '<td>'+ items[index].title +'</td>' +
+                    'src="/admin/get-image-thumbnail/'+items[index].extra_info.image_id+'"/><a></td>' +
+                    '<td><a class="text-cyan-600" href="'+items[index].extra_info.link+'">'+ items[index].title +'<a></td>' +
                     '<td class="text-center"><input onblur="updateCart(this, \''+items[index].hash+'\')" type="number" value="'+ items[index].quantity +'"></td>' +
                     '<td class="text-center">'+ VND.format(items[index].price) +' </td>' +
                     '<td class="text-center">'+ items[index].options +'</td>' +
@@ -379,7 +379,6 @@
                 }
             }).done(function(response){
                 updateCartDom(response);
-            }).error(function(){
             });
         }
 
@@ -423,8 +422,7 @@
                 });
             });
 
-            //take in other js page
-
+            // take in other js page
             function flyToElement(flyer, flyingTo) {
                 var divider = 6;
                 var flyerClone = $(flyer).clone();
