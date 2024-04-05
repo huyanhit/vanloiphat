@@ -25,9 +25,9 @@
                 </div>
             </div>
             <div class="absolute bottom-1 w-full p-2">
-                <a class="btn add-cart float-right px-3 rounded-2 bg-red-500 text-white hover:bg-red-600 text-sm"
+                <a class="btn add-cart float-right px-2 rounded-2 bg-red-500 text-white hover:bg-red-600 text-xs"
                    onclick="addCart(this, {id: {{$item->id}}, quantity: 1})"
-                   href="javascript:void(0)"><i class="bi bi-cart"></i> Vào giỏ </a>
+                   href="javascript:void(0)"><i class="bi bi-cart relative -top-[1px]"></i><span> Thêm vào giỏ</span></a>
             </div>
             @else
             <div class="absolute bottom-1 w-full p-2"><span class="text-red-600 text-sm "> Liên hệ </span></div>
