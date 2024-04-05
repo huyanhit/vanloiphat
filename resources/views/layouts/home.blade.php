@@ -38,18 +38,18 @@
             {{-- Header Top --}}
             <div class="h-[50px] bg-gray-100"
                  style="background: url({{empty($sites->banner_top)? '/images/banner.png': $sites->banner_top}}); background-position: center;"></div>
-            <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px]">
+            <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px] sm:h-auto">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-2">
-                            <a href="{{ route('home') }}" rel="trang chu">
+                        <div class="col-12 col-md-3 col-xl-2 sm:text-center">
+                            <a href="{{ route('home') }}" rel="trang chu" class="sm:inline-block">
                                 <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image', $sites->image_id)}}">
                             </a>
                         </div>
-                        <div class="col-lg-6 col-xl-5 flex">
-                            <form class="inline-block pt-1 flex-auto" method="post" action="{{route('product.search')}}">
+                        <div class="col-sx-12 col-md-9 col-xl-5 flex">
+                            <form class="inline-block pt-1 flex-auto sm:text-center" method="post" action="{{route('product.search')}}">
                                 {{csrf_field()}}
-                                <input class="2xl:w-[260px] xl:w-[200px] lg:w-[150px] " type="text" name="keyword"
+                                <input class="md:w-[250px] xl:w-[150px] 2xl:w-[260px] lg:w-[250px] " type="text" name="keyword"
                                        value="{{request()->keyword}}" placeholder="Tìm sản phẩm"/>
                                 <button>
                                     <i class="bi bi-search relative right-[30px]"></i>
@@ -59,39 +59,39 @@
                                 <button class="pt-2"
                                         data-toggle="popover"
                                         data-bs-placement="bottom">
-                                    <i class="bi bi-cart relative xl:text-3xl lg:text-2xl md:text-xl cart_anchor">
+                                    <i class="bi bi-cart relative text-2xl xl:text-3xl cart_anchor">
                                         <span id="cart-number" class="absolute top-0 right-0 h-[20px] border-1 w-[20px]
                                             rounded-full bg-red-600 text-white text-xs font-bold">0</span>
                                     </i>
                                     <span class="inline-block text-xs font-bold relative -top-1">Giỏ Hàng</span>
                                 </button>
                             </span>
-                            <span title="Tra cứu đơn hàng" class="flex-auto md:hidden lg:inline-block">
+                            <span title="Tra cứu đơn hàng" class="flex-auto xl:inline-block lg:hidden">
                                 <a class="inline-block pt-2" href="/tra-cuu-don-hang">
-                                    <i class="bi bi-clipboard-check xl:text-3xl lg:text-2xl md:text-xl"></i>
+                                    <i class="bi bi-clipboard-check text-2xl xl:text-3xl"></i>
                                     <span class="inline-block text-xs font-bold relative top-1 w-50 text-left">Tra Cứu Đơn Hàng</span>
                                 </a>
                             </span>
                         </div>
-                        <div class="col-lg-4 col-xl-5 flex">
+                        <div class="col-sx-12 col-xl-5 flex sm:text-center">
                             <span class="mr-2 flex flex-auto table-cell">
-                                <i class="bi bi-telephone mr-1 align-middle xl:text-4xl lg:text-3xl md:text-xl"></i>
-                                <span class="inline-block text-xs align-middle lg:w-[100px] md:w-[80px]">
+                                <i class="bi bi-telephone mr-1 align-middle text-3xl xl:text-4xl"></i>
+                                <span class="inline-block text-xs align-middle lg:w-[100px]">
                                     <span class="font-bold">Hotline bán hàng</span>
-                                    <a class="font-bold text-red-600 text-sm">{{ $sites->hotline }}</a>
+                                    <a class="font-bold text-red-600 xl:text-lg lg:text-sm">{{ $sites->hotline }}</a>
                                 </span>
                             </span>
                             <span class="mr-2 flex flex-auto table-cell">
-                                <i class="bi bi-house-gear mr-1 align-middle xl:text-4xl lg:text-3xl md:text-xl"></i>
-                                <span class="inline-block text-xs align-middle lg:w-[90px] md:w-[80px]" >
+                                <i class="bi bi-house-gear mr-1 align-middle text-3xl xl:text-4xl "></i>
+                                <span class="inline-block text-xs align-middle lg:w-[90px]" >
                                     <span class="font-bold">Hổ trợ kỹ thuật</span>
-                                    <a class="font-bold text-red-600 text-sm">{{ $sites->technique }}</a>
+                                    <a class="font-bold text-red-600 xl:text-lg lg:text-sm">{{ $sites->technique }}</a>
                                 </span>
                             </span>
                             <span class="mr-2 table-cell flex-auto border-white rounded">
                                  @if(Auth::check())
-                                     <i class="align-middle bi bi-person-circle mr-1 xl:text-4xl lg:text-3xl"></i>
-                                     <span class="inline-block align-middle text-nowrap hover:text-cyan-800 md:w-[60px]">
+                                     <i class="align-middle bi bi-person-circle mr-1 text-3xl xl:text-4xl "></i>
+                                     <span class="inline-block align-middle text-nowrap hover:text-cyan-800">
                                         <span class="lg:hidden xl:inline-block">Chào: </span><strong>{{ Auth::user()->name }}</strong>
                                      </span>
                                  @else
@@ -109,21 +109,21 @@
             {{-- Header Navigation --}}
             <div id="navigation" class="mb-1">
                 <div class="container">
-                    <div class="flex relative">
+                    <div class="relative lg:flex sm:block">
                         <!-- Navigation Links -->
                         <div class="xl:basis-1/4 lg:basis-2/6">
-                            <div onclick="showNavigation()" class="cursor-pointer mr-1 mt-2 bg-gray-100 hover:bg-cyan-700 hover:text-white flex-auto nav-item px-3 py-2">
+                            <div onclick="showNavigation()" class="sm:hidden lg:block cursor-pointer mr-1 mt-2 bg-gray-100 hover:bg-cyan-700 hover:text-white flex-auto nav-item px-3 py-2">
                                 <i class="bi bi-menu-button-wide-fill mr-2"></i>
                                 <span> Danh Mục Sản Phẩm </span>
                                 <i class="bi bi-chevron-down float-right"></i>
                             </div>
-                            <ul id="menus" class="nav flex flex-col mt-1 absolute h-[340px] z-50 hidden w-full">
+                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] sm:relative z-50 hidden w-full">
                                 @foreach ($product_categories as $item)
                                     @if (empty($item->parent_id))
-                                        <li class="w-full flex-auto h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
-                                            <div class="sub-menu-title xl:w-1/4 lg:w-2/6 relative ">
+                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] sm:h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
+                                            <div class="sub-menu-title xl:w-1/4 lg:w-2/6 md:w-full relative ">
                                                 <span class="bg-white absolute -top-[3px] h-[3px] left-0 right-1"></span>
-                                                <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 py-2
+                                                <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 xl:py-2 lg:py-1 sm:py-2
                                                     overflow-hidden text-nowrap overflow-ellipsis
                                                 {{(request()->path() == $item->router)? 'bg-blue-300': ''}}">
                                                     <span class="mr-2 pt-1">{!!$item->icon!!}</span>
@@ -131,10 +131,11 @@
                                                     <i class="bi bi-chevron-right float-right lg:hidden xl:inline-block"></i>
                                                 </div>
                                             </div>
-                                            <div class="sub-menu-content xl:w-3/4 lg:w-4/6 opacity-95 bg-gray-100 flex flex-row absolute top-0 z-50 bottom-0 right-0">
+                                            <div class="sub-menu-content xl:w-3/4 lg:w-4/6 md:w-full lg:opacity-95 md:opacity-1 pb-3 z-100
+                                            bg-gray-100 flex flex-row lg:absolute lg:top-0 z-50 bottom-0 right-0 md:relative md:-top-1">
                                                 @if(count($item->subCategories))
-                                                <div class="px-3 border-r-2 basis-1/3">
-                                                    <h4 class="font-bold text-sm text-uppercase mt-2">Loại sản phẩm</h4>
+                                                <div class="px-3 border-r-2 basis-1/3 md:basis-1/2">
+                                                    <h4 class="font-bold text-sm text-uppercase mt-2 md:text-xs md:text-center">Loại sản phẩm</h4>
                                                     <ul class="flex flex-col p-2 border-1 mt-2">
                                                         @foreach ($item->subCategories as $sub)
                                                             <li class="hover:bg-cyan-700 hover:text-white px-2">
@@ -146,8 +147,8 @@
                                                 </div>
                                                 @endif
                                                 @if(count($item->producers))
-                                                <div class="px-3 border-r-2 basis-1/3">
-                                                    <h4 class="font-bold text-sm text-uppercase  mt-2">Hãng sản xuất</h4>
+                                                <div class="px-3 border-r-2 basis-1/3 md:basis-1/2">
+                                                    <h4 class="font-bold text-sm text-uppercase mt-2 md:text-xs md:text-center">Hãng sản xuất</h4>
                                                     <ul class="flex flex-col p-2 border-1 mt-2">
                                                         @foreach ($item->producers as $sub)
                                                             <li class="hover:bg-cyan-700 hover:text-white px-2">
@@ -159,7 +160,7 @@
                                                 </div>
                                                 @endif
                                                 @if($item->image_id)
-                                                    <div class="p-3 basis-1/3">
+                                                    <div class="p-3 basis-1/3 md:hidden">
                                                         <img class="rounded" src="{{route('get-image', $item->image_id)}}">
                                                     </div>
                                                 @endif
@@ -209,7 +210,7 @@
             <!-- Logo -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-sm-6 col-lg-4 col-lg-3 mb-3">
                         <h3><strong class="text-uppercase text-cyan-100">{{$sites->company}}</strong></h3>
                         <ul class="mt-2 text-sm">
                             <li><strong>Địa chỉ: </strong>{{$sites->address}}</li>
@@ -219,7 +220,7 @@
                             <li><strong>Website: </strong>{{$sites->sites}}</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-sm-6 col-lg-4 col-lg-2">
                         <strong class="text-uppercase mb-2 text-cyan-100">Lĩnh vực hoạt động</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/gioi-thieu-cong-ty" title="Giới thiêu công ty">Giới thiêu công ty</a></li>
@@ -229,7 +230,7 @@
                             <li> <a href="/lien-he" title="Liên hệ">Liên hệ</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-sm-6 col-lg-4 col-lg-2">
                         <strong class="text-uppercase mb-2 text-cyan-100">Quy định kinh doanh</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/hoan-tien" rel="nofollow" title="Quy định hoàn tiền">Quy định hoàn tiền</a></li>
@@ -239,7 +240,7 @@
                             <li> <a href="/bao-ve-nguoi-dung" rel="nofollow" title="Bảo vệ thông tin người dùng">Bảo vệ thông tin người dùng</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-sm-6 col-lg-4 col-xl-2">
                         <strong class="text-uppercase mb-2 text-cyan-100">Hỗ trợ khách hàng</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/huong-dan-mua-hang" rel="nofollow" title="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
@@ -249,7 +250,7 @@
                             <li> <a href="/cau-hoi-thuong-gap" title="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="sm:hidden col-lg-6 col-xl-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Mạng xã hội</strong>
                         {!!$sites->facebook!!}
                     </div>

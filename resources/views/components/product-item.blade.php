@@ -1,7 +1,7 @@
 @props(['item' => null])
-<div class="2xl:w-[20%] xl:w-[25%] lg:w-[33.3%] md:w-[50%] inline-block float-left p-2">
-    <div class="product_item shadow-[1px_0_5px_1px_rgba(6,6,6,0.3)]">
-        <a class="image text-center block" href="{{route('san-pham', Str::slug($item->title))}}-{{$item->id}}" title="{{ $item->title }}">
+<div class="2xl:w-[20%] xl:w-[25%] lg:w-[33.3%] sm:w-[50%] float-left p-2">
+    <div class="product_item shadow-[1px_0_5px_1px_rgba(6,6,6,0.3)] inline-block ">
+        <a class="image text-center block sm:text-center" href="{{route('san-pham', Str::slug($item->title))}}-{{$item->id}}" title="{{ $item->title }}">
             <img class="h-[300px] inline-block"
                  onerror="this.src='/images/no-image.png'"
                  src="{{ route('get-image-thumbnail', $item->image_id) }}"

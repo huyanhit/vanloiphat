@@ -3,8 +3,8 @@
     <div class="container">
         <div class="flex">
             <div class="xl:basis-1/4 lg:basis-2/6"></div>
-            <div class="xl:basis-3/4 lg:basis-4/6">
-                <div class="slider-wrapper theme-default min-h-[337px]">
+            <div class="xl:basis-3/4 lg:basis-4/6 sm:hidden lg:block">
+                <div class="slider-wrapper theme-default">
                     <div id="slider" class="nivoSlider">
                         @foreach ($slider as $item)
                             <img src="{{route('get-image', $item->image_id)}}"
