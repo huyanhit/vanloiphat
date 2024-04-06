@@ -44,7 +44,7 @@ class OrderController extends MyController
                 ),
             ),
             'address' => array(
-                'width' => 3,
+                'width' => 5,
                 'filter' => array(
                     'type' => self::TEXT,
                     'value' => '',
@@ -59,7 +59,7 @@ class OrderController extends MyController
             ),
             'order_status_id' => array(
                 'title'=> 'Trang thái đơn hàng',
-                'width' => 10,
+                'width' => 3,
                 'update'=> true,
                 'filter' => array(
                     'type' => self::SELECT,
