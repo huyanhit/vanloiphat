@@ -18,7 +18,7 @@
                     <h1 class="px-2 block w-full text-center font-bold text-xl">
                         <span class="ml-2 text-center text-uppercase">{!! $pages->title !!}</span>
                     </h1>
-                    <div class="description p-3 border-1 inline-block mt-2">
+                    <div class="description p-3 border-1 inline-block mt-2 bg-gray-100 font-italic">
                         {!! $pages->description !!}
                     </div>
                     <article class="my-3 p-3 prose prose-sm prose-p:m-0 bg-gray-100">
