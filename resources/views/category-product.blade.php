@@ -64,7 +64,7 @@
         </div>
         @if($category->banner !== '')
             <div class="my-2 shadow-[1px_0_5px_1px_rgba(6,6,6,0.3)]">
-                <img onerror="this.src='/images/category.jpg'" src="{{route('get-image-resource', $category->banner)}} alt='{{$category->title}}">
+                <img onerror="this.src='/images/category.jpg'" src="{{route('get-image-resource', $category->banner)}}" alt="{{$category->title}}">
             </div>
         @endif
         @if(strip_tags($category->content) != '')
