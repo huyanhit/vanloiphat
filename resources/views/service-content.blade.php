@@ -50,40 +50,7 @@
     </div>
     <div class="mt-3 flex">
         <div class="basis-5/12">
-            <div class="py-2">
-            <h4 class="font-bold text-xl text-uppercase">Đánh giá</h4>
-            <div class="my-1 bg-white p-3  border-1">
-                <div class="flex flex-col space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <h5 class="text-lg font-bold">Hương</h5>
-                        <p class="text-gray-700 text-sm mb-2">Mua ngày 15 - 04 - 2024</p>
-                        <p class="text-gray-700">Sản phẩm tốt lắp đặt nhanh</p>
-                    </div>
-                    <form class="bg-white p-4 rounded-lg shadow-md">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2" for="name">
-                                Tên
-                            </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                   id="name" type="text" placeholder="Nhập tên">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2" for="comment">
-                                Đánh giá
-                            </label>
-                            <textarea
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="comment" rows="3" placeholder="Nhập đánh giá của bạn"></textarea>
-                        </div>
-                        <button
-                            class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit">
-                            Đăng
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+            <x-comment-block comment=""></x-comment-block>
         </div>
         <div class="basis-7/12">
             <div class="py-2 px-3">

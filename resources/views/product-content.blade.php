@@ -158,40 +158,7 @@
                     {!! $product->description !!}
                 </div>
             </div>
-            <div class="py-2 ">
-                <h4 class="font-bold text-xl text-uppercase">Đánh giá</h4>
-                <div class="my-1 bg-white p-3 border-1">
-                    <div class="flex flex-col space-y-4">
-                        <div class="bg-white p-3 rounded-lg shadow-md">
-                            <h5 class="font-bold inline-block">Hương</h5>
-                            <span class="float-right text-gray-700 text-xs mb-2 p-2">Mua ngày 15 - 04 - 2024</span>
-                            <p class="clear-both text-gray-700 text-sm pl-2">Sản phẩm tốt lắp đặt nhanh</p>
-                        </div>
-                        <form class="bg-white p-3 rounded-lg shadow-md">
-                            <div class="mb-4">
-                                <label class="block text-gray-700 font-bold mb-2" for="name">
-                                    Tên
-                                </label>
-                                <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="name" type="text" placeholder="Nhập tên">
-                            </div>
-                            <div class="mb-3">
-                                <label class="block text-gray-700 font-bold mb-2" for="comment">
-                                    Đánh giá
-                                </label>
-                                <textarea
-                                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="comment" rows="3" placeholder="Nhập đánh giá của bạn"></textarea>
-                            </div>
-                            <button
-                                class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                                Đăng
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <x-comment-block comment=""></x-comment-block>
         </div>
     </div>
     <x-title-block title="Sản phẩm cùng loại"></x-title-block>
@@ -201,6 +168,7 @@
         @endforeach
     </div>
     <script>
+
         $(window).load(function() {
             var owl = $('#p-carousel').owlCarousel({
                 loop:true,
