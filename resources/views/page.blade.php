@@ -12,7 +12,11 @@
                     </div>
                 @endforeach
             </div>
+
             <div class="basis-7/12 mx-3">
+                <h1 class="px-2 block w-full text-center font-bold text-xl">
+                    <span class="ml-2 text-center text-uppercase">{!! $pages->title !!}</span>
+                </h1>
                 @if(!empty($pages))
                     <div class="description p-3 border-1 inline-block mt-2">
                         {!! $pages->description !!}
