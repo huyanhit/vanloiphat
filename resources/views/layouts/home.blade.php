@@ -257,7 +257,7 @@
                     <div class="clear"></div>
                 </div>
                 <span onclick="topFunction()" id="scroll-top" class="bg-white h-[48px] w-[48px] pt-[11px] cursor-pointer text-center
-                text-gray-600 border-1 rounded-4 fixed bottom-1 right-[58px]" title="Go to top">TOP</span>
+                text-gray-900 border-1 rounded-4 fixed bottom-1 border-gray-900 right-[58px]" title="Cuộn lên trên"><i class="bi bi-chevron-double-up"></i></span>
              </div>
         </footer>
     </body>
