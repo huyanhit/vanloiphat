@@ -107,7 +107,7 @@
                             @foreach($order->products as $item)
                                 <tr class="align-middle">
                                     <td class="text-center">
-                                        <img class="inline-block w-[100px]" alt="No name" onerror="this.src='/images/no-image.png'" src="{{ $item->image_id }}" />
+                                        <img class="inline-block w-[100px]" alt="No name" onerror="this.src='/images/no-image.png'" src="{{route('get-image-thumbnail', $item->image_id)}}" />
                                     </td>
                                     <td>{{$item->title}}</td>
                                     <td class="text-center">{{$item->pivot->quantity}}</td>
