@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-3 col-xl-2 sm:text-center xl:text-left">
                             <a href="{{ route('home') }}" rel="trang chu" class="md:block sm:hidden">
-                                <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image', $sites->image_id)}}">
+                                <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image-thumbnail', $sites->image_id)}}">
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-9 col-xl-5 flex">
@@ -161,7 +161,7 @@
                                                 @endif
                                                 @if($item->image_id)
                                                     <div class="p-3 basis-1/3 md:hidden">
-                                                        <img class="rounded" src="{{route('get-image', $item->image_id)}}">
+                                                        <img class="rounded" src="{{route('get-image-thumbnail', $item->image_id)}}">
                                                     </div>
                                                 @endif
                                             </div>
