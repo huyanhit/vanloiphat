@@ -35,9 +35,8 @@ Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderCon
     ->name('ckfinder_browser');
 
 require __DIR__.'/auth.php';
-
 Route::resource('/cart', CartController::class);
-
+Route::get('/counter', [HomeController::class, 'counter'])->name('page.counter');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/phan-loai/{name}', [CategoryProductController::class, 'show'])->name('phan-loai');
 Route::get('/san-pham/{name}', [ProductController::class, 'show'])->name('san-pham');
@@ -51,10 +50,8 @@ Route::get('/tim-kiem',   [ProductController::class, 'search'])->name('tim-kiem'
 Route::get('/dich-vu/{service}', [ServiceController::class, 'show'])->name('dich-vu');
 Route::get('/hang-san-xuat/{service}', [ProducerController::class, 'show'])->name('hang-san-xuat');
 
-
 Route::get('/thong-tin', [NewsController::class, 'index'])->name('news.index');
 Route::get('/thong-tin/{name}', [NewsController::class, 'index'])->name('news.show');
-Route::get('/counter', [HomeController::class, 'counter'])->name('page.counter');
 Route::post('/search',  [ProductController::class, 'search'])->name('product.search');
 Route::post('/contact', [PageController::class, 'saveContact'])->middleware('throttle:3,10')->name('page.contact');
 

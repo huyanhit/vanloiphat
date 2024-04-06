@@ -9,8 +9,13 @@
                         <div class="area-manager">
                             <a href="{{$value['link']}}">
                                 {!!$value['icon']!!}  <span class="name">{{$value['title']}}</span>
-                                <span class="count"><span class="title">Số lượng:</span> {{$value['page']}} </span>
-                                <span class="active"><span class="title">hoạt động:</span> {{$value['active']}} </span>
+                                <span class="count"><span class="title">Số lượng:</span ><span class="font-weight-bold"> {{$value['page']}} </span></span>
+                                @if(isset($value['active']))
+                                    <span class="active"><span class="title">Hoạt động:</span> <span class="font-weight-bold"> {{$value['active']}} </span> </span>
+                                @endif
+                                @if(isset($value['process']))
+                                    <span class="active"><span class="title">Đã xử lý:</span> <span class="font-weight-bold"> {{$value['process']}} </span> </span>
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -33,7 +38,7 @@
                                 <form method="POST" action="{{ route('images-destroy') }}" style="display: inline-block;">
                                     @csrf
                                     <span class="title pull-left">xóa file không còn sử dụng: </span>
-                                    <a class="btn" onclick="event.preventDefault(); if(confirm('Bạn muốn xóa file không còn sử dụng.')) this.closest('form').submit()" style="margin: -5px 10px;"> Xóa </a> 
+                                    <a class="btn" onclick="event.preventDefault(); if(confirm('Bạn muốn xóa file không còn sử dụng.')) this.closest('form').submit()" style="margin: -5px 10px;"> Xóa </a>
                                 </form>
                             </div>
                         </div>

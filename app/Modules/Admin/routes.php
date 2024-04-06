@@ -37,7 +37,7 @@ Route::middleware(['web'])->group(function () {
 
         Route::resource('producer', 'ProducerController');
         Route::resource('order-status', 'OrderStatusController');
-        Route::resource('order', 'OrderController');
+        Route::resource('orders', 'OrderController');
         Route::resource('product-option', 'ProductOptionController');
     });
 });
