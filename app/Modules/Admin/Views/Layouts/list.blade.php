@@ -71,7 +71,7 @@
 							<a class="btn btn-insert" href="{{Request::root()}}/{{$control['add_reference']['link']}}"> {{$control['add_reference']['title']}} </a>
 						@endif
 						@if(!isset($control['add']))
-							<a class="btn btn-insert" href="{{route($resource.'.create')}}"> Thêm </a>
+							<a class="btn btn-info btn-insert" href="{{route($resource.'.create')}}"> Thêm </a>
 						@endif
 					</div>
 				</td>

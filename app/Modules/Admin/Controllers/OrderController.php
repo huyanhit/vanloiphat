@@ -61,6 +61,10 @@ class OrderController extends MyController
                 'title'=> 'Trang thái đơn hàng',
                 'width' => 10,
                 'update'=> true,
+                'filter' => array(
+                    'type' => self::SELECT,
+                    'value' => '',
+                ),
                 'data' => $this->renderSelectByTable(
                     $this->getDataTable('order_statuses', ['active' => 1], null), 'id', 'title'),
                 'views' => array(

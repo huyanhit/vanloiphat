@@ -148,12 +148,13 @@ button,
   background: #666;
   color: #fff;
   border: none;
-  border-radius: 0;
-  font-size: 12px;
+  border-radius: 0 !important;;
   height: 30px;
   float: left;
   margin-right: 5px;
   min-width: 60px;
+  font-size: 14px !important;
+  line-height: 16px !important;
 }
 
 input[type=submit]:hover,
