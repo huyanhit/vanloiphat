@@ -49,7 +49,7 @@
     </div>
     <div class="mt-3 flex">
         <div class="basis-7/12">
-            <div class="py-2 px-3">
+            <div class="py-2">
                 <h4 class="font-bold text-xl text-uppercase">Thông tin chi tiết</h4>
                 <article class="my-1 p-3 prose prose-sm prose-p:m-0 bg-gray-100">
                     {!! $service->content !!}
@@ -57,7 +57,9 @@
             </div>
         </div>
         <div class="basis-5/12">
-            <x-comment-block comment=""></x-comment-block>
+            <div class="px-3">
+                <x-comment-block comment=""></x-comment-block>
+            </div>
         </div>
     </div>
     <script>
