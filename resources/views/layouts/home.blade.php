@@ -31,7 +31,7 @@
             gtag('config', 'G-S537FWM4HT');
         </script>
         <script src="{{Request::root()}}/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
         <header>
