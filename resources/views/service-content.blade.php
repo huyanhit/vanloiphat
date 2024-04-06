@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="w-full py-2 font-bold"><span class="text-red-600 text-sm "> Liên hệ </span></div>
+                    <div class="w-full py-2 font-bold"><span class="text-sm">Liên hệ: </span> <a class="font-bold text-red-600 xl:text-lg lg:text-sm">0908.334.314</a></div>
                 @endif
                 <div class="">
                     <div class="py-2">
