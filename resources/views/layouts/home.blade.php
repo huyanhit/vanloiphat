@@ -208,7 +208,7 @@
         <!-- Page footer -->
         <footer class="bg-cyan-700 text-white py-3">
             <!-- Logo -->
-            <div class="container">
+            <div class="container relative">
                 <div class="row">
                     <div class="col-sm-6 col-lg-4 col-xl-3 mb-3">
                         <h3><strong class="text-uppercase text-cyan-100">{{$sites->company}}</strong></h3>
@@ -256,6 +256,8 @@
                     </div>
                     <div class="clear"></div>
                 </div>
+                <span onclick="topFunction()" id="scroll-top" class="bg-white h-[48px] w-[48px] pt-[11px] cursor-pointer text-center
+                text-gray-600 border-1 rounded-4 fixed bottom-1 right-[58px]" title="Go to top">TOP</span>
              </div>
         </footer>
     </body>
@@ -263,11 +265,27 @@
     <script>
         counter();
         getCart();
-        window.onscroll = function() { mySticky() };
+        // Get the button
+        const scroll = document.getElementById("scroll-top");
         const VND = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
         });
+        window.onscroll = function() {
+            mySticky()
+            scrollFunction()
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scroll.style.display = "block";
+            } else {
+                scroll.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
         function getCart(){
             $.ajax({
                 type: 'GET',
@@ -283,7 +301,7 @@
                         '<div class="my-cart">Loading...</div>' +
                         '<div class="text-right">' +
                             '<a id="close-cart" class="btn px-2 mr-2 rounded-2 bg-cyan-500 text-white hover:bg-cyan-700 text-sm">' +
-                            '<i class="bi bi-x-circle"></i> Close </a>'+
+                            '<i class="bi bi-x-circle"></i> Đóng </a>'+
                             '<a class="btn px-2 rounded-2 bg-red-500 text-white hover:bg-red-600 text-sm" href="/dat-hang">' +
                             '<i class="bi bi-cart"></i> Đặt hàng </a>'+
                         '</div>'+
