@@ -26,13 +26,13 @@
                     </article >
 
                     <div class="my-3 text-center">
-                        <a class="px-2 py-2 bg-gray-700 hover:bg-gray-900 text-white rounded text-decoration-none" href="/">Quay lại trang chủ</a>
+                        <a class="px-2 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-decoration-none" href="/">Quay lại trang chủ</a>
                     </div>
                 @else
                     <article class="my-1 p-3 prose prose-sm prose-p:m-0 text-center text-uppercase">
                         Trang đang hoàn thiện. Cảm ơn quý khách đã ghé thăm.
                         <div class="my-3">
-                            <a class="px-2 py-2 bg-gray-700 hover:bg-gray-900 text-white rounded text-decoration-none" href="/">Quay lại trang chủ</a>
+                            <a class="px-2 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-decoration-none" href="/">Quay lại trang chủ</a>
                         </div>
                     </article >
                 @endif
