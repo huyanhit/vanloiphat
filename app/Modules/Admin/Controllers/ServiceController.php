@@ -19,7 +19,7 @@ class ServiceController extends MyController
         $this->view['resource'] = $this->request->segment(2);
         $this->view['form'] = array(
             'title'       => array('title'=> 'Tiêu đề', 'type' => self::TEXT, 'validate' => 'required|max:50'),
-            'description' => array('title'=> 'Mô tả', 'type' => self::AREA, 'validate' => 'max:255'),
+            'description' => array('title'=> 'Mô tả', 'type' => self::AREA),
             'content'     => array('title'=> 'Nội dung', 'type' => self::AREA),
             'image_id'    => array('title'=> 'Hình ảnh',   'type' => self::IMAGE_ID),
             'index'       => array('title'=> 'Thứ tự hiển thị', 'type' => self::TEXT),
@@ -27,7 +27,7 @@ class ServiceController extends MyController
         );
         $this->view['list'] = array(
             'index'  => array(
-                'title'=> 'Thứ tự hiển thị',    
+                'title'=> 'Thứ tự hiển thị',
                 'width' => 3,
                 'update'=> true,
                 'filter' => array(
@@ -48,7 +48,7 @@ class ServiceController extends MyController
                 )
             ),
             'description' => array(
-                'title'=> 'Mô tả',  
+                'title'=> 'Mô tả',
                 'width' => 10,
                 'update'=> true,
                 'views' => array(
@@ -66,7 +66,7 @@ class ServiceController extends MyController
                     'type' => self::IMAGE_ID,
                 ),
                 'sort' => 'hidden'
-            ), 
+            ),
             'active' => array(
                 'title' => 'Active',
                 'width' => 7,
