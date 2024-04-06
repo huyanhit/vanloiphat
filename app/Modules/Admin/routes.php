@@ -15,6 +15,8 @@ Route::middleware(['web'])->group(function () {
     Route::group(['prefix' => 'admin', 'namespace'=>'App\Modules\Admin\Controllers'], function () {
         Route::resource('login', AdminLogin::class);
         Route::get('get-image/{id}', [ImageController::class, 'getImage'])->name('get-image');
+        Route::get('get-image-resource/{resource?}', [ImageController::class, 'getImageResource'])
+            ->name('get-image-resource')->where('resource', '(.*)');;
         Route::get('get-image-thumbnail/{id}', [ImageController::class, 'getImageThumbnail'])->name('get-image-thumbnail');
         Route::post('images-destroy', [ImageController::class, 'imagesDestroy'])->name('images-destroy');
     });

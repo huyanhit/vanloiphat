@@ -24,7 +24,7 @@ class ImageService extends Service{
             $path = str_replace(self::PUCLIC_STORAGE,'', $image->uri);
             $file = Storage::disk('local')->get(self::THUMBNAIL_SEPARATE.$path);
             $type = Storage::mimeType(self::THUMBNAIL_SEPARATE.$path);
-    
+
             return response($file)->header('Content-Type', $type);
         }
     }
@@ -34,7 +34,16 @@ class ImageService extends Service{
             $path = str_replace(self::PUCLIC_STORAGE,'', $image->uri);
             $file = Storage::disk('local')->get($path);
             $type = Storage::mimeType($path);
-    
+
+            return response($file)->header('Content-Type', $type);
+        }
+    }
+
+    public function getImageResource($resource){
+        if(!empty($resource)){
+            $path = str_replace(self::PUCLIC_STORAGE,'', $resource);
+            $file = Storage::disk('local')->get($path);
+            $type = Storage::mimeType($path);
             return response($file)->header('Content-Type', $type);
         }
     }
@@ -60,7 +69,7 @@ class ImageService extends Service{
                 $thumbs[] = self::THUMBNAIL_SEPARATE.$path;
             }
         }
-       
+
         Storage::delete($files);
         Storage::delete($thumbs);
 

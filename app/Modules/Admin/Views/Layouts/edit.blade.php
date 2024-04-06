@@ -148,7 +148,7 @@
 					@case('image')
                         <label class="control-label col-sm-3">{{$val['title']}}</label>
                         <div class="col-sm-9">
-							<span class="inline image_box_{{$key}}"><img onerror="this.src='/images/no-image.png'" src="{{$data[$key]}}"></span>
+							<span class="inline image_box_{{$key}}"><img src="{{route('get-image-resource', $data[$key])}}"></span>
 							<span class="inline">
                                 {{Form::file($key, array('key'=> $key, 'class'=>'upload_images_field', 'value' => isset($data[$key])? $data[$key]: (isset($val['value'])? $val['value']: null)))}}
                             </span>
