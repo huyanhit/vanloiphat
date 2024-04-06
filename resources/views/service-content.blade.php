@@ -43,15 +43,11 @@
                             {!! $service->description !!}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <div class="mt-3 flex">
-        <div class="basis-5/12">
-            <x-comment-block comment=""></x-comment-block>
-        </div>
         <div class="basis-7/12">
             <div class="py-2 px-3">
                 <h4 class="font-bold text-xl text-uppercase">Thông tin chi tiết</h4>
@@ -59,6 +55,9 @@
                     {!! $service->content !!}
                 </article >
             </div>
+        </div>
+        <div class="basis-5/12">
+            <x-comment-block comment=""></x-comment-block>
         </div>
     </div>
     <script>
