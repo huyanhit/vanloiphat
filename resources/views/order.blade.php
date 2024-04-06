@@ -121,8 +121,7 @@
                                 <td class="text-center">Tổng tiền</td>
                                 <td></td>
                                 <td class="text-center"></td>
-                                <td class="text-center "><span class="text-red-600">{{number_format($order
-->price, 0, ',', '.')}}đ</span></td>
+                                <td class="text-center "><span class="text-red-600">{{number_format($order->price, 0, ',', '.')}}đ</span></td>
                                 <td></td>
                             </tr>
                         </table>
