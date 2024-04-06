@@ -14,4 +14,9 @@ export default defineConfig({
     alias: {
         '$': 'jQuery'
     },
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    }
 });

@@ -29,7 +29,7 @@
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-5fc4dd82.css",
+    "file": "assets/app-5649b7cc.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
