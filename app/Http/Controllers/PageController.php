@@ -15,12 +15,18 @@ class PageController extends Controller
         $view = 'page';
         $pages = Page::where(['active' => 1,'router'=>$router])->first();
         if(View::exists($router)) $view = $router;
-
-        return view($view, array_merge($this->getDataLayout(),['pages'=> $pages]));
+        return view($view, array_merge($this->getDataLayout(),[
+            'pages' => $pages,
+            'meta' => collect([
+                'title' => $pages?->title,
+                'description' => $pages?->meta,
+                'keyword' =>  $pages?->meta,
+            ])
+        ]));
     }
 
     public function saveContact(Request $request){
-        if($request->input('submit')){  
+        if($request->input('submit')){
             $data = [
                 'name' => $request->input('name'),
                 'address' => $request->input('address'),
@@ -29,19 +35,19 @@ class PageController extends Controller
                 'content' => $request->input('content')
             ];
             $validate = [
-                'name'    => 'max:100', 
-                'address' => 'max:225', 
+                'name'    => 'max:100',
+                'address' => 'max:225',
                 'email'   => 'nullable|email|max:225',
                 'phone'   => 'max:25',
                 'content' => 'required',
             ];
-            
+
             $valid = Validator::make($data, $validate);
             if ($valid->fails()){
                 return redirect('/lien-he')->with('errors', $valid->errors());
             }
 
-            $data = Contact::insertGetId($data);  
+            $data = Contact::insertGetId($data);
             return redirect('/lien-he')->with('success', 'success');
         }
     }
