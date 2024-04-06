@@ -21,7 +21,7 @@
                     <div class="description p-3 border-1 inline-block mt-2 bg-gray-100 font-italic">
                         {!! $pages->description !!}
                     </div>
-                    <article class="my-3 p-3 prose prose-sm prose-p:m-0 bg-gray-100">
+                    <article class="my-3 p-3 prose prose-sm prose-p:m-0">
                         {!! $pages->content !!}
                     </article >
 
