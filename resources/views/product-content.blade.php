@@ -58,11 +58,12 @@
                                 </div>
                             @endif
                         </div>
+
+                        @if($product->price_pro > $product->price)
                         <div class="mr-3">
                             <span class="font-bold"> Giá hãng: </span>
                             <span class="text-gray-700 line-through text-xl">{{ number_format($product->price_pro, 0, ',', '.')}}đ </span>
                         </div>
-                        @if($product->price_pro > $product->price)
                         <span>
                             <span class="mr-2">
                                 <span class="font-bold">Giá bán:</span>
@@ -77,6 +78,16 @@
                                 @endif
                             </span>
                         </span>
+                        @elseif($product->price > 0)
+                            <span>
+                                <span class="mr-2">
+                                    <span class="font-bold">Giá bán:</span>
+                                    <span class="text-red-600 text-2xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                                </span>
+                                @if($product->instalment)
+                                    <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
+                                @endif
+                            </span>
                         @endif
 
                         <div class="my-3">
