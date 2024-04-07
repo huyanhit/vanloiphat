@@ -116,20 +116,6 @@ class crawl_karofi extends Command
 
         return substr($files, 0,-2);
     }
-    public function crawlJS($data): array
-    {
-        return [
-            'sku' => $data->variants[0]->title,
-            'title' => $data->title,
-            'keywords'=> $data->metadescription,
-            'content' => substr($data->description, 0, strpos($data->description,'<table border="1"><tbody>')).'</article>',
-            'price' => $data->price/100,
-            'price_pro' => $data->compare_at_price/100,
-            'image_id' => $this->saveImage($data->featured_image),
-            'images' => $this->saveImages($data->media),
-        ];
-    }
-
     public function crawlContent($crawl, $catID): array
     {
         $title = $crawl->filter('body .product-info__content h1')->html();
@@ -151,7 +137,7 @@ class crawl_karofi extends Command
             'sku' => $sku,
             'keywords'=> $title,
             'content' => $content,
-            'description' => $crawl->filter('body #product_techcontent')->html(),
+            'description' => str($crawl->filter('body .product-tabs__content #product_techcontent .product-spec')->html())->squish(),
             'price' => is_integer($price)? $price: 0,
             'price_pro' => 0,
             'product_category_id' => $catID,
