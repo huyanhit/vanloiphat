@@ -34,17 +34,17 @@ $(document).ready(function () {
     })
     $('.product-carousel').owlCarousel({
         loop: true,
-        margin: 10,
+        margin: 0,
         dots: false,
         responsive: {
-            0: {
-                items: 1
+            0:{
+                items:2,
             },
-            600: {
-                items: 3
+            1000:{
+                items:3,
             },
-            1000: {
-                items: 5
+            1200:{
+                items:5,
             }
         }
     })

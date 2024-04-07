@@ -32,7 +32,7 @@
             </div>
             @endif
         </div>
-        <div class="basis-7/12 px-3 ">
+        <div class="basis-7/12 px-0 lg:px-3">
             <div class="bg-white p-3">
                 <h1 class="text-2xl font-bold">{{ $product->title }}</h1>
                 <div class="my-2">
@@ -130,17 +130,17 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                        <h3 class="font-bold text-xl text-uppercase">Chi tiết sản phẩm</h3>
+                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Chi tiết</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-xl text-uppercase">Thông tin bảo hành</h3>
+                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Bảo hành</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-xl text-uppercase">Chứng nhận</h3>
+                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Chứng nhận</h3>
                     </button>
                 </li>
             </ul>

@@ -24,12 +24,12 @@
     "src": "node_modules/lightbox2/dist/images/prev.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-f159f8e8.js",
+    "file": "assets/app-872ed86f.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-0528b0c2.css",
+    "file": "assets/app-a3597873.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
