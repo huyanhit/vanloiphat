@@ -117,10 +117,10 @@
                                 <span> Danh Mục Sản Phẩm </span>
                                 <i class="bi bi-chevron-down float-right"></i>
                             </div>
-                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50  w-full lg:hidden">
+                            <ul id="menus" class="nav flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50 w-full flex lg:hidden">
                                 @foreach ($product_categories as $item)
                                     @if (empty($item->parent_id))
-                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
+                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-[40px] menu-item" >
                                             <div class="sub-menu-title xl:w-1/4 lg:w-2/6 md:w-full relative ">
                                                 <span class="bg-white absolute -top-[3px] h-[3px] left-0 right-1"></span>
                                                 <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 xl:py-2 lg:py-1 py-2
@@ -128,7 +128,7 @@
                                                 {{(request()->path() == $item->router)? 'bg-blue-300': ''}}">
                                                     <span class="mr-2 pt-1">{!!$item->icon!!}</span>
                                                     <a href="{{Request::root()}}/phan-loai/{{$item->name}}"> {{ $item->title }}</a>
-                                                    <i class="bi bi-chevron-right float-right lg:hidden xl:inline-block"></i>
+                                                    <i class="bi bi-chevron-right float-right lg:hidden xl:inline-block px-2 border-1 rounded" onclick="openSubMenu(this)"></i>
                                                 </div>
                                             </div>
                                             <div class="sub-menu-content xl:w-3/4 lg:w-4/6 md:w-full lg:opacity-95 md:opacity-1 pb-3 z-100
@@ -369,23 +369,30 @@
         }
         function showNavigation() {
             const menus = document.getElementById("menus");
-            if (menus.classList.contains("hidden")) {
-                menus.classList.remove("hidden");
+            if (menus.classList.contains("lg:hidden")) {
+                menus.classList.remove("lg:hidden");
+                menus.classList.remove("lg:hidden");
             } else {
-                menus.classList.add("hidden");
+                menus.classList.add("lg:hidden");
             }
         }
         function closeSubMenu(){
             $('#menus li').each((index, elem) =>{
                 $(elem).removeClass("active");
+                $(elem).find('i.bi').removeClass('bi-chevron-left')
+                $(elem).find('i.bi').addClass('bi-chevron-right')
             })
         }
         function openSubMenu(e){
-            closeSubMenu();
-            if (e.classList.contains("active")) {
-                e.classList.remove("active");
+            if ($(e).parents('.menu-item').hasClass("active")) {
+                $(e).removeClass('bi-chevron-left')
+                $(e).addClass('bi-chevron-right')
+                $(e).parents('.menu-item').removeClass("active");
             } else {
-                e.classList.add("active");
+                closeSubMenu();
+                $(e).removeClass('bi-chevron-right')
+                $(e).addClass('bi-chevron-left')
+                $(e).parents('.menu-item').addClass("active");
             }
         }
 

@@ -4,8 +4,8 @@
     <x-breadcrumb name="san-pham" :data="['category_name' => $product->category->name,
         'category_title' => $product->category->title, 'product_title' => $product->title]">
     </x-breadcrumb>
-    <div class="mt-2 flex flex-row">
-        <div class="border-1 basis-5/12 relative w-[40%] bg-white">
+    <div class="mt-2 block lg:flex flex-row">
+        <div class="border-1 basis-5/12 relative w-full lg:w-[40%] bg-white">
             <div id="p-carousel" class="owl-carousel owl-theme p-3">
                 <a class="item" data-lightbox="roadtrip" href="{{route('get-image', $product->image_id)}}">
                     <img onerror="this.src='/images/no-image.png'"
@@ -125,7 +125,7 @@
 
         </div>
     </div>
-    <div class="flex mt-3">
+    <div class="block lg:flex mt-3">
         <div class="basis-7/12 mr-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -179,15 +179,20 @@
         @endforeach
     </div>
     <script>
-
         $(window).load(function() {
             var owl = $('#p-carousel').owlCarousel({
                 loop:true,
                 margin:10,
                 responsive:{
-                    1000:{
-                        items:1
+                    0: {
+                        items: 1
                     },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
                 }
             })
             $('.change_image_carousel').on('click', function(e) {

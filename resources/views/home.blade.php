@@ -56,7 +56,7 @@
         </div>
     </div>
     <script>
-        document.getElementById("menus").classList.remove("hidden");
+        document.getElementById("menus").classList.remove("lg:hidden");
     </script>
 @endsection
 
