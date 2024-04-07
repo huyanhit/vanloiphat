@@ -141,6 +141,7 @@ class crawl_karofi extends Command
         if(strpos($content,'<div class="form-box"')){
             $content = substr($content, 0, strpos($content,'<div class="form-box"')).'</article>';
         }
+        $price = str_replace([',',' VNĐ'],'', $crawl->filter('body .product-info__content-price')->text());
         return [
             'active' => 1,
             'is_hot' => 1,
@@ -152,7 +153,7 @@ class crawl_karofi extends Command
             'keywords'=> $title,
             'content' => $content,
             'description' => $crawl->filter('body #product_techcontent')->html(),
-            'price' => str_replace([',',' VNĐ'],'', $crawl->filter('body .product-info__content-price')->text()),
+            'price' => is_integer($price)? $price: 0,
             'price_pro' => 0,
             'product_category_id' => $catID,
             'warning' => '',
