@@ -1,5 +1,5 @@
 @props(['item' => null])
-<div class="inline-block float-left p-2">
+<div class="p-2">
     <div class="shadow-[1px_0_5px_1px_rgba(6,6,6,0.3)]">
         <a class="image" href="{{route('san-pham', Str::slug($item->title))}}-{{$item->id}}" title="{{ $item->title }}">
             <img class="min-h-[300px] w-full" onerror="this.src='/images/no-image.png'"  src="{{route('get-image-thumbnail', $item->image_id)}}" alt="{{ $item->title }}">

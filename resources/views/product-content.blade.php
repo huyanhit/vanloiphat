@@ -173,7 +173,7 @@
         </div>
     </div>
     <x-title-block title="Sản phẩm cùng loại"></x-title-block>
-    <div class="-mx-2 product-carousel owl-carousel owl-theme mb-3">
+    <div class="mx-0 lg:-mx-2 product-carousel owl-carousel owl-theme mb-3">
         @foreach ($c_product as $item)
             <x-product-carousel-item :item="$item"/>
         @endforeach
