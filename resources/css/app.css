@@ -45,13 +45,11 @@ body{
     background: #ccc;
 }
 
+
 @media (max-width: 900px) {
     #navigation #menus > li.active > .sub-menu-content{
         display: block;
     }
-}
-
-@media (max-width: 900px) {
     #header-fixed.sticky {
         position: relative;
     }
