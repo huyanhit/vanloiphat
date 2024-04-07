@@ -139,7 +139,7 @@ class crawl_karofi extends Command
             'sku' => $sku,
             'keywords'=> $title,
             'content' => $content,
-            'description' => str($crawl->filter('body .product-tabs__content #product_techcontent .product-spec')->html())->squish(),
+            'description' => str($crawl->filter('body .product-tabs__content #product_techcontent')->html())->squish(),
             'price' => (int)$price,
             'price_pro' => 0,
             'product_category_id' => $catID,
