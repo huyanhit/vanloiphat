@@ -126,6 +126,7 @@ class crawl_karofi extends Command
         if(strpos($content,'<div class="form-box"')){
             $content = substr($content, 0, strpos($content,'<div class="form-box"')).'</article>';
         }
+
         $price = str_replace([',',' VNĐ'],'', $crawl->filter('body .product-info__content-price')->text());
         return [
             'active' => 1,
@@ -138,7 +139,7 @@ class crawl_karofi extends Command
             'keywords'=> $title,
             'content' => $content,
             'description' => str($crawl->filter('body .product-tabs__content #product_techcontent .product-spec')->html())->squish(),
-            'price' => is_integer($price)? $price: 0,
+            'price' => (int)$price,
             'price_pro' => 0,
             'product_category_id' => $catID,
             'warning' => '',
@@ -167,6 +168,7 @@ class crawl_karofi extends Command
                 $images = $crawl->filter('body .product-info__slide .slides .item')->each(function (Crawler $node){
                     return $node->filter('img')->attr('src');
                 });
+
                 $content['title'] = $title;
                 $content['url_crawl'] = $uri;
                 $content['image_id'] = $this->saveImage($images[0]);
