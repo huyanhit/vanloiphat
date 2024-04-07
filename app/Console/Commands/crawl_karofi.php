@@ -116,15 +116,11 @@ class crawl_karofi extends Command
         ];
     }
 
-    public function crawlContent($file, $catID): array
+    public function crawlContent($crawl, $catID): array
     {
-        $crawl = $this->getDomUrl($file);
         $title = $crawl->filter('body .product-info__content h1')->html();
         $skus = explode(' ', $title);
         $sku  = array_pop($skus);
-        $images = $crawl->filter('body .product-info__slide .slides .item')->each(function (Crawler $node){
-            return $node->filter('img')->attr('src');
-        });
         $content = $crawl->filter('body .product-info__content-short')->html().
             $crawl->filter('body .product-tabs__content .box-content__main')->html();
         if(strpos($content,'<div class="form-box"')){
@@ -137,15 +133,12 @@ class crawl_karofi extends Command
             'is_promotion' => 1,
             'producer_id' => 2,
             'instalment' => 1,
-            'title' => $crawl->filter('body .product-info__content h1')->text(),
             'sku' => $sku,
             'keywords'=> $title,
             'content' => $content,
             'description' => $crawl->filter('body #product_techcontent')->html(),
             'price' => str_replace([',',' VNĐ'],'', $crawl->filter('body .product-info__content-price')->text()),
             'price_pro' => 0,
-            'image_id' => $this->saveImage($images[0]),
-            'images' => $this->saveImages($images),
             'product_category_id' => $catID,
             'warning' => '',
             'certificate'=> '',
@@ -163,11 +156,26 @@ class crawl_karofi extends Command
      }
     public function crawlPost($site, $uri, $catID): void
     {
-        if(substr($uri, 0, 18) === $site){
-            $content = $this->crawlContent($uri, $catID);
-            $product = Product::where('title', $content['title'])->first();
-            if($product == null) {
-                DB::table('products')->insertGetId($content);
+        $urlCrawl = Product::where('url_crawl', $uri)->first();
+        if($urlCrawl == null){
+            $crawl = $this->getDomUrl($uri);
+            $title = $crawl->filter('body .product-info__content h1')->html();
+            if(substr($uri, 0, 18) === $site){
+                $product = Product::where('title', $title)->first();
+                if($product == null) {
+                    $content = $this->crawlContent($crawl, $catID);
+                    $images = $crawl->filter('body .product-info__slide .slides .item')->each(function (Crawler $node){
+                        return $node->filter('img')->attr('src');
+                    });
+                    $content['title'] = $title;
+                    $content['url_crawl'] = $uri;
+                    $content['image_id'] = $this->saveImage($images[0]);
+                    $content['images'] = $this->saveImages($images);
+                    DB::table('products')->insertGetId($content);
+                }else{
+                    $product->url_crawl = $uri;
+                    $product->save();
+                }
             }
         }
     }
