@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('content')
     <div class="container">
-        <div class="flex">
+        <div class="lg:flex block">
             <div class="basis-1/3">
                 <x-breadcrumb name="phan-loai" :data="['category_title' => $category->title, 'category_name' => $category->name]"></x-breadcrumb>
             </div>

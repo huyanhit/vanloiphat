@@ -117,7 +117,7 @@
                                 <span> Danh Mục Sản Phẩm </span>
                                 <i class="bi bi-chevron-down float-right"></i>
                             </div>
-                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50 hidden w-full">
+                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50  w-full lg:hidden">
                                 @foreach ($product_categories as $item)
                                     @if (empty($item->parent_id))
                                         <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
@@ -220,7 +220,7 @@
                             <li><strong>Website: </strong>{{$sites->sites}}</li>
                         </ul>
                     </div>
-                    <div class="col-sm-6 col-lg-4 col-xl-2">
+                    <div class="col-sm-6 col-lg-4 col-xl-2 mb-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Lĩnh vực hoạt động</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/gioi-thieu-cong-ty" title="Giới thiêu công ty">Giới thiêu công ty</a></li>
@@ -230,7 +230,7 @@
                             <li> <a href="/lien-he" title="Liên hệ">Liên hệ</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-6 col-lg-4 col-xl-2">
+                    <div class="col-sm-6 col-lg-4 col-xl-2 mb-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Quy định kinh doanh</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/hoan-tien" rel="nofollow" title="Quy định hoàn tiền">Quy định hoàn tiền</a></li>
@@ -240,7 +240,7 @@
                             <li> <a href="/bao-ve-nguoi-dung" rel="nofollow" title="Bảo vệ thông tin người dùng">Bảo vệ thông tin người dùng</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-6 col-lg-4 col-xl-2">
+                    <div class="col-sm-6 col-lg-4 col-xl-2 mb-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Hỗ trợ khách hàng</strong>
                         <ul class="mt-2 text-sm">
                             <li> <a href="/huong-dan-mua-hang" rel="nofollow" title="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
