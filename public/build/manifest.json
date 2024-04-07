@@ -24,7 +24,7 @@
     "src": "node_modules/lightbox2/dist/images/prev.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-872ed86f.js",
+    "file": "assets/app-36bd4e8f.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
