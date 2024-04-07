@@ -43,7 +43,6 @@ class crawl_karofi extends Command
     public function crawlCategories($site): void
     {
         $catCraw = [
-            ['id'=> 3, 'link' =>'/cay-nuoc-nong-lanh-13'],
             ['id'=> 1, 'link' =>'/may-loc-nuoc-28'],
             ['id'=> 7, 'link' =>'/he-thong-loc-nuoc-cong-nghiep'],
         ];
