@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\DomCrawler\Crawler;
@@ -47,24 +48,38 @@ class crawl_karofi extends Command
             ['id'=> 7, 'link' =>'/he-thong-loc-nuoc-cong-nghiep'],
         ];
 
+
         foreach ($catCraw as $val){
-            echo('category:'. $val['link']).PHP_EOL;
-            for ($i = 1 ;$i<100;  $i++){
+            for ($i = 1; $i<100;  $i++){
+                echo('category:'. $site.$val['link'].'?page='.$i).PHP_EOL;
                 if(!empty($this->getDomUrl($site.$val['link'].'?page='.$i)->filter('.product-list__content')->text())){
-                    $this->crawlPosts($site, $val['link'], $val['id']);
+                    $this->crawlPosts($site, $val['link'], $val['id'],$i);
                 }
             }
         }
     }
 
-    public function crawlPosts($site, $uri, $catID):? array
+    public function crawlPosts($site, $uri, $catID, $page):? array
     {
         if(substr($uri, 0, 1) === '/'){
-            $this->getDomUrl($site.$uri)->filter('body .product-list__content .item')->each(function (Crawler $node) use ($site, $catID){
-                $link = $node->filter('a')->attr('href');
-                echo('post:'.$link).PHP_EOL;
-                $this->crawlPost($site, $link, $catID);
-            });
+            if($page > 1){
+                $response = Http::withHeaders([
+                    'X-Requested-With' => 'XMLHttpRequest'
+                ])->get($site.$uri.'?page='.$page);
+                $html = json_decode($response->body())->html;
+                $crawl = new Crawler($html);
+                $crawl->filter('.item')->each(function (Crawler $node) use ($site, $catID){
+                    $link = $node->filter('a')->attr('href');
+                    echo('post:'.$link).PHP_EOL;
+                    $this->crawlPost($site, $link, $catID);
+                });
+            }else{
+                $this->getDomUrl($site.$uri)->filter('body .product-list__content .item')->each(function (Crawler $node) use ($site, $catID){
+                    $link = $node->filter('a')->attr('href');
+                    echo('post:'.$link).PHP_EOL;
+                    $this->crawlPost($site, $link, $catID);
+                });
+            }
         }
 
         return null;
@@ -158,24 +173,19 @@ class crawl_karofi extends Command
     {
         $urlCrawl = Product::where('url_crawl', $uri)->first();
         if($urlCrawl == null){
-            $crawl = $this->getDomUrl($uri);
-            $title = $crawl->filter('body .product-info__content h1')->html();
             if(substr($uri, 0, 18) === $site){
-                $product = Product::where('title', $title)->first();
-                if($product == null) {
-                    $content = $this->crawlContent($crawl, $catID);
-                    $images = $crawl->filter('body .product-info__slide .slides .item')->each(function (Crawler $node){
-                        return $node->filter('img')->attr('src');
-                    });
-                    $content['title'] = $title;
-                    $content['url_crawl'] = $uri;
-                    $content['image_id'] = $this->saveImage($images[0]);
-                    $content['images'] = $this->saveImages($images);
-                    DB::table('products')->insertGetId($content);
-                }else{
-                    $product->url_crawl = $uri;
-                    $product->save();
-                }
+                $crawl = $this->getDomUrl($uri);
+
+                $title = $crawl->filter('body .product-info__content h1')->html();
+                $content = $this->crawlContent($crawl, $catID);
+                $images = $crawl->filter('body .product-info__slide .slides .item')->each(function (Crawler $node){
+                    return $node->filter('img')->attr('src');
+                });
+                $content['title'] = $title;
+                $content['url_crawl'] = $uri;
+                $content['image_id'] = $this->saveImage($images[0]);
+                $content['images'] = $this->saveImages($images);
+                DB::table('products')->insertGetId($content);
             }
         }
     }
