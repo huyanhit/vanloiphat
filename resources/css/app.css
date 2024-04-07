@@ -34,16 +34,21 @@ body{
     width: 100%;
     z-index: 100;
 }
+
 #navigation #menus > li > .sub-menu-content{
     display: none;
 }
-
 #navigation #menus > li.active > .sub-menu-content{
     display: flex;
 }
-
 #navigation #menus > li.active > .sub-menu-title{
     background: #ccc;
+}
+
+@media (max-width: 900px) {
+    #navigation #menus > li.active > .sub-menu-content{
+        display: block;
+    }
 }
 
 @media (max-width: 900px) {

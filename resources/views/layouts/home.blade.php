@@ -42,7 +42,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-xl-2 text-right xl:text-left">
-                            <a href="{{ route('home') }}" rel="trang chu" class="sm:block hidden">
+                            <a href="{{ route('home') }}" rel="trang chu" class="md:block hidden">
                                 <img class="py-2 max-h-[65px] inline-block" onerror="this.src='/images/logo.png'" src="{{route('get-image-thumbnail', $sites->image_id)}}">
                             </a>
                         </div>
@@ -74,14 +74,14 @@
                             </span>
                         </div>
                         <div class="col-sx-12 col-xl-5 flex text-center">
-                            <span class="mr-2 flex flex-auto table-cell">
+                            <span class="mr-2 flex-auto table-cell">
                                 <i class="bi bi-telephone mr-1 align-middle text-3xl xl:text-4xl"></i>
                                 <span class="inline-block text-xs align-middle w-[100px]">
                                     <span class="font-bold">Hotline bán hàng</span>
                                     <a class="font-bold text-red-600 xl:text-lg lg:text-sm">{{ $sites->hotline }}</a>
                                 </span>
                             </span>
-                            <span class="mr-2 flex flex-auto table-cell">
+                            <span class="mr-2 flex-auto table-cell">
                                 <i class="bi bi-house-gear mr-1 align-middle text-3xl xl:text-4xl "></i>
                                 <span class="inline-block text-xs align-middle w-[100px]" >
                                     <span class="font-bold">Hổ trợ kỹ thuật</span>
@@ -120,7 +120,7 @@
                             <ul id="menus" class="nav flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50 w-full flex lg:hidden">
                                 @foreach ($product_categories as $item)
                                     @if (empty($item->parent_id))
-                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-[40px] menu-item" >
+                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-auto menu-item" >
                                             <div class="sub-menu-title xl:w-1/4 lg:w-2/6 md:w-full relative ">
                                                 <span class="bg-white absolute -top-[3px] h-[3px] left-0 right-1"></span>
                                                 <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 xl:py-2 lg:py-1 py-2
@@ -132,7 +132,7 @@
                                                 </div>
                                             </div>
                                             <div class="sub-menu-content xl:w-3/4 lg:w-4/6 md:w-full lg:opacity-95 md:opacity-1 pb-3 z-100
-                                            bg-gray-100 flex flex-row lg:absolute lg:top-0 z-50 bottom-0 right-0 md:relative md:-top-1">
+                                            bg-gray-100 lg:flex block relative lg:absolute lg:top-0 z-50 bottom-0 right-0 md:-top-1">
                                                 @if(count($item->subCategories))
                                                 <div class="px-3 border-r-2 basis-1/3 md:basis-1/2">
                                                     <h4 class="font-bold text-sm text-uppercase mt-2 md:text-xs md:text-center">Loại sản phẩm</h4>
@@ -160,7 +160,7 @@
                                                 </div>
                                                 @endif
                                                 @if($item->image_id)
-                                                    <div class="p-3 basis-1/3 md:hidden">
+                                                    <div class="p-3 basis-1/3 hidden lg:block">
                                                         <img class="rounded" src="{{route('get-image-thumbnail', $item->image_id)}}">
                                                     </div>
                                                 @endif
@@ -379,8 +379,8 @@
         function closeSubMenu(){
             $('#menus li').each((index, elem) =>{
                 $(elem).removeClass("active");
-                $(elem).find('i.bi').removeClass('bi-chevron-left')
-                $(elem).find('i.bi').addClass('bi-chevron-right')
+                $(elem).find('i.bi-chevron-left').removeClass('bi-chevron-left')
+                $(elem).find('i.bi-chevron-left').addClass('bi-chevron-right')
             })
         }
         function openSubMenu(e){
