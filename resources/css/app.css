@@ -45,3 +45,9 @@ body{
 #navigation #menus > li.active > .sub-menu-title{
     background: #ccc;
 }
+
+@media (max-width: 900px) {
+    #header-fixed.sticky {
+        position: relative;
+    }
+}

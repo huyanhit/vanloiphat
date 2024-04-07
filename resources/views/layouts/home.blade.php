@@ -36,18 +36,18 @@
     <body>
         <header>
             {{-- Header Top --}}
-            <div class="h-[50px] bg-gray-100"
+            <div class="h-[50px] bg-gray-100 lg:block hidden"
                  style="background: url({{empty($sites->banner_top)? '/images/banner.png': $sites->banner_top}}); background-position: center;"></div>
-            <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px] sm:h-auto">
+            <div id="header-fixed" class="h-[65px] bg-blue-100 leading-[58px] h-auto">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12 col-md-3 col-xl-2 sm:text-center xl:text-left">
-                            <a href="{{ route('home') }}" rel="trang chu" class="md:block sm:hidden">
-                                <img class="py-2 max-h-[65px]" onerror="this.src='/images/logo.png'" src="{{route('get-image-thumbnail', $sites->image_id)}}">
+                        <div class="col-sm-12 col-md-4 col-xl-2 text-right xl:text-left">
+                            <a href="{{ route('home') }}" rel="trang chu" class="sm:block hidden">
+                                <img class="py-2 max-h-[65px] inline-block" onerror="this.src='/images/logo.png'" src="{{route('get-image-thumbnail', $sites->image_id)}}">
                             </a>
                         </div>
-                        <div class="col-sm-12 col-md-9 col-xl-5 flex">
-                            <form class="inline-block pt-1 flex-auto sm:text-center" method="post" action="{{route('product.search')}}">
+                        <div class="col-sm-12 col-md-8 col-xl-5 flex">
+                            <form class="inline-block pt-1 flex-auto text-center" method="post" action="{{route('product.search')}}">
                                 {{csrf_field()}}
                                 <input class="md:w-[250px] xl:w-[150px] 2xl:w-[260px] lg:w-[250px] " type="text" name="keyword"
                                        value="{{request()->keyword}}" placeholder="Tìm sản phẩm"/>
@@ -66,36 +66,36 @@
                                     <span class="inline-block text-xs font-bold relative -top-1">Giỏ Hàng</span>
                                 </button>
                             </span>
-                            <span title="Tra cứu đơn hàng" class="flex-auto xl:inline-block lg:hidden">
+                            <span title="Tra cứu đơn hàng" class="flex-auto xl:inline-block hidden">
                                 <a class="inline-block pt-2" href="/tra-cuu-don-hang">
                                     <i class="bi bi-clipboard-check text-2xl xl:text-3xl"></i>
                                     <span class="inline-block text-xs font-bold relative top-1 w-50 text-left">Tra Cứu Đơn Hàng</span>
                                 </a>
                             </span>
                         </div>
-                        <div class="col-sx-12 col-xl-5 flex sm:text-center">
+                        <div class="col-sx-12 col-xl-5 flex text-center">
                             <span class="mr-2 flex flex-auto table-cell">
                                 <i class="bi bi-telephone mr-1 align-middle text-3xl xl:text-4xl"></i>
-                                <span class="inline-block text-xs align-middle lg:w-[100px]">
+                                <span class="inline-block text-xs align-middle w-[100px]">
                                     <span class="font-bold">Hotline bán hàng</span>
                                     <a class="font-bold text-red-600 xl:text-lg lg:text-sm">{{ $sites->hotline }}</a>
                                 </span>
                             </span>
                             <span class="mr-2 flex flex-auto table-cell">
                                 <i class="bi bi-house-gear mr-1 align-middle text-3xl xl:text-4xl "></i>
-                                <span class="inline-block text-xs align-middle lg:w-[90px]" >
+                                <span class="inline-block text-xs align-middle w-[100px]" >
                                     <span class="font-bold">Hổ trợ kỹ thuật</span>
                                     <a class="font-bold text-red-600 xl:text-lg lg:text-sm">{{ $sites->technique }}</a>
                                 </span>
                             </span>
                             <span class="mr-2 table-cell flex-auto border-white rounded">
                                  @if(Auth::check())
-                                     <i class="align-middle bi bi-person-circle mr-1 text-3xl xl:text-4xl "></i>
+                                     <i class="align-middle bi bi-person-circle mr-1 text-3xl xl:text-4xl"></i>
                                      <span class="inline-block align-middle text-nowrap hover:text-cyan-800">
                                         <span class="lg:hidden xl:inline-block">Chào: </span><strong>{{ Auth::user()->name }}</strong>
                                      </span>
                                  @else
-                                     <i class="align-middle bi bi-pencil-square mr-1 xl:text-4xl lg:text-3xl"></i>
+                                     <i class="align-middle bi bi-pencil-square mr-1 text-3xl xl:text-4xl"></i>
                                      <span class="inline-block align-middle text-xs text-left md:w-[60px]" >
                                          <a class="font-bold text-nowrap block hover:text-cyan-800 text-uppercase" href="/dang-nhap">Đăng nhập</a>
                                      </span>
@@ -109,21 +109,21 @@
             {{-- Header Navigation --}}
             <div id="navigation" class="mb-1">
                 <div class="container">
-                    <div class="relative lg:flex sm:block">
+                    <div class="relative lg:flex block">
                         <!-- Navigation Links -->
                         <div class="xl:basis-1/4 lg:basis-2/6">
-                            <div onclick="showNavigation()" class="sm:hidden lg:block cursor-pointer mr-1 mt-2 bg-gray-100 hover:bg-cyan-700 hover:text-white flex-auto nav-item px-3 py-2">
+                            <div onclick="showNavigation()" class="hidden lg:block cursor-pointer mr-1 mt-2 bg-gray-100 hover:bg-cyan-700 hover:text-white flex-auto nav-item px-3 py-2">
                                 <i class="bi bi-menu-button-wide-fill mr-2"></i>
                                 <span> Danh Mục Sản Phẩm </span>
                                 <i class="bi bi-chevron-down float-right"></i>
                             </div>
-                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] sm:relative z-50 hidden w-full">
+                            <ul id="menus" class="nav flex flex-col mt-1 lg:absolute 2xl:h-[340px] xl:h-[320px] lg:h-[280px] relative z-50 hidden w-full">
                                 @foreach ($product_categories as $item)
                                     @if (empty($item->parent_id))
-                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] sm:h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
+                                        <li class="w-full flex-auto 2xl:h-[40px] xl:h-[36px] lg:h-[34px] h-[40px]" onmousemove="openSubMenu(this)" onmouseout="closeSubMenu()">
                                             <div class="sub-menu-title xl:w-1/4 lg:w-2/6 md:w-full relative ">
                                                 <span class="bg-white absolute -top-[3px] h-[3px] left-0 right-1"></span>
-                                                <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 xl:py-2 lg:py-1 sm:py-2
+                                                <div class="mr-1 bg-gray-100 hover:bg-cyan-700 hover:text-white nav-item px-3 xl:py-2 lg:py-1 py-2
                                                     overflow-hidden text-nowrap overflow-ellipsis
                                                 {{(request()->path() == $item->router)? 'bg-blue-300': ''}}">
                                                     <span class="mr-2 pt-1">{!!$item->icon!!}</span>
@@ -250,13 +250,13 @@
                             <li> <a href="/cau-hoi-thuong-gap" title="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
                         </ul>
                     </div>
-                    <div class="md:hidden lg:block col-lg-6 col-xl-3">
+                    <div class="hidden lg:block col-lg-6 col-xl-3">
                         <strong class="text-uppercase mb-2 text-cyan-100">Mạng xã hội</strong>
                         {!!$sites->facebook!!}
                     </div>
                     <div class="clear"></div>
                 </div>
-                <span onclick="topFunction()" id="scroll-top" class="bg-white h-[48px] w-[48px] pt-[11px] cursor-pointer text-center
+                <span onclick="topFunction()" id="scroll-top" class="bg-white h-[48px] w-[48px] pt-[11px] cursor-pointer text-center z-50
                 text-gray-900 border-1 rounded-4 fixed bottom-1 border-gray-900 right-[58px]" title="Cuộn lên trên"><i class="bi bi-chevron-double-up"></i></span>
              </div>
         </footer>
