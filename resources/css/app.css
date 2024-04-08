@@ -54,3 +54,25 @@ body{
         position: relative;
     }
 }
+
+.rating > input {display: none;}  /* Remove radio buttons */
+
+.rating > label:before {
+    content: "\F586"; /* Star */
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: 400 !important;
+}
+
+.rating > label
+{
+    color: #222222; /* Start color when not clicked */
+}
+
+.rating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.rating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+

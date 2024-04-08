@@ -5,7 +5,7 @@
         'category_title' => $product->category->title, 'product_title' => $product->title]">
     </x-breadcrumb>
     <div class="mt-2 block lg:flex flex-row">
-        <div class="border-1 basis-5/12 relative w-full lg:w-[40%] bg-white">
+        <div class="basis-5/12 relative mr-3 w-full lg:w-[40%] bg-white">
             <div id="p-carousel" class="owl-carousel owl-theme p-3">
                 <a class="item" data-lightbox="roadtrip" href="{{route('get-image', $product->image_id)}}">
                     <img onerror="this.src='/images/no-image.png'"
@@ -36,17 +36,32 @@
             <div class="bg-white p-3">
                 <h1 class="text-2xl font-bold">{{ $product->title }}</h1>
                 <div class="my-2">
-                <h3 class="mr-5 inline-block">
-                    <span class="mr-2">Thương hiệu:</span><a class="text-uppercase font-bold text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
-                </h3>
-                <h3 class="inline-block">
-                    <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
-                </h3>
+                    <h3 class="mr-5 inline-block">
+                        <span class="mr-2 font-bold">Thương hiệu:</span><a class="text-uppercase font-bold text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
+                    </h3>
+                    <h3 class="inline-block">
+                        <span class="mr-2 font-bold">Mã sản phẩm</span><span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
+                    </h3>
                 </div>
+                <div class="flex mb-2">
+                    <span class="mr-3 font-bold pt-[6px]"> Đánh giá </span>
+                    <span class="flex items-center mr-2 pt-[2px]">
+                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
+                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
+                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
+                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
+                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
+                    </span>
+                    <span class="px-2 pt-[5px]">
+                        <a href="#comment"><i class="bi bi-chat-dots text-lg"></i> </a><span class="mr-2 text-cyan-600"> 1 </span>
+                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2">  1000 </span>
+                    </span>
+                </div>
+                <script></script>
                 <hr/>
                 @if($product->price > 0)
                     <div class="my-3">
-                        <div class="w-full my-4">
+                        <div class="w-full my-2">
                             @if(isset($product->product_option[0]))
                                 <div>
                                     <span class="font-bold   text-capitalize"> {{$product->product_option[0]->group_title }}:</span>
@@ -100,16 +115,15 @@
                         </div>
                     </div>
                     <div class="w-full my-4">
-                        <a class="px-3 py-2 rounded-2 bg-yellow-500 text-white hover:bg-red-600 mr-3"
+                        <a class="px-3 py-2 bg-yellow-500 text-white hover:bg-yellow-600 mr-3"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"
                            href="javascript:void(0)"><i class="bi bi-bag-check mr-1 relative -top-[1px]"></i><span>Mua ngay</span>
                         </a>
-                        <a class="px-3 py-2 add-cart rounded-2 bg-red-500 text-white hover:bg-yellow-700"
+                        <a class="px-3 py-2 add-cart bg-red-500 text-white hover:bg-red-700"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"
                            href="javascript:void(0)"><i class="bi bi-cart mr-1  relative -top-[1px]"></i><span>Thêm vào giỏ</span>
                         </a>
                     </div>
-
                 @else
                     <div class="my-3">
                         <h3 class="text-sm font-bold">Hổ trợ từ Công Ty</h3>
@@ -129,46 +143,115 @@
         <div class="basis-7/12 mr-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link text-gray-400 hover:text-gray-700 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Chi tiết</h3>
+                    <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ct-tab" data-bs-toggle="tab" data-bs-target="#ct-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                        <h3 class="font-bold text-sm lg:text-xl">Chi tiết</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link text-gray-400 hover:text-gray-700" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Bảo hành</h3>
+                    <button class="nav-link text-gray-400 hover:text-gray-700" id="ts-tab" data-bs-toggle="tab" data-bs-target="#ts-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                        <h3 class="font-bold text-sm lg:text-xl">Thông số</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link text-gray-400 hover:text-gray-700" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-sm lg:text-xl text-uppercase">Chứng nhận</h3>
+                    <button class="nav-link text-gray-400 hover:text-gray-700" id="bh-tab" data-bs-toggle="tab" data-bs-target="#bh-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                        <h3 class="font-bold text-sm lg:text-xl">Bảo hành</h3>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-gray-400 hover:text-gray-700" id="cn-tab" data-bs-toggle="tab" data-bs-target="#cn-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+                        <h3 class="font-bold text-sm lg:text-xl">Chứng nhận</h3>
                     </button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="ct-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                     <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->content !!}
                     </article >
                 </div>
-                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="tab-pane fade" id="ts-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
+                        {!! $product->description !!}
+                    </article >
+                </div>
+                <div class="tab-pane fade" id="bh-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                     <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->warning !!}
                     </article >
                 </div>
-                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                <div class="tab-pane fade" id="cn-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                     <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                         {!! $product->certificate !!}
                     </article >
                 </div>
             </div>
         </div>
-        <div class="basis-5/12">
-            <div class="py-2">
-                <h3 class="font-bold text-xl text-uppercase">Thông số kỹ thuật</h3>
-                <div class="p-3 text-sm border-1 my-1 prose m-auto prose-p:m-0 bg-white">
-                    {!! $product->description !!}
+        <div class="basis-5/12 p-3 bg-white">
+            <form class="px-3 py-4 shadow-md border-1 relative">
+                <h3 class="text-2xl px-3 dark:text-white bg-white absolute -top-5 font-bold text-center">Tư vấn</h3>
+                <div class="text-sm font-bold uppercase">{{ $product->title }}</div>
+                <div class="mr-2 mb-2">
+                    <span class="mr-2">
+                        <span class="mr-2">Thương hiệu:</span><a class="text-uppercase text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
+                    </span>
+                    <span class="mr-2">
+                        <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600">{{ $product->sku }}</span>
+                    </span>
+                    <span> Giá bán: </span>
+                    <span class="text-red-600 text-xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
                 </div>
-            </div>
+                <hr/>
+                <div class="mt-2">
+                    Hãy cho tôi biết bạn còn phân vân điều gì về sản phẩm ?
+                </div>
+                <div class="p-2 border-1 my-2">
+                    <div class="flex mt-1">
+                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-1">
+                        <label for="box-cv-1" class="text-sm ms-2 text-gray-500 dark:text-gray-400">
+                            Nguồn nước mà tôi đang sử không biết có phù hợp với sản phẩm?
+                        </label>
+                    </div>
+                    <div class="flex mt-1">
+                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-2" checked="">
+                        <label for="box-cv-2" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
+                            Tôi phải thay lõi lọc khi nào?
+                        </label>
+                    </div>
+                    <div class="flex mt-1">
+                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-3" checked="">
+                        <label for="box-cv-3" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
+                            Nhà tôi ở trên cao có lắp đặt được không?
+                        </label>
+                    </div>
+                    <div class="flex mt-1">
+                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-4" checked="">
+                        <label for="box-cv-4" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
+                            Một số vấn đề khác
+                        </label>
+                    </div>
+                </div>
+                <div class="flex">
+                    <span class="basis-2/3"><input class="w-full appearance-none h-[40px] text-sm"
+                                 id="name" type="text" placeholder="Nhập số điện thoại hoặc email của bạn"></span>
+                    <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                            py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
+                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
+                </div>
+                <div class="flex">
+                    <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                            px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
+                            onclick="comment(event)"> <i class="bi bi-pencil-square"></i> Hotline tư vấn trực tiếp
+                        <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
+                    <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                            px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                            onclick="comment(event)"> <i class="bi bi-bag-check mr-1 relative -top-[1px]"></i>
+                            Đặt hàng ngay </button>
+                </div>
+            </form>
             <x-comment-block comment=""></x-comment-block>
         </div>
     </div>
