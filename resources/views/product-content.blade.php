@@ -61,16 +61,16 @@
 
                         @if($product->price_pro > $product->price)
                         <div class="mr-3">
-                            <span class="font-bold"> Giá hãng: </span>
+                            <span class="font-bold">Giá niêm yết: </span>
                             <span class="text-gray-700 line-through text-xl">{{ number_format($product->price_pro, 0, ',', '.')}}đ </span>
                         </div>
                         <span>
                             <span class="mr-2">
-                                <span class="font-bold">Giá bán:</span>
+                                <span class="font-bold">Giá bán: </span>
                                 <span class="text-red-600 text-2xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
                             </span>
                             <span>
-                                <span class="font-bold">Rẽ hơn: </span>
+                                <span class="font-bold">Tiết kiệm: </span>
                                 <span class="text-xl mr-1"> {{number_format($product->price_pro - $product->price, 0, ',', '.')}}đ </span>
                                 <span class="bg-red-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1 mr-1"> {{(int)((($product->price_pro-$product->price)/$product->price)*100)}}%</span>
                                 @if($product->instalment)
