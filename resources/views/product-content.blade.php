@@ -116,14 +116,14 @@
                         </div>
                     </div>
                     <div class="w-full my-4">
-                        <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
+                        <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
                             <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span>Đặt hàng ngay</span></a>
-                        <button class="basis-1/2 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                        <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                 onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
-                            <span >Thêm vào giỏ</span>
+                            <span class="inline-block">Thêm vào giỏ</span>
                         </button>
                     </div>
                 @else

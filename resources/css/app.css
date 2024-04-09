@@ -71,17 +71,10 @@ body{
     }
 }
 
-@media (max-width:900px) {
+@media (max-width:1000px) {
     #box-tv {
         max-width:1000px;
-    }
-    .top #box-tv{
-        position: relative;
-        top: 0;
-    }
-    .bot #box-tv{
-        position: relative;
-        top: 0;
+        width: auto;
     }
     #navigation #menus > li.active > .sub-menu-content{
         display: block;
