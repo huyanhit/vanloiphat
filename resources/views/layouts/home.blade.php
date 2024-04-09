@@ -289,18 +289,20 @@
         function myBox() {
             const contain = document.getElementById("box-contain");
             const box = document.getElementById("box-tv");
-            const top = contain.offsetTop - 100;
-            const bot = contain.offsetHeight + contain.offsetTop - box.offsetHeight - 100;
+            if(contain !== null && box  !== null){
+                const top = contain.offsetTop - 100;
+                const bot = contain.offsetHeight + contain.offsetTop - box.offsetHeight - 100;
 
-            if (window.pageYOffset > top && window.pageYOffset < bot) {
-                contain.classList.add("top");
-                contain.classList.remove("bot");
-            } else if(window.pageYOffset > bot) {
-                contain.classList.add("bot");
-                contain.classList.remove("top");
-            }else{
-                contain.classList.remove("bot");
-                contain.classList.remove("top");
+                if (window.pageYOffset > top && window.pageYOffset < bot) {
+                    contain.classList.add("top");
+                    contain.classList.remove("bot");
+                } else if(window.pageYOffset > bot) {
+                    contain.classList.add("bot");
+                    contain.classList.remove("top");
+                }else{
+                    contain.classList.remove("bot");
+                    contain.classList.remove("top");
+                }
             }
         }
         function mySticky() {
