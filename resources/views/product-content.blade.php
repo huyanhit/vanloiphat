@@ -199,7 +199,7 @@
                     </span>
                     <span class="mr-2">
                         <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600">{{ $product->sku }}</span>
-                    </span>
+                    </span><br/>
                     <span> Giá bán: </span>
                     <span class="text-red-600 text-xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
                 </div>
