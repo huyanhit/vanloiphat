@@ -191,7 +191,7 @@
         </div>
         <div class="basis-5/12 p-3 relative" id="box-contain">
             <form class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
-                <h3 class="text-2xl px-3 dark:text-white bg-white absolute -top-5 font-bold text-center">Tư vấn</h3>
+                <h3 class="text-xl text-cyan-700 px-3 dark:text-white bg-white border-2 border-cyan-700 absolute -top-5 font-bold uppercase text-center">Tư vấn</h3>
                 <div class="text-sm font-bold uppercase">{{ $product->title }}</div>
                 <div class="mr-2 mb-2">
                     <span class="mr-2">
