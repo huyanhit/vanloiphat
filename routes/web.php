@@ -49,6 +49,7 @@ Route::get('/{page}', [PageController::class, 'show'])->name('xem-trang');
 Route::get('/tim-kiem',   [ProductController::class, 'search'])->name('tim-kiem');
 Route::get('/dich-vu/{service}', [ServiceController::class, 'show'])->name('dich-vu');
 Route::get('/hang-san-xuat/{service}', [ProducerController::class, 'show'])->name('hang-san-xuat');
+Route::get('/so-sanh/{product}', [ProductController::class, 'compare'])->name('so-sanh');
 
 Route::get('/thong-tin', [NewsController::class, 'index'])->name('news.index');
 Route::get('/thong-tin/{name}', [NewsController::class, 'index'])->name('news.show');

@@ -256,8 +256,8 @@
                     </div>
                     <div class="clear"></div>
                 </div>
-                <span onclick="topFunction()" id="scroll-top" class="bg-white h-[48px] w-[48px] pt-[11px] cursor-pointer text-center z-50
-                text-gray-900 border-1 rounded-4 fixed bottom-1 border-gray-900 right-[58px]" title="Cuộn lên trên"><i class="bi bi-chevron-double-up"></i></span>
+                <span onclick="topFunction()" id="scroll-top" class="bg-cyan-700 h-[48px] w-[48px] pt-[11px] cursor-pointer text-center z-50
+                text-white border-cyan-700 rounded-4 fixed bottom-1 border-gray-900 right-[58px]" title="Cuộn lên trên"><i class="bi bi-chevron-double-up"></i></span>
              </div>
         </footer>
     </body>
@@ -272,9 +272,46 @@
             currency: 'VND',
         });
         window.onscroll = function() {
+            myBox()
             mySticky()
             scrollFunction()
         };
+        function showOrder(elem){
+            if($(elem).is(":checked")){
+                $("#order-area").show(300)
+            }else {
+                $("#order-area").hide(300)
+            }
+        }
+        function scrollComment(){
+            window.scrollTo(0, document.getElementById('comment').offsetTop  - 100);
+        }
+        function myBox() {
+            const contain = document.getElementById("box-contain");
+            const box = document.getElementById("box-tv");
+            const top = contain.offsetTop - 100;
+            const bot = contain.offsetHeight + contain.offsetTop - box.offsetHeight - 100;
+
+            if (window.pageYOffset > top && window.pageYOffset < bot) {
+                contain.classList.add("top");
+                contain.classList.remove("bot");
+            } else if(window.pageYOffset > bot) {
+                contain.classList.add("bot");
+                contain.classList.remove("top");
+            }else{
+                contain.classList.remove("bot");
+                contain.classList.remove("top");
+            }
+        }
+        function mySticky() {
+            const header = document.getElementById("header-fixed");
+            const sticky = header.offsetTop;
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
         function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 scroll.style.display = "block";
@@ -358,15 +395,7 @@
             });
         }
 
-        function mySticky() {
-            const header = document.getElementById("header-fixed");
-            const sticky = header.offsetTop;
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
+
         function showNavigation() {
             const menus = document.getElementById("menus");
             if (menus.classList.contains("lg:hidden")) {

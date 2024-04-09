@@ -44,9 +44,45 @@ body{
 #navigation #menus > li.active > .sub-menu-title{
     background: #ccc;
 }
+#box-tv {
+    width: 586px;
+    transition: .5s;
+}
+.top #box-tv{
+    position: fixed;
+    top: 100px;
+    z-index: 1;
+}
+.bot #box-tv{
+    position: absolute;
+    bottom: 15px;
+    z-index: 1;
+    align-self: flex-end;
+}
+@media (max-width:1400px) {
+    #box-tv {
+        max-width:400px;
+    }
+}
 
+@media (max-width:1200px) {
+    #box-tv {
+        max-width:380px;
+    }
+}
 
-@media (max-width: 900px) {
+@media (max-width:900px) {
+    #box-tv {
+        max-width:1000px;
+    }
+    .top #box-tv{
+        position: relative;
+        top: 0;
+    }
+    .bot #box-tv{
+        position: relative;
+        top: 0;
+    }
     #navigation #menus > li.active > .sub-menu-content{
         display: block;
     }

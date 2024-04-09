@@ -53,7 +53,8 @@
                         <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
                     </span>
                     <span class="px-2 pt-[5px]">
-                        <a href="#comment"><i class="bi bi-chat-dots text-lg"></i> </a><span class="mr-2 text-cyan-600"> 1 </span>
+                        <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
+                        <span class="mr-2 text-cyan-600"> 1 </span>
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2">  1000 </span>
                     </span>
                 </div>
@@ -64,7 +65,7 @@
                         <div class="w-full my-2">
                             @if(isset($product->product_option[0]))
                                 <div>
-                                    <span class="font-bold   text-capitalize"> {{$product->product_option[0]->group_title }}:</span>
+                                    <span class="font-bold text-capitalize"> {{$product->product_option[0]->group_title }}:</span>
                                     <span>
                                     @foreach($product->product_option as $item)
                                         <span class="border-1 px-2 bg-gray-100 pt-1 pb-2 mx-2 rounded">{{ $item->title }} </span>
@@ -115,14 +116,15 @@
                         </div>
                     </div>
                     <div class="w-full my-4">
-                        <a class="px-3 py-2 bg-yellow-500 text-white hover:bg-yellow-600 mr-3"
-                           onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"
-                           href="javascript:void(0)"><i class="bi bi-bag-check mr-1 relative -top-[1px]"></i><span>Mua ngay</span>
-                        </a>
-                        <a class="px-3 py-2 add-cart bg-red-500 text-white hover:bg-red-700"
-                           onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"
-                           href="javascript:void(0)"><i class="bi bi-cart mr-1  relative -top-[1px]"></i><span>Thêm vào giỏ</span>
-                        </a>
+                        <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
+                       px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                           onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
+                            <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span>Đặt hàng ngay</span></a>
+                        <button class="basis-1/2 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                        px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                                onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
+                            <span >Thêm vào giỏ</span>
+                        </button>
                     </div>
                 @else
                     <div class="my-3">
@@ -139,27 +141,27 @@
 
         </div>
     </div>
-    <div class="block lg:flex mt-3">
-        <div class="basis-7/12 mr-3">
+    <div class="block lg:flex my-3">
+        <div class="basis-7/12 mr-0 lg:mr-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ct-tab" data-bs-toggle="tab" data-bs-target="#ct-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                        <h3 class="font-bold text-sm lg:text-xl">Chi tiết</h3>
+                        <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700" id="ts-tab" data-bs-toggle="tab" data-bs-target="#ts-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                        <h3 class="font-bold text-sm lg:text-xl">Thông số</h3>
+                        <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700" id="bh-tab" data-bs-toggle="tab" data-bs-target="#bh-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-sm lg:text-xl">Bảo hành</h3>
+                        <h3 class="font-bold text-sm lg:text-lg uppercase">Bảo hành</h3>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700" id="cn-tab" data-bs-toggle="tab" data-bs-target="#cn-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-                        <h3 class="font-bold text-sm lg:text-xl">Chứng nhận</h3>
+                        <h3 class="font-bold text-sm lg:text-lg uppercase">Chứng nhận</h3>
                     </button>
                 </li>
             </ul>
@@ -185,9 +187,10 @@
                     </article >
                 </div>
             </div>
+            <x-comment-block comment=""></x-comment-block>
         </div>
-        <div class="basis-5/12 p-3 bg-white">
-            <form class="px-3 py-4 shadow-md border-1 relative">
+        <div class="basis-5/12 p-3 relative" id="box-contain">
+            <form class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
                 <h3 class="text-2xl px-3 dark:text-white bg-white absolute -top-5 font-bold text-center">Tư vấn</h3>
                 <div class="text-sm font-bold uppercase">{{ $product->title }}</div>
                 <div class="mr-2 mb-2">
@@ -201,58 +204,75 @@
                     <span class="text-red-600 text-xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
                 </div>
                 <hr/>
-                <div class="mt-2">
-                    Hãy cho tôi biết bạn còn phân vân điều gì về sản phẩm ?
+                <div class="mt-2 font-bold text-sm text-cyan-700">
+                    Bạn còn chưa rõ điều gì về sản phẩm ?
                 </div>
-                <div class="p-2 border-1 my-2">
+                <div class="p-2 border-1 my-2 h-[210px] overflow-y-auto">
                     <div class="flex mt-1">
                         <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-1">
-                        <label for="box-cv-1" class="text-sm ms-2 text-gray-500 dark:text-gray-400">
+                        <label for="box-cv-1" class="text-sm ms-2 text-gray-700 dark:text-gray-400">
                             Nguồn nước mà tôi đang sử không biết có phù hợp với sản phẩm?
                         </label>
                     </div>
                     <div class="flex mt-1">
                         <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-2" checked="">
-                        <label for="box-cv-2" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
-                            Tôi phải thay lõi lọc khi nào?
+                               id="box-cv-2" >
+                        <label for="box-cv-2" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                            Đến khi nào thì phải thay lõi lọc?
                         </label>
                     </div>
                     <div class="flex mt-1">
                         <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-3" checked="">
-                        <label for="box-cv-3" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
-                            Nhà tôi ở trên cao có lắp đặt được không?
+                               id="box-cv-3" >
+                        <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                            Sản phẩm có nâng cấp khả năng lọc được không?
                         </label>
                     </div>
                     <div class="flex mt-1">
                         <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-4" checked="">
-                        <label for="box-cv-4" class="text-sm text-gray-500 ms-2 dark:text-gray-400">
-                            Một số vấn đề khác
+                               id="box-cv-3" >
+                        <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                            Mua trả góp tôi cần chuẩn bị giấy tờ gì?
+                        </label>
+                    </div>
+                    <div class="flex mt-1">
+                        <input type="checkbox" onclick="showOrder(this)"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-4" >
+                        <label for="box-cv-4" class="w-full text-sm text-gray-700 ms-2 dark:text-gray-400">
+                            Một số vấn đề khác.
+                            <textarea id="order-area" class="block w-full my-2 border-1 border-gray-300 hidden" rows="1"></textarea>
                         </label>
                     </div>
                 </div>
                 <div class="flex">
                     <span class="basis-2/3"><input class="w-full appearance-none h-[40px] text-sm"
-                                 id="name" type="text" placeholder="Nhập số điện thoại hoặc email của bạn"></span>
+                                 id="name" type="text" placeholder="Nhập số điện thoại cần tư vấn"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                            py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
+                            py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
+                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Gọi cho tôi </button>
                 </div>
                 <div class="flex">
                     <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                            px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="comment(event)"> <i class="bi bi-pencil-square"></i> Hotline tư vấn trực tiếp
-                        <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
-                    <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                            px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-                            onclick="comment(event)"> <i class="bi bi-bag-check mr-1 relative -top-[1px]"></i>
-                            Đặt hàng ngay </button>
+                        px-2 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800">
+                        <i class="bi bi-telephone mr-1"></i> Hotline tư vấn <br/>
+                    <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
+                    <button class="basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                        px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800">
+                        <i class="bi bi-chat-left-text mr-1"></i>
+                        Chat tư vấn qua <br><span class="font-bold text-lg">Zalo</span> </button>
+                </div>
+                <div class="flex">
+                    <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id)}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
+                       px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+                       onclick="comment(event)"> <i class="bi bi-sliders mr-1"></i> So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
+                    <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-green-300 text-sm
+                        px-2 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                        onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"> <i class="bi bi-bag-check mr-1 relative -top-[1px]"></i>
+                        <span class="font-bold">Đặt hàng ngay</span>
+                    </button>
                 </div>
             </form>
-            <x-comment-block comment=""></x-comment-block>
         </div>
     </div>
     <x-title-block title="Sản phẩm cùng loại"></x-title-block>
