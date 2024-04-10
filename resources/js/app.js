@@ -77,6 +77,9 @@ $(document).ready(function () {
         controlNavThumbs: false, // Use thumbnails for Control Nav
         pauseOnHover: false // Stop animation while hovering
     });
+    window.addEventListener("message", function(n) {
+        console.log('ssss')
+    });
 })
 
 

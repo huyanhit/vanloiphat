@@ -36,15 +36,20 @@
             <div class="bg-white p-3">
                 <h1 class="text-2xl font-bold">{{ $product->title }}</h1>
                 <div class="my-2">
-                    <h3 class="mr-5 inline-block">
-                        <span class="mr-2 font-bold">Thương hiệu:</span><a class="text-uppercase font-bold text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
+                    <h3 class="mr-2 inline-block">
+                        <span class="font-bold">Mã sản phẩm:</span>
+                        <span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
                     </h3>
-                    <h3 class="inline-block">
-                        <span class="mr-2 font-bold">Mã sản phẩm</span><span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
+                    <h3 class="mr-2 inline-block">
+                        <span class="font-bold">Thương hiệu:
+                        </span><a class="text-uppercase font-bold text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
                     </h3>
+                    <span class="mr-2 font-bold pt-[6px]">Bảo hành:
+                        <span class="text-cyan-600">24 tháng</span>
+                    </span>
                 </div>
                 <div class="flex mb-2">
-                    <span class="mr-3 font-bold pt-[6px]"> Đánh giá </span>
+                    <span class="font-bold pt-[6px] mr-3"> Đánh giá </span>
                     <span class="flex items-center mr-2 pt-[2px]">
                         <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
                         <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
@@ -58,7 +63,6 @@
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2">  1000 </span>
                     </span>
                 </div>
-                <script></script>
                 <hr/>
                 @if($product->price > 0)
                     <div class="my-3">
@@ -98,7 +102,7 @@
                             <span>
                                 <span class="mr-2">
                                     <span class="font-bold">Giá bán:</span>
-                                    <span class="text-red-600 text-2xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                                    <span class="text-red-600 text-3xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
                                 </span>
                                 @if($product->instalment)
                                     <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
@@ -119,11 +123,11 @@
                         <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
-                            <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span>Đặt hàng ngay</span></a>
+                            <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
                         <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                 onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
-                            <span class="inline-block">Thêm vào giỏ</span>
+                            <span class="inline-block font-bold">Thêm vào giỏ</span>
                         </button>
                     </div>
                 @else
@@ -201,7 +205,10 @@
                         <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600">{{ $product->sku }}</span>
                     </span><br/>
                     <span> Giá bán: </span>
-                    <span class="text-red-600 text-xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                    <span class="text-red-600 text-2xl mr-3"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                    @if($product->instalment)
+                        <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
+                    @endif
                 </div>
                 <hr/>
                 <div class="mt-2 font-bold text-sm text-cyan-700">
@@ -219,7 +226,7 @@
                         <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-2" >
                         <label for="box-cv-2" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Đến khi nào thì phải thay lõi lọc?
+                            Sử dụng bao lâu thì phải thay lõi lọc?
                         </label>
                     </div>
                     <div class="flex mt-1">
@@ -227,6 +234,13 @@
                                id="box-cv-3" >
                         <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
                             Sản phẩm có nâng cấp khả năng lọc được không?
+                        </label>
+                    </div>
+                    <div class="flex mt-1">
+                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-3" >
+                        <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                           Có kiểm định nước đủ chất lượng khi lắp đặt sản phẩm không?
                         </label>
                     </div>
                     <div class="flex mt-1">
@@ -247,20 +261,21 @@
                 </div>
                 <div class="flex">
                     <span class="basis-2/3"><input class="w-full appearance-none h-[40px] text-sm"
-                                 id="name" type="text" placeholder="Nhập số điện thoại cần tư vấn"></span>
+                                 id="name" type="text" placeholder="Nhập số điện thoại hoặc email"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                             py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Gọi cho tôi </button>
+                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
                 </div>
                 <div class="flex">
                     <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-2 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800">
                         <i class="bi bi-telephone mr-1"></i> Hotline tư vấn <br/>
                     <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
-                    <button class="basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                        px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800">
+                    <a class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
+                        px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                        href="https://zalo.me/0986880601">
                         <i class="bi bi-chat-left-text mr-1"></i>
-                        Chat tư vấn qua <br><span class="font-bold text-lg">Zalo</span> </button>
+                        Chat tư vấn qua <br><span class="font-bold text-lg">Zalo</span> </a>
                 </div>
                 <div class="flex">
                     <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id)}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm

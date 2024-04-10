@@ -10,7 +10,7 @@
                         @if(Session::get('success'))
                             <span class="success">
                         <p>Đã gửi thành công.</p>
-                        <p> Chúng tôi sẻ phản hồi lại trong thời gian sớm nhất.</p>
+                        <p>Chúng tôi sẻ phản hồi lại trong thời gian sớm nhất.</p>
                         <span class="thanks"> Cảm ơn bạn đã quan tâm đến sản phẩm và dịch vụ của chúng tôi</span>
                     </span>
                         @endif
