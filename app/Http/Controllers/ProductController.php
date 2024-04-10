@@ -50,7 +50,7 @@ class ProductController extends Controller
                 $product = Product::where(['active'=> 1,'id' => $id])->first();
                 $c_product = Product::where(['active'=> 1,'product_category_id' =>
                     $product->product_category_id])->whereNotIn('id', [$id])->orderby('created_at', 'ASC')->limit(20)->get();
-                return view('product-content', array_merge($this->getDataLayout(), [
+                return view('product-compare', array_merge($this->getDataLayout(), [
                     'product' => $product,
                     'c_product' =>  $c_product,
                     'meta' => [
