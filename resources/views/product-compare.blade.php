@@ -428,13 +428,17 @@
     function updateSearchCompare(response){
         let products = response.list;
         let product  = response.product;
-        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-3 absolute top-1 border-1 bg-white z-50">';
+        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-3 absolute top-1 border-1 bg-white z-50 max-h-[400px] overflow-y-scroll">';
+        const VND = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
         for (const key in products) {
             html += '<li>' +
                 '<a type="button" href="/so-sanh/'+ product.slug + '/' + products[key].slug +'"' +
                 'class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'+
-                    products[key].title
-                '</a>' +
+                    products[key].title +' <span class="ml-2 text-red-600"> Giá: '+ VND.format(products[key].price) +
+                '</span></a>' +
             '</li>' ;
         }
 
