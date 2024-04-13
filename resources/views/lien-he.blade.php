@@ -22,12 +22,12 @@
                         @endif
                     </div>
                     <div class="">
-                        <form class="form-horizontal" method="post" action="{{route('page.contact')}}" enctype="multipart/form-data" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="{{route('lien-he')}}" enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             <div class="mt-2 form-group">
                                 <label class="control-label col-sm-3">Tên liên hệ</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control text" placeholder="Tên liên hệ" name="name" type="text">
+                                    <input class="form-control text" placeholder="Tên liên hệ" name="name" type="text" required>
                                 </div>
                             </div>
                             <div class="mt-2 form-group">
@@ -43,15 +43,11 @@
                                 </div>
                             </div>
                             <div class="mt-2 form-group">
-                                <label class="control-label col-sm-3">Địa chỉ</label>
-                                <div class="col-sm-9">
-                                    <input class="form-control text" placeholder="Địa chỉ" name="address" type="text">
-                                </div>
-                            </div>
-                            <div class="mt-2 form-group">
                                 <label class="control-label col-sm-3">Lời nhắn</label>
                                 <div class="col-sm-9">
-                                    <textarea id="content-area" class="form-control" placeholder="Lời nhắn" name="content" cols="50" rows="10" ></textarea>
+                                    <textarea id="content-area" class="form-control" placeholder="Lời nhắn" name="content" cols="50" rows="10" >
+                                        {{request('noi-dung')}}
+                                    </textarea>
                                 </div>
                                 <script>
                                     CKEDITOR.replace( 'content-area',{customConfig: 'myconfig.js'});
@@ -60,7 +56,8 @@
                             <div class="form-group mt-2">
                                 <div class="control-label col-sm-3"></div>
                                 <div class="text-left">
-                                    <input class="px-3 py-2 bg-cyan-700 rounded-2 text-white font-bold" type="submit" id="submit" name="submit" value="Gửi lời nhắn">
+                                    <input class="px-3 py-2 bg-cyan-700 text-white font-bold text-center"
+                                           type="submit" id="submit" name="submit" value="Gửi">
                                 </div>
                             </div>
                         </form>

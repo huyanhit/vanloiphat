@@ -29,17 +29,15 @@ class PageController extends Controller
         if($request->input('submit')){
             $data = [
                 'name' => $request->input('name'),
-                'address' => $request->input('address'),
-                'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
+                'email' => $request->input('email'),
                 'content' => $request->input('content')
             ];
             $validate = [
-                'name'    => 'max:100',
-                'address' => 'max:225',
-                'email'   => 'nullable|email|max:225',
-                'phone'   => 'max:25',
-                'content' => 'required',
+                'name'  => 'required|max:100',
+                'phone' => 'max:50',
+                'email' => 'nullable|email|max:225',
+                'content' => 'max:4000',
             ];
 
             $valid = Validator::make($data, $validate);

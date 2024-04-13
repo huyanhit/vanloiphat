@@ -194,7 +194,7 @@
             <x-comment-block comment=""></x-comment-block>
         </div>
         <div class="basis-5/12 p-3 relative" id="box-contain">
-            <form class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
+            <div class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
                 <h3 class="text-xl text-cyan-700 px-3 dark:text-white bg-white border-2 border-cyan-700 absolute -top-5 font-bold uppercase text-center">Tư vấn</h3>
                 <div class="text-sm font-bold uppercase">{{ $product->title }}</div>
                 <div class="mr-2 mb-2">
@@ -211,60 +211,62 @@
                     @endif
                 </div>
                 <hr/>
-                <div class="mt-2 font-bold text-sm text-cyan-700">
-                    Bạn còn chưa rõ điều gì về sản phẩm ?
+                <div class="mt-2 font-bold text-sm text-gray-700">
+                    Bạn còn điều gì chưa rõ về sản phẩm? <br/>Hãy gửi thông tin cho chúng tôi, Chúng tôi sẻ tư vấn cho Bạn.
                 </div>
-                <div class="p-2 border-1 my-2 h-[210px] overflow-y-auto">
+                <div class="p-2 border-1 my-2 h-[200px] overflow-y-auto">
                     <div class="flex mt-1">
-                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                        <input type="checkbox" name="box_content" value="1"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-1">
                         <label for="box-cv-1" class="text-sm ms-2 text-gray-700 dark:text-gray-400">
                             Nguồn nước mà tôi đang sử không biết có phù hợp với sản phẩm?
                         </label>
                     </div>
                     <div class="flex mt-1">
-                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                        <input type="checkbox" name="box_content" value="2" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-2" >
                         <label for="box-cv-2" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
                             Sử dụng bao lâu thì phải thay lõi lọc?
                         </label>
                     </div>
                     <div class="flex mt-1">
-                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                        <input type="checkbox" name="box_content" value="3"
+                               class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-3" >
                         <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
                             Sản phẩm có nâng cấp khả năng lọc được không?
                         </label>
                     </div>
                     <div class="flex mt-1">
-                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-3" >
-                        <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                           Có kiểm định nước đủ chất lượng khi lắp đặt sản phẩm không?
+                        <input type="checkbox" name="box_content" value="4" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-4" >
+                        <label for="box-cv-4" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                            Khi lắp đặt xong có kiểm định nước đã đủ chất lượng không?
                         </label>
                     </div>
                     <div class="flex mt-1">
-                        <input type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-3" >
-                        <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
+                        <input type="checkbox" name="box_content" value="5" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700
+                                dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-5" >
+                        <label for="box-cv-5" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
                             Mua trả góp tôi cần chuẩn bị giấy tờ gì?
                         </label>
                     </div>
                     <div class="flex mt-1">
-                        <input type="checkbox" onclick="showOrder(this)"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                               id="box-cv-4" >
-                        <label for="box-cv-4" class="w-full text-sm text-gray-700 ms-2 dark:text-gray-400">
+                        <input type="checkbox" name="box_content" onclick="showOrder(this)"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                               id="box-cv-order" value='order'>
+                        <label for="box-cv-order" class="w-full text-sm text-gray-700 ms-2 dark:text-gray-400">
                             Một số vấn đề khác.
-                            <textarea id="order-area" class="block w-full my-2 border-1 border-gray-300 hidden" rows="1"></textarea>
+                            <textarea id="order-area" name="box_area" class="block w-full my-2 border-1 border-gray-300 hidden" rows="1"></textarea>
                         </label>
                     </div>
                 </div>
                 <div class="flex">
-                    <span class="basis-2/3"><input class="w-full appearance-none h-[40px] text-sm"
-                                 id="name" type="text" placeholder="Nhập số điện thoại hoặc email"></span>
+                    <span class="basis-2/3"><input id="box_email_phone" class="w-full appearance-none h-[40px] text-sm"
+                                 type="text" placeholder="Nhập số điện thoại hoặc email của bạn." autocomplete="off"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                             py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="comment(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
+                            onclick="sendMessage(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
                 </div>
                 <div class="flex">
                     <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
@@ -273,9 +275,9 @@
                     <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
                     <a class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
-                        href="https://zalo.me/0986880601">
+                        href="/lien-he?noi-dung=Thông báo cho tôi khi có ưu đãi sản phẩm: {{$product->title}}">
                         <i class="bi bi-chat-left-text mr-1"></i>
-                        Chat tư vấn qua <br><span class="font-bold text-lg">Zalo</span> </a>
+                        Thông báo cho tôi <br><span class="font-bold">Khi có ưu đãi sản phẩm này.</span></a>
                 </div>
                 <div class="flex">
                     <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id )}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
@@ -287,7 +289,7 @@
                         <span class="font-bold">Đặt hàng ngay</span>
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <x-title-block title="Sản phẩm cùng loại"></x-title-block>
@@ -297,6 +299,18 @@
         @endforeach
     </div>
     <script>
+        function sendMessage(e){
+            let email = $('#box_email_phone').val();
+            let content = $('[name="box_content"]:checked').map((e, item) => {
+                if($(item).val() === 'order'){
+                    return $('#order-area').val();
+                }
+                return $(item).next().text();
+            });
+
+            alert('Cảm ơn bạn! Chúng tôi sẻ kiểm tra và liên hệ đến bạn sớm.')
+        }
+
         $(window).load(function() {
             var owl = $('#p-carousel').owlCarousel({
                 loop:true,
