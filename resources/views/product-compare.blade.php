@@ -172,13 +172,13 @@
             <div class="mt-2 ">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ct-tab" data-bs-toggle="tab" data-bs-target="#ct-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                            <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
+                        <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ts-tab" data-bs-toggle="tab" data-bs-target="#ts-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                            <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link text-gray-400 hover:text-gray-700" id="ts-tab" data-bs-toggle="tab" data-bs-target="#ts-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                            <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
+                        <button class="nav-link text-gray-400 hover:text-gray-700" id="ct-tab" data-bs-toggle="tab" data-bs-target="#ct-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                            <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -362,13 +362,13 @@
             <div class="mt-2 ">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ct-tab2" data-bs-toggle="tab" data-bs-target="#ct-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                            <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
+                        <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ts-tab2" data-bs-toggle="tab" data-bs-target="#ts-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                            <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link text-gray-400 hover:text-gray-700" id="ts-tab2" data-bs-toggle="tab" data-bs-target="#ts-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                            <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
+                        <button class="nav-link text-gray-400 hover:text-gray-700" id="ct-tab2" data-bs-toggle="tab" data-bs-target="#ct-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                            <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -408,7 +408,6 @@
             @endif
         </div>
     </div>
-
 </div>
 <script>
     function getProductCompare(elem, id){
