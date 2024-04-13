@@ -59,6 +59,10 @@ body{
     z-index: 1;
     align-self: flex-end;
 }
+nav span[aria-current="page"]{
+    background: #0e7490 !important;
+    color: #fff;
+}
 @media (max-width:1400px) {
     #box-tv {
         max-width:400px;
