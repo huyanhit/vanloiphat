@@ -59,7 +59,7 @@ body{
     z-index: 1;
     align-self: flex-end;
 }
-nav span[aria-current="page"]{
+nav span[aria-current="page"] > span{
     background: #0e7490 !important;
     color: #fff;
 }
