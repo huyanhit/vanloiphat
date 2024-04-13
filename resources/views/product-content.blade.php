@@ -278,9 +278,9 @@
                         Chat tư vấn qua <br><span class="font-bold text-lg">Zalo</span> </a>
                 </div>
                 <div class="flex">
-                    <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id)}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
+                    <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id )}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
                        px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-                       onclick="comment(event)"> <i class="bi bi-sliders mr-1"></i> So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
+                       > <i class="bi bi-sliders mr-1"></i> So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
                     <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-green-300 text-sm
                         px-2 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                         onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"> <i class="bi bi-bag-check mr-1 relative -top-[1px]"></i>

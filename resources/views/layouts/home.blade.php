@@ -271,11 +271,13 @@
             style: 'currency',
             currency: 'VND',
         });
+
         window.onscroll = function() {
             myBox()
             mySticky()
             scrollFunction()
         };
+
         function showOrder(elem){
             if($(elem).is(":checked")){
                 $("#order-area").show(300)
@@ -283,9 +285,11 @@
                 $("#order-area").hide(300)
             }
         }
+
         function scrollComment(){
             window.scrollTo(0, document.getElementById('comment').offsetTop  - 100);
         }
+
         function myBox() {
             const contain = document.getElementById("box-contain");
             const box = document.getElementById("box-tv");
@@ -305,6 +309,7 @@
                 }
             }
         }
+
         function mySticky() {
             const header = document.getElementById("header-fixed");
             const sticky = header.offsetTop;
@@ -314,6 +319,7 @@
                 header.classList.remove("sticky");
             }
         }
+
         function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 scroll.style.display = "block";
@@ -321,10 +327,12 @@
                 scroll.style.display = "none";
             }
         }
+
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
         function getCart(){
             $.ajax({
                 type: 'GET',
@@ -334,7 +342,6 @@
             }).done(function(response){
                 updateCartDom(response);
             });
-
             return '<div> ' +
                         '<div class="text-lg font-bold text-center mb-2">Giỏ hàng</div>' +
                         '<div class="my-cart">Loading...</div>' +
@@ -346,6 +353,7 @@
                         '</div>'+
                    '</div>';
         }
+
         function updateCartDom(response){
             let html =
                 '<table class="table border-1">'+
@@ -396,7 +404,6 @@
                 url: '/counter'
             });
         }
-
 
         function showNavigation() {
             const menus = document.getElementById("menus");

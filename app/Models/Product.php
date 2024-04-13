@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Illuminate\Tests\Integration\Database\EloquentHasManyThroughTest\Category;
 
 class Product extends Model
@@ -26,9 +27,16 @@ class Product extends Model
         'is_new'=> 'boolean'
     ];
 
+    protected $appends = ['slug'];
+
     public function image(): BelongsTo
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function getSlugAttribute()
+    {
+        return Str::slug($this->title).'-'.$this->id;
     }
 
     public function category(): BelongsTo

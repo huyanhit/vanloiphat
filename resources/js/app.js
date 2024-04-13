@@ -3,6 +3,9 @@ import 'lightbox2/dist/js/lightbox.min.js';
 import './bootstrap';
 import './jquery.nivo.slider'
 import './owl.carousel.min'
+
+
+
 $(document).ready(function () {
     $(document).on('click', '#close-cart', function () {
         $("[data-toggle=popover]").popover('hide')
@@ -16,6 +19,15 @@ $(document).ready(function () {
             return getCart("my-cart");
         }
     });
+
+    $("[data-toggle=popover-compare]").popover({
+        html: true,
+        container: '.search-compare',
+        content: function () {
+            return getProductCompare("my-cart");
+        }
+    });
+
     $('.service-carousel').owlCarousel({
         loop: true,
         margin: 10,
@@ -76,9 +88,6 @@ $(document).ready(function () {
         controlNav: false, // 1,2,3... navigation
         controlNavThumbs: false, // Use thumbnails for Control Nav
         pauseOnHover: false // Stop animation while hovering
-    });
-    window.addEventListener("message", function(n) {
-        console.log('ssss')
     });
 })
 
