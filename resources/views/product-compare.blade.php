@@ -193,12 +193,12 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="ts-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade" id="ts-tab-pane active" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product->description !!}
                         </article >
                     </div>
-                    <div class="tab-pane fade show active" id="ct-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="tab-pane fade show" id="ct-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product->content !!}
                         </article >
@@ -383,12 +383,12 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent2">
-                    <div class="tab-pane fade" id="ts-tab-pane2" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade" id="ts-tab-pane2 active" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product2->description !!}
                         </article >
                     </div>
-                    <div class="tab-pane fade show active" id="ct-tab-pane2" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="tab-pane fade show" id="ct-tab-pane2" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product2->content !!}
                         </article >
