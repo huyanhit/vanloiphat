@@ -32,6 +32,11 @@ Breadcrumbs::for('tim-kiem', function ($trail) {
     $trail->push('Tìm kiếm', route('tim-kiem'));
 });
 
+Breadcrumbs::for('lien-he', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Liên hệ', route('lien-he'));
+});
+
 Breadcrumbs::for('dich-vu', function ($trail, $data) {
     $trail->parent('home');
     $trail->push($data['service_title'], route('dich-vu', $data['service_title']));
@@ -51,4 +56,9 @@ Breadcrumbs::for('phan-loai', function ($trail, $data) {
 Breadcrumbs::for('san-pham', function ($trail, $data) {
     $trail->parent('phan-loai', $data);
     $trail->push($data['product_title'], route('san-pham', $data['product_title']));
+});
+
+Breadcrumbs::for('so-sanh', function ($trail, $data) {
+    $trail->parent('phan-loai', $data);
+    $trail->push($data['product_title'], route('so-sanh', $data['product_title']));
 });

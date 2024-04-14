@@ -38,7 +38,7 @@
                 <div class="my-2">
                     <h3 class="mr-2 inline-block">
                         <span class="font-bold">Mã sản phẩm:</span>
-                        <span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
+                        <span class="text-uppercase font-bold text-red-600"><a href="{{route('san-pham', $product->slug)}}"> {{ $product->sku }}</a></span>
                     </h3>
                     <h3 class="mr-2 inline-block">
                         <span class="font-bold">Thương hiệu:
@@ -123,11 +123,11 @@
                         <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                            onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
-                            <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
+                            <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold uppercase">Đặt hàng ngay</span></a>
                         <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                 onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
-                            <span class="inline-block font-bold">Thêm vào giỏ</span>
+                            <span class="inline-block font-bold uppercase">Thêm vào giỏ</span>
                         </button>
                     </div>
                 @else
@@ -202,7 +202,7 @@
                         <span class="mr-2">Thương hiệu:</span><a class="text-uppercase text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
                     </span>
                     <span class="mr-2">
-                        <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600">{{ $product->sku }}</span>
+                        <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600"><a href="{{route('san-pham', $product->slug)}}"> {{ $product->sku }}</a></span>
                     </span><br/>
                     <span> Giá bán: </span>
                     <span class="text-red-600 text-2xl mr-3"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
@@ -266,26 +266,25 @@
                                  type="text" placeholder="Nhập số điện thoại hoặc email của bạn." autocomplete="off"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                             py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="sendMessage()"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
+                            onclick="sendMessage()">Tư vấn cho tôi </button>
                 </div>
                 <div class="flex">
                     <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                        px-2 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800">
-                        <i class="bi bi-telephone mr-1"></i> Hotline tư vấn <br/>
-                    <span class="text-lg font-bold">{{$sites->hotline}} </span></a>
+                        px-2 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800 uppercase">
+                        Hotline tư vấn <br/> <span class="font-bold text-lg leading-[16px]">{{$sites->hotline}} </span>
+                    </a>
                     <a class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
-                        px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                        px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800 uppercase"
                         href="/lien-he?noi-dung=Thông báo cho tôi khi có ưu đãi sản phẩm: {{$product->title}}">
-                        <i class="bi bi-chat-left-text mr-1"></i>
-                        Thông báo cho tôi <br><span class="font-bold">Khi có ưu đãi sản phẩm này.</span></a>
+                        Thông báo cho tôi <br><span class="font-bold uppercase">Khi có ưu đãi.</span></a>
                 </div>
                 <div class="flex">
                     <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id )}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
-                       px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-                       > <i class="bi bi-sliders mr-1"></i> So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
+                       px-2 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 uppercase">
+                        So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
                     <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-green-300 text-sm
-                        px-2 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-                        onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')"> <i class="bi bi-bag-check mr-1 relative -top-[1px]"></i>
+                        px-2 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 uppercase"
+                        onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
                         <span class="font-bold">Đặt hàng ngay</span>
                     </button>
                 </div>

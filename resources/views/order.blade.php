@@ -107,11 +107,11 @@
                             @foreach($order->products as $item)
                                 <tr class="align-middle">
                                     <td class="text-center">
-                                        <a href="{{route('san-pham', Str::slug($item->title).'-'.$item->id)}}">
+                                        <a href="{{route('san-pham', $item->slug)}}">
                                         <img class="inline-block w-[100px]" alt="No name" onerror="this.src='/images/no-image.png'"
                                              src="{{route('get-image-thumbnail', $item->image_id)}}" /> </a>
                                     </td>
-                                    <td> <a class="text-cyan-600" href="{{route('san-pham', Str::slug($item->title).'-'.$item->id)}}">{{$item->title}} </a></td>
+                                    <td> <a class="text-cyan-600" href="{{route('san-pham', $item->slug)}}">{{$item->title}} </a></td>
                                     <td class="text-center">{{$item->pivot->quantity}}</td>
                                     <td class="text-center"> <span class="font-bold text-red-600">{{number_format($item->pivot->price, 0, ',', '.') }}đ </span></td>
                                     <td class="text-center">{{$item->pivot->options}}</td>

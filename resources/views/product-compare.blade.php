@@ -1,12 +1,12 @@
 @extends('layouts.home')
 @section('content')
 <div class="container">
-    <x-breadcrumb name="san-pham" :data="['category_name' => $product->category->name,
+    <x-breadcrumb name="so-sanh" :data="['category_name' => $product->category->name,
         'category_title' => $product->category->title, 'product_title' => $product->title]">
     </x-breadcrumb>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-lg-5 ">
-            <h1 class="text-2xl font-bold text-center p-2 bg-white shadow">{{ $product->title }}</h1>
+            <h1 class="text-2xl font-bold text-center p-2 bg-white shadow"><a href="{{route('san-pham', $product->slug)}}"> {{ $product->title }}</a></h1>
         </div>
         <div class="col-lg-2">
             <h2 class="text-2xl font-bold text-center p-2 text-red-600 bg-white shadow">VS</h2>
@@ -23,7 +23,7 @@
                        value="{{ !empty($product2)?$product2->title:'' }}"
                        class="bg-white shadow inline-block w-full pl-[40px] h-[50px] text-sm text-gray-900 border border-gray-300 rounded-lg
                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập vào Tên sản phẩm cần tìm."  />
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập vào tên sản phẩm cần so sánh."  />
             </div>
             <div class="relative" id="list-compare"></div>
         </div>
@@ -33,7 +33,7 @@
                     <div class="my-2">
                         <h3 class="mr-2 inline-block">
                             <span class="font-bold">Mã sản phẩm:</span>
-                            <span class="text-uppercase font-bold text-red-600">{{ $product->sku }}</span>
+                            <span class="text-uppercase font-bold text-red-600"><a href="{{route('san-pham', $product->slug)}}"> {{ $product->sku }}</a></span>
                         </h3>
                         <h3 class="mr-2 inline-block">
                         <span class="font-bold">Thương hiệu:
