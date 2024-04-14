@@ -141,7 +141,7 @@
             <div class="mt-2 row">
                 <div class="col-lg-2">
                     @if(count(explode(',', $product->images)) >= 2)
-                        <div class="flex flex-col m-auto bg-white shadow">
+                        <div class="flex flex-col m-auto bg-white shadow max-h-[640px] overflow-y-auto">
                             @foreach(explode(',', $product->images) as $index => $item)
                                 <a class="py-1 px-1 block text-center mb-1">
                                     <img onerror="this.src='/images/no-image.png'"
@@ -331,7 +331,7 @@
             <div class="mt-2 row">
                 <div class="col-lg-2">
                     @if(count(explode(',', $product2->images)) >= 2)
-                        <div class="flex flex-col m-auto bg-white shadow">
+                        <div class="flex flex-col m-auto bg-white shadow max-h-[640px] overflow-y-auto">
                             @foreach(explode(',', $product2->images) as $index => $item)
                                 <a class="py-1 px-1 block text-center mb-1">
                                     <img onerror="this.src='/images/no-image.png'"
