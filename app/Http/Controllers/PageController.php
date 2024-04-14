@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Page;
-use App\Models\Site;
 use App\Models\Contact;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
@@ -25,28 +23,22 @@ class PageController extends Controller
         ]));
     }
 
-    public function saveContact(Request $request){
-        if($request->input('submit')){
-            $data = [
-                'name' => $request->input('name'),
-                'phone' => $request->input('phone'),
-                'email' => $request->input('email'),
-                'content' => $request->input('content')
-            ];
-            $validate = [
-                'name'  => 'required|max:100',
-                'phone' => 'max:50',
-                'email' => 'nullable|email|max:225',
-                'content' => 'max:4000',
-            ];
-
-            $valid = Validator::make($data, $validate);
-            if ($valid->fails()){
-                return redirect('/lien-he')->with('errors', $valid->errors());
+    public function saveContact(ContactRequest $request){
+        $isEmail = strpos('@', $request->contact);
+        $data = [
+            'name'    => $request->name,
+            'email' => $isEmail? $request->contact: '',
+            'phone' => $isEmail? '': $request->contact,
+            'content' => $request->get('content')
+        ];
+        if(Contact::insertGetId($data)){
+            if($request->ajax()){
+                return true;
+            }else{
+                return redirect('/lien-he')->with('success', 'Gửi thành công, Chúng tôi sẻ liên hệ lại sớm.');
             }
-
-            $data = Contact::insertGetId($data);
-            return redirect('/lien-he')->with('success', 'success');
         }
+
+        abort('404');
     }
 }

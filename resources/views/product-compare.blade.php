@@ -4,14 +4,14 @@
     <x-breadcrumb name="san-pham" :data="['category_name' => $product->category->name,
         'category_title' => $product->category->title, 'product_title' => $product->title]">
     </x-breadcrumb>
-    <div class="row bg-white p-2">
-        <div class="col-lg-5">
-            <h1 class="text-2xl font-bold text-center p-2">{{ $product->title }}</h1>
+    <div class="row">
+        <div class="col-lg-5 ">
+            <h1 class="text-2xl font-bold text-center p-2 bg-white shadow">{{ $product->title }}</h1>
         </div>
         <div class="col-lg-2">
-            <h2 class="text-2xl font-bold text-center p-2 text-red-600">VS</h2>
+            <h2 class="text-2xl font-bold text-center p-2 text-red-600 bg-white shadow">VS</h2>
         </div>
-        <div class="col-lg-5 ">
+        <div class="col-lg-5">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm</label>
             <div class="relative search-compare">
                 <div class="inset-y-0 absolute start-0 flex items-center ps-3 pointer-events-none">
@@ -21,15 +21,15 @@
                 </div>
                 <input type="search" id="default-search" onkeyup="getProductCompare(this, {{$product->id}})" autocomplete="off"
                        value="{{ !empty($product2)?$product2->title:'' }}"
-                       class="inline-block w-full pl-[40px] py-3 text-sm text-gray-900 border border-gray-300 rounded-lg
-                bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                       class="bg-white shadow inline-block w-full pl-[40px] h-[50px] text-sm text-gray-900 border border-gray-300 rounded-lg
+                focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập vào Tên sản phẩm cần tìm."  />
             </div>
             <div class="relative" id="list-compare"></div>
         </div>
         <div class="col-lg-6">
-            <div class="px-0 mt-2">
-                <div class="bg-white">
+            <div class="mt-2 p-3 bg-white shadow">
+                <div>
                     <div class="my-2">
                         <h3 class="mr-2 inline-block">
                             <span class="font-bold">Mã sản phẩm:</span>
@@ -141,9 +141,9 @@
             <div class="mt-2 row">
                 <div class="col-lg-2">
                     @if(count(explode(',', $product->images)) >= 2)
-                        <div class="flex flex-col bg-gray-100 m-auto">
+                        <div class="flex flex-col m-auto bg-white shadow">
                             @foreach(explode(',', $product->images) as $index => $item)
-                                <a class="py-1 px-1 block text-center">
+                                <a class="py-1 px-1 block text-center mb-1">
                                     <img onerror="this.src='/images/no-image.png'"
                                          src="{{route('get-image-thumbnail', $item)}}"
                                          class="inline-block change_image_carousel max-h-[100px]" index="{{$index + 1}}" />
@@ -152,8 +152,8 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-lg-10 bg-white text-center m-auto">
-                    <div id="pc-carousel" class="owl-carousel owl-theme p-3 m-auto">
+                <div class="col-lg-10 text-center m-auto">
+                    <div id="pc-carousel" class="owl-carousel owl-theme p-3 m-auto bg-white shadow">
                         <a class="item" data-lightbox="roadtrip" href="{{route('get-image', $product->image_id)}}">
                             <img onerror="this.src='/images/no-image.png'"
                                  src="{{route('get-image', $product->image_id)}}"
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-2 ">
+            <div class="mt-3">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ts-tab" data-bs-toggle="tab" data-bs-target="#ts-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
@@ -192,7 +192,7 @@
                         </button>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content shadow" id="myTabContent" >
                     <div class="tab-pane fade show active" id="ts-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product->description !!}
@@ -218,7 +218,7 @@
         </div>
         <div class="col-lg-6">
             @if(!empty($product2))
-            <div class="px-0 mt-2">
+            <div class="mt-2 p-3 bg-white shadow">
                 <div class="bg-white">
                     <div class="my-2">
                         <h3 class="mr-2 inline-block">
@@ -331,9 +331,9 @@
             <div class="mt-2 row">
                 <div class="col-lg-2">
                     @if(count(explode(',', $product2->images)) >= 2)
-                        <div class="flex flex-col bg-gray-100 m-auto">
+                        <div class="flex flex-col m-auto bg-white shadow">
                             @foreach(explode(',', $product2->images) as $index => $item)
-                                <a class="py-1 px-1 block text-center">
+                                <a class="py-1 px-1 block text-center mb-1">
                                     <img onerror="this.src='/images/no-image.png'"
                                          src="{{route('get-image-thumbnail', $item)}}"
                                          class="inline-block change_image_carousel2 max-h-[100px]" index="{{$index + 1}}" />
@@ -342,8 +342,8 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-lg-10 bg-white text-center m-auto">
-                    <div id="pc-carousel2" class="owl-carousel owl-theme p-3 m-auto">
+                <div class="col-lg-10 text-center m-auto">
+                    <div id="pc-carousel2" class="owl-carousel owl-theme p-3 m-auto bg-white shadow">
                         <a class="item" data-lightbox="roadtrip" href="{{route('get-image', $product2->image_id)}}">
                             <img onerror="this.src='/images/no-image.png'"
                                  src="{{route('get-image', $product2->image_id)}}"
@@ -359,9 +359,9 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-2 ">
+            <div class="mt-3">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation ">
                         <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ts-tab2" data-bs-toggle="tab" data-bs-target="#ts-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                             <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
                         </button>
@@ -382,7 +382,7 @@
                         </button>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent2">
+                <div class="tab-content shadow" id="myTabContent2">
                     <div class="tab-pane fade show active" id="ts-tab-pane2" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <article class="p-3 prose prose-sm prose-p:m-0 bg-white border-1 border-top-0">
                             {!! $product2->description !!}
@@ -428,7 +428,7 @@
     function updateSearchCompare(response){
         let products = response.list;
         let product  = response.product;
-        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-3 absolute top-1 border-1 bg-white z-50 max-h-[400px] overflow-y-scroll">';
+        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-2 absolute top-1 border-1 rounded bg-gray-100 z-50 max-h-[400px] overflow-y-scroll">';
         const VND = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
@@ -436,7 +436,7 @@
         for (const key in products) {
             html += '<li>' +
                 '<a type="button" href="/so-sanh/'+ product.slug + '/' + products[key].slug +'"' +
-                'class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'+
+                'class="inline-flex w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'+
                     products[key].title +' <span class="ml-2 text-red-600"> Giá: '+ VND.format(products[key].price) +
                 '</span></a>' +
             '</li>' ;
@@ -450,7 +450,7 @@
     }
 
     $(window).load(function() {
-        $('#pc-carousel').owlCarousel({
+        let owl = $('#pc-carousel').owlCarousel({
             loop:true,
             margin:10,
             responsive:{
@@ -471,7 +471,7 @@
             $(e.target).parent().addClass('bg-gray-300')
         })
 
-        $('#pc-carousel2').owlCarousel({
+        let owl2 =$('#pc-carousel2').owlCarousel({
             loop:true,
             margin:10,
             responsive:{
@@ -487,7 +487,7 @@
             }
         })
         $('.change_image_carousel2').on('click', function(e) {
-            owl.trigger('to.owl.carousel', $(e.target).attr('index'));
+            owl2.trigger('to.owl.carousel', $(e.target).attr('index'));
             $('.change_image_carousel2').parent().removeClass('bg-gray-300')
             $(e.target).parent().addClass('bg-gray-300')
         })

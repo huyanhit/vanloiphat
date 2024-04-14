@@ -17,11 +17,11 @@ class ContactController extends MyController
         $this->view['resource'] = $this->request->segment(2);
         $this->view['form'] = array(
             'name' => array('title'=> 'Tên', 'type' =>  self::TEXT, 'validate' => 'max:50'),
-            'phone' => array('title'=> 'Điện thoại',  self::TEXT => 'text', 'validate' => 'max:50'),
+            'phone' => array('title'=> 'Điện thoại', 'type' =>  self::TEXT, 'validate' => 'max:50'),
             'email' => array('title'=> 'Email', 'type' =>  self::TEXT, 'validate' => 'max:255'),
             'address' => array('title'=> 'Địa chỉ', 'type' =>  self::TEXT, 'validate' => 'max:255'),
             'content' => array('title'=> 'Lời nhắn', 'type' =>  self::AREA, 'validate' => 'max:2000'),
-            'active' => array('title' => 'Trang thái', 'data'=> array(0 => 'Đã xem', 1 => 'Chưa xem'), 'type' =>  self::CHECK)
+            'active' => array('title' => 'Trang thái', 'data'=> array(1 => 'Đã xem', 0 => 'Chưa xem'), 'type' =>  self::CHECK)
         );
         $this->view['list'] = array(
             'name' => array(
@@ -34,6 +34,14 @@ class ContactController extends MyController
             ),
             'phone' => array(
                 'title' => 'Điện thoại',
+                'width' => 10,
+                'filter' => array(
+                    'type' => self::TEXT,
+                    'value' => '',
+                ),
+            ),
+            'email' => array(
+                'title' => 'Email',
                 'width' => 10,
                 'filter' => array(
                     'type' => self::TEXT,
@@ -54,8 +62,8 @@ class ContactController extends MyController
             'active' => array(
                 'title' => 'Trang thái',
                 'width' => 7,
-                'data' => array(0 => 'Đã xem', 1 => 'Chưa xem'),
-                'updata' => true,
+                'data' => array(1 => 'Đã xem', 0 => 'Chưa xem'),
+                'update' => true,
                 'views' => array(
                     'type' => self::CHECK,
                 ),

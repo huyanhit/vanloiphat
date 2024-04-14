@@ -146,7 +146,7 @@
         </div>
     </div>
     <div class="block lg:flex my-3">
-        <div class="basis-7/12 mr-0 lg:mr-3">
+        <div class="w-full lg:w-[60%] mr-0 lg:mr-3">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ct-tab" data-bs-toggle="tab" data-bs-target="#ct-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
@@ -193,7 +193,7 @@
             </div>
             <x-comment-block comment=""></x-comment-block>
         </div>
-        <div class="basis-5/12 p-3 relative" id="box-contain">
+        <div class="w-full lg:w-[40%] p-3 relative" id="box-contain">
             <div class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
                 <h3 class="text-xl text-cyan-700 px-3 dark:text-white bg-white border-2 border-cyan-700 absolute -top-5 font-bold uppercase text-center">Tư vấn</h3>
                 <div class="text-sm font-bold uppercase">{{ $product->title }}</div>
@@ -266,7 +266,7 @@
                                  type="text" placeholder="Nhập số điện thoại hoặc email của bạn." autocomplete="off"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                             py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
-                            onclick="sendMessage(event)"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
+                            onclick="sendMessage()"><i class="bi bi-send-check mr-1"></i> Tư vấn cho tôi </button>
                 </div>
                 <div class="flex">
                     <a href="tel:{{$sites->hotline}}" class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
@@ -293,22 +293,51 @@
         </div>
     </div>
     <x-title-block title="Sản phẩm cùng loại"></x-title-block>
-    <div class="mx-0 lg:-mx-2 product-carousel owl-carousel owl-theme mb-3">
+    <div class="mx-0 lg:-mx-2 product-carousel owl-carousel owl-theme mb-3 bg-white">
         @foreach ($c_product as $item)
             <x-product-carousel-item :item="$item"/>
         @endforeach
     </div>
     <script>
-        function sendMessage(e){
-            let email = $('#box_email_phone').val();
-            let content = $('[name="box_content"]:checked').map((e, item) => {
+
+        function sendMessage(){
+            let name = $('h1').text();
+            let contact = $('#box_email_phone').val();
+            let content = '';
+            $('[name="box_content"]:checked').each((e, item) => {
                 if($(item).val() === 'order'){
-                    return $('#order-area').val();
+                    content += $('#order-area').val().trim() + '<br\>';
+                }else {
+                    content += $(item).next().text().trim()+ '<br\>';
                 }
-                return $(item).next().text();
             });
 
-            alert('Cảm ơn bạn! Chúng tôi sẻ kiểm tra và liên hệ đến bạn sớm.')
+            if(contact.trim() === ''){
+                $('#box_email_phone').addClass('border-1 border-red-700 text-red-700');
+                $('#box_email_phone').attr('placeholder','Bạn chưa nhập số điện thoai hoặc Email');
+            }else {
+                ajaxUpdateMessage(name, contact, content);
+            }
+        }
+
+        function ajaxUpdateMessage(name, contact, content){
+            console.log({
+                'name': name,
+                'contact': contact,
+                'content': content
+            });
+            $.ajax({
+                type: 'post',
+                url: '/lien-he',
+                headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
+                data:{
+                    'name': name,
+                    'contact': contact,
+                    'content': content
+                }
+            }).done(function(){
+                alert('Gửi thành công, Chúng tôi sẻ liên hệ lại sớm.')
+            });
         }
 
         $(window).load(function() {

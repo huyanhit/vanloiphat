@@ -45,13 +45,15 @@ body{
     background: #ccc;
 }
 #box-tv {
-    width: 586px;
+    max-width: 575px;
     transition: .5s;
+    width: 575px;
 }
 .top #box-tv{
     position: fixed;
     top: 100px;
     z-index: 1;
+
 }
 .bot #box-tv{
     position: absolute;
@@ -63,23 +65,14 @@ nav span[aria-current="page"] > span{
     background: #0e7490 !important;
     color: #fff;
 }
-@media (max-width:1400px) {
+@media (max-width:1280px) {
     #box-tv {
-        max-width:400px;
-    }
-}
-
-@media (max-width:1200px) {
-    #box-tv {
-        max-width:380px;
+        position: relative !important;
+        max-width: unset !important;
     }
 }
 
 @media (max-width:1000px) {
-    #box-tv {
-        max-width:1000px;
-        width: auto;
-    }
     #navigation #menus > li.active > .sub-menu-content{
         display: block;
     }
