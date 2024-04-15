@@ -23,19 +23,4 @@ class HomeController extends Controller
             'partner'   => Producer::where(['active'=> 1])->orderby('index', 'DESC')->limit(10)->get(),
         ]));
     }
-
-    public function counter(){
-        $counterModel = new Counter();
-        $ip = $_SERVER['REMOTE_ADDR'];
-        if(empty($counterModel::where('ip', $ip)->first())){
-            $counterModel->insertGetId(['ip'=> $ip, 'created_at' => Carbon::now()]);
-        }else{
-            $dateTime = Carbon::now()->subMinutes(5)->format('Y-m-d H:i:s');
-            if(!$counterModel::where('ip', $ip)->where('created_at', '>', $dateTime)->count()){
-                $counterModel->insertGetId(['ip'=> $ip, 'created_at' => Carbon::now()]);
-            }
-        }
-
-        return true;
-    }
 }

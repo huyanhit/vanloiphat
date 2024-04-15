@@ -263,7 +263,6 @@
     </body>
 
     <script>
-        counter();
         getCart();
         // Get the button
         const scroll = document.getElementById("scroll-top");
@@ -396,13 +395,6 @@
             $('.my-cart').html(html);
             $('#cart-number').html(response.quantities_sum);
             $('#total-pill').html(VND.format(response.subtotal - parseInt($('#coupon-down').text())));
-        }
-
-        function counter(){
-            $.ajax({
-                type: 'get',
-                url: '/counter'
-            });
         }
 
         function showNavigation() {

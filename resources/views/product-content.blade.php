@@ -320,11 +320,6 @@
         }
 
         function ajaxUpdateMessage(name, contact, content){
-            console.log({
-                'name': name,
-                'contact': contact,
-                'content': content
-            });
             $.ajax({
                 type: 'post',
                 url: '/lien-he',
