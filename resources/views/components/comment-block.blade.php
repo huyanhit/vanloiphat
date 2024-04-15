@@ -1,10 +1,10 @@
 @props(['data' => null])
-<div class="form-horizontal bg-white p-4 mt-3" id="comment">
+<div class="form-horizontal bg-white p-3 mt-3" id="comment">
     <h4 class="font-bold text-xl text-uppercase">Đánh giá</h4>
-    <div class="my-1 bg-white p-3 border-1 shadow">
+    <div class="my-1 bg-white p-3 border-1">
         <div class="flex flex-col space-y-4">
             <div class="bg-white" id="comment_list"></div>
-            <div class="bg-white p-3 shadow-md">
+            <div class="bg-white p-3 border-1">
                 <div class="mb-2 flex">
                     <label class="block text-gray-700 mb-1 text-nowrap" for="comment"> Đánh giá</label>
                     <div class="container">
