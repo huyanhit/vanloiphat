@@ -45,9 +45,9 @@ body{
     background: #ccc;
 }
 #box-tv {
-    max-width: 575px;
+    max-width: 570px;
     transition: .5s;
-    width: 575px;
+    width: 570px;
 }
 .top #box-tv{
     position: fixed;
