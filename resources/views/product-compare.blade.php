@@ -54,7 +54,7 @@
                     </span>
                         <span class="px-2 pt-[5px]">
                         <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600 text-lg"> 1 </span>
+                        <span class="mr-2 text-cyan-600 text-lg"> 0 </span>
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
                     </span>
                     </div>
