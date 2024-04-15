@@ -191,7 +191,7 @@
                     </article >
                 </div>
             </div>
-            <x-comment-block comment=""></x-comment-block>
+            <x-comment-block :data="['product_id' => $product->id]"></x-comment-block>
         </div>
         <div class="w-full lg:w-[40%] p-3 relative" id="box-contain">
             <div class="px-3 py-4 bg-white shadow-md border-2 border-cyan-700 relative" id="box-tv">
@@ -298,7 +298,6 @@
         @endforeach
     </div>
     <script>
-
         function sendMessage(){
             let name = $('h1').text();
             let contact = $('#box_email_phone').val();

@@ -30,9 +30,9 @@ class ContactRequest extends FormRequest
 
     public function messages(){
        return[
-           'name'    => ['required' => 'Bạn chưa nhập tên','max:100' => 'Tên phải ngắn hơn 100 ký tự'],
-           'contact' => ['required' => 'Bạn chưa nhập điện thoại hoặc Email','max:255'=> 'Nội dung phải ngắn hơn 255 ký tự'],
-           'content' => ['required' => 'Bạn chưa nhập nội dung cần liên hệ','max:5000'=> 'Nội dung phải ngắn hơn 5000 ký tự'],
+           'name'    => ['required' => 'Bạn chưa nhập tên','max' => 'Tên phải ngắn hơn 100 ký tự'],
+           'contact' => ['required' => 'Bạn chưa nhập điện thoại hoặc Email','max'=> 'Nội dung phải ngắn hơn 255 ký tự'],
+           'content' => ['required' => 'Bạn chưa nhập nội dung cần liên hệ','max'=> 'Nội dung phải ngắn hơn 5000 ký tự'],
        ];
     }
 }

@@ -16,7 +16,7 @@
                 </div>
                 <h1 class="text-xl text-cyan-700 px-3 dark:text-white bg-white border-2 border-cyan-700 absolute top-0 left-[30px] font-bold uppercase text-center">Liên hệ</h1>
                 <div class="border-2 border-cyan-700">
-                    <form class="bg-gradient-to-r from-blue-100 to-cyan-100 bg-no-repeat bg-center shadow form-horizontal p-4"
+                    <form class="bg-gradient-to-r from-blue-100 to-cyan-100 shadow form-horizontal p-4"
                               method="post" action="{{route('lien-he')}}">
                             @csrf
                             <div class="mt-2 flex flex-col">
