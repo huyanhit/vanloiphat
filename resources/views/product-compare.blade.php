@@ -54,8 +54,8 @@
                     </span>
                         <span class="px-2 pt-[5px]">
                         <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600"> 1 </span>
-                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2">  1000 </span>
+                        <span class="mr-2 text-cyan-600 text-lg"> 1 </span>
+                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
                     </span>
                     </div>
                     <hr/>
@@ -244,8 +244,8 @@
                     </span>
                         <span class="px-2 pt-[5px]">
                         <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600"> 1 </span>
-                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2">  1000 </span>
+                        <span class="mr-2 text-cyan-600 text-lg"> 1 </span>
+                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product2->view }}</span>
                     </span>
                     </div>
                     <hr/>
