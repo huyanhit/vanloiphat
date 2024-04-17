@@ -219,14 +219,14 @@
                         <input type="checkbox" name="box_content" value="1"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-1">
                         <label for="box-cv-1" class="text-sm ms-2 text-gray-700 dark:text-gray-400">
-                            Nguồn nước mà tôi đang sử không biết có phù hợp với sản phẩm?
+                            Sản phẩm này có phù hợp với nguồn nước mà tôi đang dùng không?
                         </label>
                     </div>
                     <div class="flex mt-1">
                         <input type="checkbox" name="box_content" value="2" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-2" >
                         <label for="box-cv-2" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Sử dụng bao lâu thì phải thay lõi lọc?
+                            Tôi Sử dụng bao lâu thì phải thay lại lõi lọc?
                         </label>
                     </div>
                     <div class="flex mt-1">
@@ -241,7 +241,7 @@
                         <input type="checkbox" name="box_content" value="4" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-4" >
                         <label for="box-cv-4" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Khi lắp đặt xong có kiểm định nước đã đủ chất lượng không?
+                            Khi lắp đặt xong thì có kiểm tra lại nước đã đủ chất lượng sử dụng không?
                         </label>
                     </div>
                     <div class="flex mt-1">
