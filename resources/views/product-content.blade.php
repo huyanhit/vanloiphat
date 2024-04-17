@@ -322,7 +322,7 @@
             $.ajax({
                 type: 'post',
                 url: '/lien-he',
-                headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:{
                     'name': name,
                     'contact': contact,

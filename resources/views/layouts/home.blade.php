@@ -337,7 +337,7 @@
                 type: 'GET',
                 url: '/cart',
                 contentType: "application/json",
-                headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             }).done(function(response){
                 updateCartDom(response);
             });

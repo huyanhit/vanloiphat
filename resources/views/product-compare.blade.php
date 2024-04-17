@@ -415,7 +415,7 @@
             type: 'GET',
             url: '/tim-san-pham-cung-loai',
             contentType: "application/json",
-            headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data:{
                 'id' : id,
                 'search': $(elem).val()

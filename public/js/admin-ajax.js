@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     $('.ajax_delete').click(function(){
         let url   = this.getAttribute( "url" );
-        let token = $('input[name="_token"]').val();
+        let token = $('meta[name="csrf-token"]').attr('content');
         if(!confirm("Do you want to delete?")){
             return false;
         }
@@ -48,7 +48,7 @@ $(document).ready(function(){
         }
         event.stopPropagation();
     });
-   
+
     $('select.render_select').change(function(){
         let reference = $(this).attr('reference');
         let element = $(document).find('select[name="'+reference+'"]');
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
     function renderArea(element) {
         let data  = $(element).find('span').html();
-        $(element).html('<textarea class="form-control" id="update_text_change"  data="'+data+'" type="area">' + data 
+        $(element).html('<textarea class="form-control" id="update_text_change"  data="'+data+'" type="area">' + data
         + '</textarea><script>CKEDITOR.replace( \'update_text_change\', {customConfig: \'myconfig.js\'});</script>');
     };
 
@@ -115,7 +115,7 @@ $(document).ready(function(){
             let type   = parent.attr('type');
             let id     = parent.attr('uid');
             let field  = parent.attr('field');
-            
+
             let oldValue = element.attr('data');
             let value    = element.val();
 
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 }
             }
         }
-    } 
+    }
 
     function restore_update_field(element, type, oldValue){
         if(type == 'select'){
@@ -153,7 +153,7 @@ $(document).ready(function(){
         let file      = element[0].files[0];
         let type      = element.parent().attr('type');
         let parent    = element.parent();
-        let token     = $('input[name="_token"]').val();
+        let token     = $('meta[name="csrf-token"]').attr('content');
 
         if(file === undefined){
             if(type == 'image'){
@@ -198,8 +198,8 @@ $(document).ready(function(){
         let url    = window.location.pathname+'/'+id;
         let parent = element.parent();
         let type   = parent.attr('type');
-        let token  = $('input[name="_token"]').val();
-        
+        let token  = $('meta[name="csrf-token"]').attr('content');
+
         $.ajax({
             type: 'PUT',
             url: url,
@@ -224,7 +224,7 @@ $(document).ready(function(){
     // function uploadImages(element) {
     //     let files     = $(element)[0].files;
     //     let key       = $(element).attr('key');
-    //     let token     = $('input[name="_token"]').val();
+    //     let token     = $('meta[name="csrf-token"]').attr('content');
     //     let formData  = new FormData();
     //     formData.append('_method', 'PUT');
     //     $.each(files, function(i, file) {
@@ -257,7 +257,7 @@ $(document).ready(function(){
         let key       = $(element).attr('key');
         let multiple  = $(element).prop('multiple');
         let html      = '';
-       
+
         Array.from(files).forEach(file => {
             html += '<img onerror="this.src=\'/images/no-image.png\'" src="'+ URL.createObjectURL(file) +'"> '
         });
@@ -273,7 +273,7 @@ $(document).ready(function(){
             type: 'PUT',
             url: $(element).attr('url'),
             data:{
-                _token: $('input[name="_token"]').val(),
+                _token: $('meta[name="csrf-token"]').attr('content'),
                 delete_images: $(element).attr('fid'),
             }
         }).done(function(){

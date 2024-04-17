@@ -104,7 +104,7 @@
             $.ajax({
                 type: 'post',
                 url: '/comment',
-                headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data
             }).done(function(data){
                 let rating = '';
