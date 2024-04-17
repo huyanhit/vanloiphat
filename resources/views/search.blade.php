@@ -3,7 +3,7 @@
     <div class="container">
         <x-breadcrumb name="tim-kiem"></x-breadcrumb>
         <div class="mb-3">
-            @if(!empty($products))
+            @if(!$products->isEmpty())
                 @foreach ($products as $item)
                     <div class="-mx-2">
                         <x-product-item :item="$item" />
@@ -15,8 +15,8 @@
                 </div>
             @endif
         </div>
-        @if(!empty($products))
-            <div class="my-2  clear-both"> <span>{{$products}}</span></div>
+        @if(!$products->isEmpty())
+            <div class="my-2  clear-both"> <span>{{ $products->appends(['order' => Request::get('tu_khoa')]) }}</span></div>
         @endif
     </div>
 @endsection
