@@ -25,7 +25,7 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
-                    hiển thị
+                    Hiển thị
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
                     đến
