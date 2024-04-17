@@ -49,7 +49,6 @@ Route::get('/tra-cuu-don-hang', [OrderController::class, 'search'])->name('tra-c
 Route::get('/thanh-toan/{order}', [OrderController::class, 'show'])->name('thanh-toan');
 Route::put('/thanh-toan/{order}', [OrderController::class, 'update'])->name('tat-toan');
 Route::post('/mua-hang', [OrderController::class, 'store'])->name('mua-hang');
-Route::get('/{page}', [PageController::class, 'show'])->name('xem-trang');
 Route::get('/tim-kiem',   [ProductController::class, 'search'])->name('tim-kiem');
 Route::get('/dich-vu/{service}', [ServiceController::class, 'show'])->name('dich-vu');
 Route::get('/hang-san-xuat/{service}', [ProducerController::class, 'show'])->name('hang-san-xuat');
@@ -59,8 +58,7 @@ Route::post('/comment', [CommentController::class, 'comment'])->name('comment');
 
 Route::get('/thong-tin', [NewsController::class, 'index'])->name('news.index');
 Route::get('/thong-tin/{name}', [NewsController::class, 'index'])->name('news.show');
-Route::post('/search',  [ProductController::class, 'search'])->name('product.search');
-
+Route::get('/{page}', [PageController::class, 'show'])->name('xem-trang');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

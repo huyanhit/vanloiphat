@@ -82,12 +82,11 @@ class ProductController extends Controller
             ]
         ]));
     }
-
     public function search(Request $request){
         $products = Product::where(['active'=> 1])
-        -> where('sku', 'like', $request->input('keyword') . '%')
-        -> orwhere('keywords', 'like', '%' .  $request->input('keyword') . '%')
-        -> orWhere('title', 'like', '%' .  $request->input('keyword') . '%')
+        -> where('sku', 'like', $request->get('tu_khoa') . '%')
+        -> orwhere('keywords', 'like', '%' .  $request->get('tu_khoa') . '%')
+        -> orWhere('title', 'like', '%' .  $request->get('tu_khoa') . '%')
         -> orderby('created_at', 'ASC')->paginate(10);
 
         return view('search', array_merge($this->getDataLayout(), [

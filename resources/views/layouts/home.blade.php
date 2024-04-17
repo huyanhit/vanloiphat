@@ -47,10 +47,9 @@
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-8 col-xl-5 flex">
-                            <form class="inline-block pt-1 flex-auto text-center" method="post" action="{{route('product.search')}}">
-                                {{csrf_field()}}
-                                <input class="md:w-[250px] xl:w-[150px] 2xl:w-[260px] lg:w-[250px] " type="text" name="keyword"
-                                       value="{{request()->keyword}}" placeholder="Tìm sản phẩm"/>
+                            <form class="inline-block pt-1 flex-auto text-center" method="get" action="{{route('tim-kiem')}}">
+                                <input class="md:w-[250px] xl:w-[150px] 2xl:w-[260px] lg:w-[250px] " type="text" name="tu_khoa"
+                                       value="{{request()->tu_khoa}}" placeholder="Tìm sản phẩm"/>
                                 <button>
                                     <i class="bi bi-search relative right-[30px]"></i>
                                 </button>
