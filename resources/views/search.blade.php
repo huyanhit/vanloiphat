@@ -3,7 +3,7 @@
     <div class="container">
         <x-breadcrumb name="tim-kiem"></x-breadcrumb>
         <div class="mb-3">
-            @if(count($products))
+            @if(!empty($products))
                 @foreach ($products as $item)
                     <div class="-mx-2">
                         <x-product-item :item="$item" />
@@ -15,7 +15,9 @@
                 </div>
             @endif
         </div>
-        <div class="my-2  clear-both"> <span>{{$products}}</span></div>
+        @if(!empty($products))
+            <div class="my-2  clear-both"> <span>{{$products}}</span></div>
+        @endif
     </div>
 @endsection
 
