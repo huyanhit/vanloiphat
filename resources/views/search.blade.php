@@ -16,7 +16,7 @@
             @endif
         </div>
         @if(!$products->isEmpty())
-            <div class="my-2  clear-both"> <span>{{ $products->appends(['order' => Request::get('tu_khoa')]) }}</span></div>
+            <div class="my-2  clear-both"> <span>{{ $products->appends(['tu_khoa' => Request::get('tu_khoa')]) }}</span></div>
         @endif
     </div>
 @endsection
