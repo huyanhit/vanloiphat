@@ -59,8 +59,8 @@
                             <span class="mr-2 pt-[6px]">Chưa có</span>
                         @endif
                         <span class="px-2 pt-[5px]">
-                        <span class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i></span>
-                        <span class="mr-2 text-lg text-cyan-600">{{$product->comment->count()}} </span>
+                        <span ><i class="bi bi-chat-dots text-lg"></i></span>
+                        <span class="mr-2 text-lg">{{$product->comment->count()}} </span>
                             <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
                         </span>
                     </div>
@@ -255,8 +255,8 @@
                             <span class="mr-2 pt-[6px]">Chưa có</span>
                         @endif
                         <span class="px-2 pt-[5px]">
-                        <span class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i></span>
-                        <span class="mr-2 text-lg text-cyan-600">{{$product2->comment->count()}} </span>
+                        <span><i class="bi bi-chat-dots text-lg"></i></span>
+                        <span class="mr-2 text-lg">{{$product2->comment->count()}} </span>
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product2->view }}</span>
                     </span>
                     </div>
