@@ -98,11 +98,11 @@
                         <button class="border-1 bg-cyan-700 text-white px-2 py-1 mt-2 cursor-pointer" onclick="hideInfo(this)">Xem đơn hàng</button>
                         <table class="table border-1 mt-2" style="display: none">
                             <tr class="bg-cyan-700 text-white">
-                                <th width="20%" class="text-center">Hinh ảnh</th>
+                                <th width="15%" class="text-center">Hinh ảnh</th>
                                 <th width="30%">Tên sản phẩm</th>
                                 <th width="10%" class="text-center">Số lượng</th>
                                 <th width="10%" class="text-center">Giá</th>
-                                <th width="10%" class="text-center">Tùy chọn</th>
+                                <th width="20%" class="text-center">Tùy chọn</th>
                             </tr>
                             @foreach($order->products as $item)
                                 <tr class="align-middle">
@@ -114,7 +114,9 @@
                                     <td> <a class="text-cyan-600" href="{{route('san-pham', $item->slug)}}">{{$item->title}} </a></td>
                                     <td class="text-center">{{$item->pivot->quantity}}</td>
                                     <td class="text-center"> <span class="font-bold text-red-600">{{number_format($item->pivot->price, 0, ',', '.') }}đ </span></td>
-                                    <td class="text-center">{{$item->pivot->options}}</td>
+                                    @if(isset($item->pivot->options))
+                                        <td class="text-center">{{json_decode($item->pivot->options)->group_title.': '. json_decode($item->pivot->options)->title }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                             <tr class="font-bold bg-cyan-700 text-white">

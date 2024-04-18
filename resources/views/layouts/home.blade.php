@@ -269,6 +269,11 @@
             style: 'currency',
             currency: 'VND',
         });
+        const cart = {
+            id:0,
+            quantity: 1,
+            options: {}
+        }
 
         window.onscroll = function() {
             myBox()
@@ -360,11 +365,16 @@
                 '<th width="30%">Tên sản phẩm</th>' +
                 '<th width="10%" class="text-center">Số lượng</th>' +
                 '<th width="10%" class="text-center">Giá</th>' +
-                '<th width="10%" class="text-center">Lựa chọn</th>' +
+                '<th width="20%" class="text-center">Lựa chọn</th>' +
                 '<th width="10%" class="text-center">Xoá</th>' +
                 '</tr>';
             let items = response.items;
             for (const index in items) {
+                let optionHtml = '';
+                let option = items[index].options;
+                if(option.title){
+                    optionHtml = option.group_title +': '+ option.title
+                }
                 html +=
                     '<tr class="align-middle">'+
                     '<td class="text-center"><a href="'+items[index].extra_info.link+'"><img class="inline-block w-[100px]" alt="'+items[index].title+'" ' +
@@ -373,7 +383,7 @@
                     '<td><a class="text-cyan-600" href="'+items[index].extra_info.link+'">'+ items[index].title +'<a></td>' +
                     '<td class="text-center"><input onblur="updateCart(this, \''+items[index].hash+'\')" type="number" value="'+ items[index].quantity +'"></td>' +
                     '<td class="text-center">'+ VND.format(items[index].price) +' </td>' +
-                    '<td class="text-center">'+ items[index].options +'</td>' +
+                    '<td class="text-center">'+ optionHtml +'</td>' +
                     '<td class="text-center"><a class="flex-auto cursor-pointer" ' +
                     'onclick="removeCart(\''+items[index].hash+'\',\''+items[index].title+'\')">' +
                     '<i class="bi bi-x-circle text-red-600"></i> </a></td>'+
@@ -450,17 +460,24 @@
             }
         }
 
+        function updateCartOptions(elem, options) {
+            cart.options = options
+            $('.options-items').removeClass('bg-cyan-700 text-white');
+            $(elem).addClass('bg-cyan-700 text-white');
+            if(options.price && options.price > 0){
+                $('#price_product').text(VND.format(options.price))
+            }
+        }
+
         function addCart(e, item, link = ''){
+            cart.id =  item.id
             let html = $(e).html();
             $(e).html('<div class="spinner-border h-[15px] w-[15px]"></div>');
             $.ajax({
                 type: 'POST',
                 url: '/cart',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:{
-                    "id": item.id,
-                    "quantity": item.quantity,
-                }
+                data: cart
             }).done(function(response){
                 $(e).html(html);
                 updateCartDom(response);
@@ -471,6 +488,7 @@
                 $(e).html(html);
             });
         }
+
         $(document).ready(function() {
             $('.add-cart').on('click', function() {
                     var itemImg = $(this).parents('.product_item').find('img').eq(0);

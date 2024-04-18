@@ -28,7 +28,7 @@ class OrderController extends Controller
                 $orders = Order::where('id', $request->id);
             }
 
-            $orders = $orders->orderBy('order_status_id', 'ASC')->paginate(4);
+            $orders = $orders->orderBy('order_status_id', 'DESC')->paginate(4);
             foreach ($orders->items() as $item){
                 $item->price = $item->products->sum('price');
             };
@@ -60,7 +60,7 @@ class OrderController extends Controller
                     'product_id' => $item->id,
                     'price'      => $item->price,
                     'quantity'   => $item->quantity,
-                    'options'    => $item->options,
+                    'options'    => json_encode($item->options),
                 ]);
             }
             DB::commit();

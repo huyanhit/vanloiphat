@@ -56,6 +56,6 @@ class Product extends Model
 
     public function product_option(): HasMany
     {
-        return $this->hasMany(ProductOption::class, 'product_id');
+        return $this->hasMany(ProductOption::class, 'product_id')->select('product_option.id','product_option.group_title','product_option.title','product_option.price');
     }
 }

@@ -76,11 +76,18 @@
                             @if(isset($product->product_option[0]))
                                 <div>
                                     <span class="font-bold text-capitalize"> {{$product->product_option[0]->group_title }}:</span>
-                                    <span>
+                                    <span class="cursor-pointer">
                                     @foreach($product->product_option as $item)
-                                        <span class="border-1 px-2 bg-gray-100 pt-1 pb-2 mx-2 rounded">{{ $item->title }} </span>
+                                        @php $item->price = $item->price?? $product->price @endphp
+                                        <span class="border-1 px-2 bg-cyan-50 pt-1 pb-2 mx-2 inline-block text-center options-items"
+                                            onclick="updateCartOptions(this, {{'{id:'.$item->id.', price:'. $item->price .'}'}})">
+                                            <div class="font-bold"> {{ $item->title }} </div>
+                                            @if($item->price > 0)
+                                                <div> Giá: {{ number_format($item->price, 0, ',', '.')}} ₫</div>
+                                            @endif
+                                        </span>
                                     @endforeach
-                                </span>
+                                    </span>
                                 </div>
                             @endif
                         </div>
@@ -88,16 +95,16 @@
                         @if($product->price_pro > $product->price)
                         <div class="mr-3">
                             <span class="font-bold">Giá niêm yết: </span>
-                            <span class="text-gray-700 line-through text-xl">{{ number_format($product->price_pro, 0, ',', '.')}}đ </span>
+                            <span class="text-gray-700 line-through text-xl">{{ number_format($product->price_pro, 0, ',', '.')}} ₫ </span>
                         </div>
                         <span>
                             <span class="mr-2">
                                 <span class="font-bold">Giá bán: </span>
-                                <span class="text-red-600 text-2xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                                <span class="text-red-600 text-2xl font-bold" id="price_product"> {{ number_format($product->price, 0, ',', '.') }} ₫</span>
                             </span>
                             <span>
                                 <span class="font-bold">Tiết kiệm: </span>
-                                <span class="text-xl mr-1"> {{number_format($product->price_pro - $product->price, 0, ',', '.')}}đ </span>
+                                <span class="text-xl mr-1"> {{number_format($product->price_pro - $product->price, 0, ',', '.')}} ₫ </span>
                                 <span class="bg-red-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1 mr-1"> {{(int)((($product->price_pro-$product->price)/$product->price)*100)}}%</span>
                                 @if($product->instalment)
                                     <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
@@ -108,7 +115,7 @@
                             <span>
                                 <span class="mr-2">
                                     <span class="font-bold">Giá bán:</span>
-                                    <span class="text-red-600 text-3xl"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                                    <span class="text-red-600 text-3xl font-bold" id="price_product"> {{ number_format($product->price, 0, ',', '.') }} ₫</span>
                                 </span>
                                 @if($product->instalment)
                                     <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
@@ -126,13 +133,13 @@
                         </div>
                     </div>
                     <div class="w-full my-4">
-                        <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
+                        <a class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-                           onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
+                           onclick="addCart(this, {id: {{$product->id}}},'dat-hang')">
                             <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold uppercase">Đặt hàng ngay</span></a>
                         <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
-                                onclick="addCart(this, {id: {{$product->id}}, quantity: 1})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
+                                onclick="addCart(this, {id: {{$product->id}}})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
                             <span class="inline-block font-bold uppercase">Thêm vào giỏ</span>
                         </button>
                     </div>
@@ -211,21 +218,21 @@
                         <span class="mr-2">Mã sản phẩm</span><span class="text-uppercase text-red-600"><a href="{{route('san-pham', $product->slug)}}"> {{ $product->sku }}</a></span>
                     </span><br/>
                     <span> Giá bán: </span>
-                    <span class="text-red-600 text-2xl mr-3"> {{ number_format($product->price, 0, ',', '.') }}đ</span>
+                    <span class="text-red-600 text-2xl mr-3"> {{ number_format($product->price, 0, ',', '.') }} ₫</span>
                     @if($product->instalment)
                         <span class="bg-gray-500 px-2 py-1 text-white rounded-1 text-sm relative -top-1">Trả góp 0%</span>
                     @endif
                 </div>
                 <hr/>
                 <div class="mt-2 font-bold text-sm text-gray-700">
-                    Bạn còn điều gì chưa rõ về sản phẩm? <br/>Hãy gửi thông tin cho chúng tôi, Chúng tôi sẻ tư vấn cho Bạn.
+                    Bạn còn  ₫iều gì chưa rõ về sản phẩm? <br/>Hãy gửi thông tin cho chúng tôi, Chúng tôi sẻ tư vấn cho Bạn.
                 </div>
                 <div class="p-2 border-1 my-2 h-[200px] overflow-y-auto">
                     <div class="flex mt-1">
                         <input type="checkbox" name="box_content" value="1"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-1">
                         <label for="box-cv-1" class="text-sm ms-2 text-gray-700 dark:text-gray-400">
-                            Sản phẩm này có phù hợp với nguồn nước mà tôi đang dùng không?
+                            Sản phẩm này có phù hợp với nguồn nước mà tôi  ₫ang dùng không?
                         </label>
                     </div>
                     <div class="flex mt-1">
@@ -240,14 +247,14 @@
                                class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-3" >
                         <label for="box-cv-3" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Sản phẩm có nâng cấp khả năng lọc được không?
+                            Sản phẩm có nâng cấp khả năng lọc  ₫ược không?
                         </label>
                     </div>
                     <div class="flex mt-1">
                         <input type="checkbox" name="box_content" value="4" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-4" >
                         <label for="box-cv-4" class="text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Khi lắp đặt xong thì có kiểm tra lại nước đã đủ chất lượng sử dụng không?
+                            Khi lắp  ₫ặt xong thì có kiểm tra lại nước  ₫ã  ₫ủ chất lượng sử dụng không?
                         </label>
                     </div>
                     <div class="flex mt-1">
@@ -262,14 +269,14 @@
                         <input type="checkbox" name="box_content" onclick="showOrder(this)"  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                id="box-cv-order" value='order'>
                         <label for="box-cv-order" class="w-full text-sm text-gray-700 ms-2 dark:text-gray-400">
-                            Một số vấn đề khác.
+                            Một số vấn  ₫ề khác.
                             <textarea id="order-area" name="box_area" class="block w-full my-2 border-1 border-gray-300 hidden" rows="1"></textarea>
                         </label>
                     </div>
                 </div>
                 <div class="flex">
                     <span class="basis-2/3"><input id="box_email_phone" class="w-full appearance-none h-[40px] text-sm"
-                                 type="text" placeholder="Nhập số điện thoại hoặc email của bạn." autocomplete="off"></span>
+                                 type="text" placeholder="Nhập số  ₫iện thoại hoặc email của bạn." autocomplete="off"></span>
                     <button class="ml-2 basis-1/3 text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                             py-2.5  mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-blue-800"
                             onclick="sendMessage()">Tư vấn cho tôi </button>
@@ -281,8 +288,8 @@
                     </a>
                     <a class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800 uppercase"
-                        href="/lien-he?noi-dung=Thông báo cho tôi khi có ưu đãi sản phẩm: {{$product->title}}">
-                        Thông báo cho tôi <br><span class="font-bold uppercase">Khi có ưu đãi.</span></a>
+                        href="/lien-he?noi-dung=Thông báo cho tôi khi có ưu  ₫ãi sản phẩm: {{$product->title}}">
+                        Thông báo cho tôi <br><span class="font-bold uppercase">Khi có ưu  ₫ãi.</span></a>
                 </div>
                 <div class="flex">
                     <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id )}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
@@ -290,7 +297,7 @@
                         So sánh với <br> <span class="font-bold">Sản phẩm khác</span></a>
                     <button class="basis-1/2 w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-green-300 text-sm
                         px-2 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 uppercase"
-                        onclick="addCart(this, {id: {{$product->id}}, quantity: 1},'dat-hang')">
+                        onclick="addCart(this, {id: {{$product->id}}},'dat-hang')">
                         <span class="font-bold">Đặt hàng ngay</span>
                     </button>
                 </div>
@@ -318,7 +325,7 @@
 
             if(contact.trim() === ''){
                 $('#box_email_phone').addClass('border-1 border-red-700 text-red-700');
-                $('#box_email_phone').attr('placeholder','Bạn chưa nhập số điện thoai hoặc Email');
+                $('#box_email_phone').attr('placeholder','Bạn chưa nhập số ₫iện thoai hoặc Email');
             }else {
                 ajaxUpdateMessage(name, contact, content);
             }

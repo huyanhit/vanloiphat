@@ -40,12 +40,17 @@ class CartController extends Controller
     public function store(CartAddRequest $request):JsonResponse {
         $product = Product::where('active', 1)->find($request->id);
         if(!empty($product)){
+            $optionChoose = [];
+            if(isset($request->options)){
+                $optionChoose   = $product->product_option->firstWhere('id', $request->options['id'])->toArray();
+                $product->price = $optionChoose['price'];
+            }
             $this->cart->addItem([
                 'id'       => $product->id,
                 'title'    => empty($product->title)? 'No name': $product->title,
                 'price'    => $product->price,
                 'quantity' => $request->quantity,
-                'options'  => $request->option?? [],
+                'options'  => $optionChoose,
                 'extra_info' =>  [
                     'link'  => route('san-pham',Str::slug($product->title).'-'.$product->id),
                     'image_id'  => $product->image_id,
