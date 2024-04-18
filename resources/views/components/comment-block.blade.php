@@ -3,7 +3,8 @@
     <h4 class="font-bold text-xl text-uppercase">Đánh giá</h4>
     <div class="my-1 bg-gray-100 p-3 border-1">
         <div class="flex flex-col space-y-4">
-            <div class="bg-white" id="comment_list"></div>
+            <div class="bg-white" id="comment_list">
+            </div>
             <div class="bg-white p-3 border-1">
                 <div class="mb-2 flex">
                     <label class="block text-gray-700 mb-1 text-nowrap" for="comment"> Đánh giá</label>
@@ -47,6 +48,7 @@
         </div>
     </div>
     <script>
+        loadComment();
         function checkEmptyValue(elem, label, data, message){
             if(data === ''){
                 elem.addClass('border-1 border-red-700');
@@ -100,26 +102,41 @@
             }
         }
 
+        function renderComment(data){
+            let rating = '';
+            for (let i = 0; i < 5; i++){
+                let color = (data.rating > i)?' text-yellow-500':'';
+                rating += '<i class="mr-1 bi bi-star-fill'+color+'"></i>';
+            }
+            $('#comment_list').append('<div class="border-1 mt-3 p-3"><div class="flex flex-row">'+
+                '<span class="flex-auto font-bold inline-block">'+
+                '<h5 class="inline uppercase">'+data.name+'</h5>'+
+                '<span class="items-center mx-2 inline">'+ rating +'</span>'+
+                '</span>'+
+                '<span class="flex-auto text-right text-gray-700 text-xs ">'+data.created_at+'</span>'+
+                '</div>'+
+                '<p class="clear-both text-gray-700 text-sm mt-2">'+data.content+'</p></div>')
+        }
+
         function ajaxComment(data){
             $.ajax({
                 type: 'post',
-                url: '/comment',
+                url: '/ax-comment',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data
             }).done(function(data){
-                let rating = '';
-                for (let i = 0; i < 5; i++){
-                    let color = (data.rating > i)?' text-yellow-500':'';
-                    rating += '<i class="mr-1 bi bi-star-fill'+color+'"></i>';
+                renderComment(data);
+            });
+        }
+
+        function loadComment(){
+            $.ajax({
+                type: 'get',
+                url: '/ax-load-comment',
+            }).done(function(response){
+                for (let i in response.data){
+                    renderComment(response.data[i])
                 }
-                $('#comment_list').append('<div class="border-1 mt-3 p-3"><div class="flex flex-row">'+
-                    '<span class="flex-auto font-bold inline-block">'+
-                        '<h5 class="inline">'+data.name+'</h5>'+
-                        '<span class="items-center mx-2 inline">'+ rating +'</span>'+
-                    '</span>'+
-                    '<span class="flex-auto text-right text-gray-700 text-xs ">'+data.created_at+'</span>'+
-                '</div>'+
-                '<p class="clear-both text-gray-700 text-sm mt-2">'+data.content+'</p></div>')
             });
         }
     </script>

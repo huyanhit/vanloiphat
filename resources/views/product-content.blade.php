@@ -45,7 +45,7 @@
                         </span><a class="text-uppercase font-bold text-cyan-600" href="{{route('hang-san-xuat', $product->producer->name)}}">{{ $product->producer->title }}</a>
                     </h3>
                     <span class="mr-2 font-bold pt-[6px]">Bảo hành:
-                        <span class="text-cyan-600">36 tháng</span>
+                        <span class="text-cyan-600">{{$product->warning_time}} Tháng</span>
                     </span>
                 </div>
                 <div class="flex mb-2">

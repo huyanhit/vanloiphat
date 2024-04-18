@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
-use App\Models\Order;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -15,11 +14,21 @@ class CommentController extends Controller
             'service_id'    => $request?->service_id,
             'name'          => $request->name,
             'rating'        => $request->rating,
-            'content'       => $request->get('content')
+            'content'       => $request->get('content'),
+            'active'        => 1
         ];
-        $comment = Comment::insertGetId($data);
+        $comment = Comment::create($data);
         if($comment && $request->ajax()){
-            return Comment::find($comment);
+            return $comment;
+        }
+
+        abort('404');
+    }
+
+    public function loadComment(Request $request){
+        $comments = Comment::where('active', 1)->paginate(10);
+        if(!empty($comments) && $request->ajax()){
+            return $comments;
         }
 
         abort('404');

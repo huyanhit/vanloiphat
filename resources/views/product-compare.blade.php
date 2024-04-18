@@ -413,7 +413,7 @@
     function getProductCompare(elem, id){
         $.ajax({
             type: 'GET',
-            url: '/tim-san-pham-cung-loai',
+            url: '/ax-find-product',
             contentType: "application/json",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data:{

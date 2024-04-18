@@ -36,7 +36,9 @@ Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderCon
     ->name('ckfinder_browser');
 
 // ajax
-Route::get('/tim-san-pham-cung-loai', [ProductController::class, 'productCategory'])->name('tim-san-pham-cung-loai');
+Route::get('/ax-find-product', [ProductController::class, 'productCategory'])->name('ajax-find-product');
+Route::get('/ax-load-comment', [CommentController::class, 'loadComment'])->name('ajax-load-comment');
+Route::post('/ax-comment', [CommentController::class, 'comment'])->name('ajax-comment');
 
 require __DIR__.'/auth.php';
 Route::resource('/cart', CartController::class);
@@ -54,7 +56,7 @@ Route::get('/dich-vu/{service}', [ServiceController::class, 'show'])->name('dich
 Route::get('/hang-san-xuat/{service}', [ProducerController::class, 'show'])->name('hang-san-xuat');
 Route::get('/so-sanh/{product}/{product2?}', [ProductController::class, 'compare'])->name('so-sanh');
 Route::post('/lien-he', [PageController::class, 'saveContact'])->name('lien-he');
-Route::post('/comment', [CommentController::class, 'comment'])->name('comment');
+
 
 Route::get('/thong-tin', [NewsController::class, 'index'])->name('news.index');
 Route::get('/thong-tin/{name}', [NewsController::class, 'index'])->name('news.show');
