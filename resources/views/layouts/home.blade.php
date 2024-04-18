@@ -256,10 +256,10 @@
                     <div class="clear"></div>
                 </div>
                 <span onclick="topFunction()" id="scroll-top" class="h-[47px] w-[47px] pt-[10px] cursor-pointer text-center z-50
-                text-gray-700 bg-white border-1 border-gray-700 rounded-4 fixed bottom-1 right-[8px]" title="Quay lại"><i class="bi bi-chevron-up"></i>
+                text-gray-700 bg-white border-1 border-gray-700 rounded-4 fixed bottom-1 right-[8px]" title="Cuộn lên trên"><i class="bi bi-chevron-up"></i>
                 </span>
                 <span onclick="backHistory()" class=" h-[47px] w-[47px] pt-[10px] cursor-pointer text-center z-50
-                    text-gray-700 bg-white border-1 border-gray-700 rounded-4 fixed bottom-1 right-[58px]" title="Cuộn lên trên">
+                    text-gray-700 bg-white border-1 border-gray-700 rounded-4 fixed bottom-1 right-[58px]" title="Quay lại">
                     <i class="bi bi-chevron-left"></i>
                 </span>
              </div>
