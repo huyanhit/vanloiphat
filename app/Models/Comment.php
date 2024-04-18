@@ -16,7 +16,8 @@ class Comment extends Model
         'active'
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:d-m-Y H:00',
-    ];
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }
