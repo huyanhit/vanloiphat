@@ -50,7 +50,7 @@
                 </div>
                 <div class="flex mb-2">
                     <span class="font-bold pt-[6px] mr-3">Đánh giá:</span>
-                    @if($product->comment)
+                    @if(!$product->comment->isEmpty())
                         <span class="flex items-center mr-1 pt-[2px]">
                             @php
                                 $avg = $product->comment->pluck('rating')->avg();
