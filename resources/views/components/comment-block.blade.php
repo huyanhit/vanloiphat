@@ -3,7 +3,7 @@
     <h4 class="font-bold text-xl text-uppercase">Đánh giá</h4>
     <div class="my-1 bg-gray-100 p-3 border-1">
         <div class="flex flex-col space-y-4">
-            <div class="bg-white" id="comment_list">
+            <div id="comment_list">
             </div>
             <div class="bg-white p-3 border-1">
                 <div class="mb-2 flex">
@@ -108,7 +108,7 @@
                 let color = (data.rating > i)?' text-yellow-500':'';
                 rating += '<i class="mr-1 bi bi-star-fill'+color+'"></i>';
             }
-            $('#comment_list').append('<div class="border-1 mt-3 p-3"><div class="flex flex-row">'+
+            $('#comment_list').append('<div class="border-1 bg-white mt-3 p-3"><div class="flex flex-row">'+
                 '<span class="flex-auto font-bold inline-block">'+
                 '<h5 class="inline uppercase">'+data.name+'</h5>'+
                 '<span class="items-center mx-2 inline">'+ rating +'</span>'+
