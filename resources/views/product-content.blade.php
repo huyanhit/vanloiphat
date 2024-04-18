@@ -56,7 +56,7 @@
                                 $avg = $product->comment->pluck('rating')->avg();
                             @endphp
                             @for($i = 0; $i<5; $i++)
-                                <i class="bi bi-star-fill {{($i < $avg)? 'text-yellow-500': ''}} mr-1"></i>
+                                <i class="bi bi-star-fill {{($i < round($avg))? 'text-yellow-500': ''}} mr-1"></i>
                             @endfor
                         </span>
                         <span class="mr-2 pt-[7px]">{{$avg}}/{{$product->comment->count()}}</span>
