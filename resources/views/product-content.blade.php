@@ -59,13 +59,13 @@
                                 <i class="bi bi-star-fill {{($i < round($avg))? 'text-yellow-500': ''}} mr-1"></i>
                             @endfor
                         </span>
-                        <span class="mr-2 pt-[7px]">{{$avg}}/{{$product->comment->count()}}</span>
+                        <span class="mr-2 pt-[7px] cursor-pointer text-cyan-600" onclick="scrollComment()">{{$avg}}/{{$product->comment->count()}}</span>
                     @else
                         <span class="mr-2 pt-[6px]">Chưa có</span>
                     @endif
                     <span class="px-2 pt-[5px]">
-                        <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600 text-lg"> 0 </span>
+                        <span onclick="scrollComment()" class="cursor-pointer text-cyan-600"><i class="bi bi-chat-dots text-lg"></i></span>
+                        <span class="mr-2 text-lg text-cyan-600">{{$product->comment->count()}} </span>
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
                     </span>
                 </div>
