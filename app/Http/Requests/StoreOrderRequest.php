@@ -29,7 +29,7 @@ class StoreOrderRequest extends FormRequest
     }
 
 
-    public function message(): array
+    public function messages(): array
     {
         return [
             'sex' => ['required' => 'Bạn chưa chọn giới tính'],
