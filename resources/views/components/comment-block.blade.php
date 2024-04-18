@@ -130,9 +130,10 @@
         }
 
         function loadComment(){
+            @php $param = isset($data['product_id'])?'?product_id='.$data['product_id']:'?service_id='.$data['service_id'] @endphp
             $.ajax({
                 type: 'get',
-                url: '/ax-load-comment',
+                url: '/ax-load-comment{{$param}}',
             }).done(function(response){
                 for (let i in response.data){
                     renderComment(response.data[i])

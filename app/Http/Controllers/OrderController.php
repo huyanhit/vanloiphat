@@ -55,7 +55,7 @@ class OrderController extends Controller
 
             $items = $this->cart->getDetails()->items;
             if($items->isEmpty()){
-                return redirect('/');
+                return view('check', array_merge($this->getDataLayout(), []))->withErrors('Lỗi! Chưa có sản phẩm trong giỏ hàng.');
             }
             foreach ($items as $item){
                 OrderProduct::create([

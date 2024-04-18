@@ -58,7 +58,7 @@
         </div>
         <div class="basis-5/12">
             <div class="px-3">
-                <x-comment-block comment=""></x-comment-block>
+                <x-comment-block :data="['service_id' => $service->id]"></x-comment-block>
             </div>
         </div>
     </div>

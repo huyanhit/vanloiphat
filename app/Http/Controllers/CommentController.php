@@ -26,7 +26,13 @@ class CommentController extends Controller
     }
 
     public function loadComment(Request $request){
-        $comments = Comment::where('active', 1)->paginate(10);
+        $productId = $request->product_id;
+        $serviceId = $request->service_id;
+        if(isset($productId)){
+            $comments = Comment::where('product_id', $productId)->where('active', 1)->paginate(10);
+        }elseif(isset($serviceId)){
+            $comments = Comment::where('service_id', $serviceId)->where('active', 1)->paginate(10);
+        }
         if(!empty($comments) && $request->ajax()){
             return $comments;
         }
