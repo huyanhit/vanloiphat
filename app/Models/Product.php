@@ -49,6 +49,11 @@ class Product extends Model
         return $this->belongsTo(Producer::class, 'producer_id');
     }
 
+    public function comment(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'product_id');
+    }
+
     public function product_option(): HasMany
     {
         return $this->hasMany(ProductOption::class, 'product_id');

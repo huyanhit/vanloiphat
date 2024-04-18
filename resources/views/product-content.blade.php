@@ -49,14 +49,20 @@
                     </span>
                 </div>
                 <div class="flex mb-2">
-                    <span class="font-bold pt-[6px] mr-3"> Đánh giá </span>
-                    <span class="flex items-center mr-2 pt-[2px]">
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                    </span>
+                    <span class="font-bold pt-[6px] mr-3">Đánh giá:</span>
+                    @if($product->comment)
+                        <span class="flex items-center mr-1 pt-[2px]">
+                            @php
+                                $avg = $product->comment->pluck('rating')->avg();
+                            @endphp
+                            @for($i = 0; $i<5; $i++)
+                                <i class="bi bi-star-fill {{($i < $avg)? 'text-yellow-500': ''}} mr-1"></i>
+                            @endfor
+                        </span>
+                        <span class="mr-2 pt-[7px]">{{$avg}}/{{$product->comment->count()}}</span>
+                    @else
+                        <span class="mr-2 pt-[6px]">Chưa có</span>
+                    @endif
                     <span class="px-2 pt-[5px]">
                         <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
                         <span class="mr-2 text-cyan-600 text-lg"> 0 </span>
