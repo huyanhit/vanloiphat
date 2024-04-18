@@ -54,6 +54,9 @@ class OrderController extends Controller
             ]);
 
             $items = $this->cart->getDetails()->items;
+            if($items->isEmpty()){
+                return view('check', array_merge($this->getDataLayout(), []))->withErrors('Lỗi! Chưa có sản phẩm trong giỏ hàng.');
+            }
             foreach ($items as $item){
                 OrderProduct::create([
                     'order_id'   => $order->id,
@@ -63,12 +66,12 @@ class OrderController extends Controller
                     'options'    => json_encode($item->options),
                 ]);
             }
+
             DB::commit();
             $this->cart->clearItems();
-
         }catch (\Exception $ex){
             DB::rollBack();
-            return view('check', array_merge($this->getDataLayout(), []))->withErrors('Lỗi cập nhật thông tin.');
+            return view('check', array_merge($this->getDataLayout(), []))->withErrors('Lỗi! cập nhật thông tin.');
         }
 
         return redirect('/thanh-toan/'.$order->id);

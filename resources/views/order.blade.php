@@ -114,9 +114,11 @@
                                     <td> <a class="text-cyan-600" href="{{route('san-pham', $item->slug)}}">{{$item->title}} </a></td>
                                     <td class="text-center">{{$item->pivot->quantity}}</td>
                                     <td class="text-center"> <span class="font-bold text-red-600">{{number_format($item->pivot->price, 0, ',', '.') }}đ </span></td>
-                                    @if(isset($item->pivot->options))
-                                        <td class="text-center">{{json_decode($item->pivot->options)->group_title.': '. json_decode($item->pivot->options)->title }}</td>
+                                    <td class="text-center">
+                                    @if(!empty(json_decode($item->pivot->options)))
+                                        {{json_decode($item->pivot->options)->group_title.': '. json_decode($item->pivot->options)->title }}
                                     @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr class="font-bold bg-cyan-700 text-white">

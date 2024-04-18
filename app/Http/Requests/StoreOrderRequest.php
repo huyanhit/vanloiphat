@@ -27,4 +27,14 @@ class StoreOrderRequest extends FormRequest
             'phone' => 'required',
         ];
     }
+
+
+    public function message(): array
+    {
+        return [
+            'sex' => ['required' => 'Bạn chưa chọn giới tính'],
+            'name' => ['required' => 'Bạn chưa nhâp tên'],
+            'phone' => ['required' => 'Bạn chưa nhập số điện thoại'],
+        ];
+    }
 }
