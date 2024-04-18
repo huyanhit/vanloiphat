@@ -115,14 +115,14 @@
                             </div>
                         </div>
                         <div class="w-full my-4">
-                            <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
+                            <a class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                                onclick="addCart(this, {id: {{$product->id}}},'dat-hang')">
                                 <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
                             <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                     onclick="addCart(this, {id: {{$product->id}}})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
-                                <span class="inline-block font-bold">Thêm vào giỏ</span>
+                                <span class="inline-block font-bold uppercase">Thêm vào giỏ</span>
                             </button>
                         </div>
                     @else
@@ -305,14 +305,14 @@
                             </div>
                         </div>
                         <div class="w-full my-4">
-                            <a href="tel:{{$sites->hotline}}" class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
+                            <a class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                                onclick="addCart(this, {id: {{$product2->id}}},'dat-hang')">
                                 <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
                             <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                     onclick="addCart(this, {id: {{$product2->id}}})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
-                                <span class="inline-block font-bold">Thêm vào giỏ</span>
+                                <span class="inline-block font-bold uppercase">Thêm vào giỏ</span>
                             </button>
                         </div>
                     @else
