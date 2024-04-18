@@ -44,19 +44,25 @@
                     </span>
                     </div>
                     <div class="flex mb-2">
-                        <span class="font-bold pt-[6px] mr-3"> Đánh giá </span>
-                        <span class="flex items-center mr-2 pt-[2px]">
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                    </span>
+                        <span class="font-bold pt-[6px] mr-3">Đánh giá:</span>
+                        @if(!$product->comment->isEmpty())
+                            <span class="flex items-center mr-1 pt-[2px]">
+                            @php
+                                $avg = $product->comment->pluck('rating')->avg();
+                            @endphp
+                                @for($i = 0; $i<5; $i++)
+                                    <i class="bi bi-star-fill {{($i < round($avg))? 'text-yellow-500': ''}} mr-1"></i>
+                                @endfor
+                        </span>
+                            <span class="mr-2 pt-[7px] cursor-pointer">{{$avg}}/{{$product->comment->count()}}</span>
+                        @else
+                            <span class="mr-2 pt-[6px]">Chưa có</span>
+                        @endif
                         <span class="px-2 pt-[5px]">
-                        <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600 text-lg"> 0 </span>
-                        <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
-                    </span>
+                        <span class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i></span>
+                        <span class="mr-2 text-lg text-cyan-600">{{$product->comment->count()}} </span>
+                            <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product->view }}</span>
+                        </span>
                     </div>
                     <hr/>
                     @if($product->price > 0)
@@ -118,7 +124,7 @@
                             <a class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                                onclick="addCart(this, {id: {{$product->id}}},'dat-hang')">
-                                <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
+                                <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold uppercase">Đặt hàng ngay</span></a>
                             <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                     onclick="addCart(this, {id: {{$product->id}}})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
@@ -234,17 +240,23 @@
                     </span>
                     </div>
                     <div class="flex mb-2">
-                        <span class="font-bold pt-[6px] mr-3"> Đánh giá </span>
-                        <span class="flex items-center mr-2 pt-[2px]">
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                        <i class="bi bi-star-fill text-yellow-500 mr-1"></i>
-                    </span>
+                        <span class="font-bold pt-[6px] mr-3">Đánh giá:</span>
+                        @if(!$product2->comment->isEmpty())
+                            <span class="flex items-center mr-1 pt-[2px]">
+                            @php
+                                $avg = $product2->comment->pluck('rating')->avg();
+                            @endphp
+                                @for($i = 0; $i<5; $i++)
+                                    <i class="bi bi-star-fill {{($i < round($avg))? 'text-yellow-500': ''}} mr-1"></i>
+                                @endfor
+                        </span>
+                            <span class="mr-2 pt-[7px] cursor-pointer">{{$avg}}/{{$product2->comment->count()}}</span>
+                        @else
+                            <span class="mr-2 pt-[6px]">Chưa có</span>
+                        @endif
                         <span class="px-2 pt-[5px]">
-                        <span onclick="scrollComment()" class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i> </span>
-                        <span class="mr-2 text-cyan-600 text-lg"> 1 </span>
+                        <span class="cursor-pointer"><i class="bi bi-chat-dots text-lg"></i></span>
+                        <span class="mr-2 text-lg text-cyan-600">{{$product2->comment->count()}} </span>
                         <span><i class="bi bi-eye text-lg"></i> </span><span class="mr-2 text-lg">{{ $product2->view }}</span>
                     </span>
                     </div>
@@ -308,7 +320,7 @@
                             <a class="inline-block text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 text-sm
                        px-5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
                                onclick="addCart(this, {id: {{$product2->id}}},'dat-hang')">
-                                <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold">Đặt hàng ngay</span></a>
+                                <i class="bi bi-bag-check mr-2 relative -top-[1px]"></i><span class="font-bold uppercase">Đặt hàng ngay</span></a>
                             <button class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-5 py-3 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
                                     onclick="addCart(this, {id: {{$product2->id}}})"> <i class="bi bi-cart mr-1 relative -top-[1px]"></i>
