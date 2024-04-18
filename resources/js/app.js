@@ -3,9 +3,6 @@ import 'lightbox2/dist/js/lightbox.min.js';
 import './bootstrap';
 import './jquery.nivo.slider'
 import './owl.carousel.min'
-
-
-
 $(document).ready(function () {
     $(document).on('click', '#close-cart', function () {
         $("[data-toggle=popover]").popover('hide')

@@ -262,24 +262,25 @@
     </body>
 
     <script>
-        getCart();
-        // Get the button
         const scroll = document.getElementById("scroll-top");
         const VND = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
         });
-        const cart = {
+        const cartData = {
             id:0,
             quantity: 1,
             options: {}
         }
+        let cartDom = null;
 
         window.onscroll = function() {
             myBox()
             mySticky()
             scrollFunction()
         };
+
+        axGetCart();
 
         function showOrder(elem){
             if($(elem).is(":checked")){
@@ -336,28 +337,37 @@
             document.documentElement.scrollTop = 0;
         }
 
-        function getCart(){
-            $.ajax({
-                type: 'GET',
-                url: '/cart',
-                contentType: "application/json",
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            }).done(function(response){
-                updateCartDom(response);
-            });
-            return '<div> ' +
-                        '<div class="text-lg font-bold text-center mb-2">Giỏ hàng</div>' +
-                        '<div class="my-cart">Loading...</div>' +
-                        '<div class="text-right">' +
-                            '<a id="close-cart" class="btn px-2 mr-2 rounded-2 bg-cyan-500 text-white hover:bg-cyan-700 text-sm">' +
-                            '<i class="bi bi-x-circle"></i> Đóng </a>'+
-                            '<a class="btn px-2 rounded-2 bg-red-500 text-white hover:bg-red-600 text-sm" href="/dat-hang">' +
-                            '<i class="bi bi-cart"></i> Đặt hàng </a>'+
-                        '</div>'+
-                   '</div>';
+        function axGetCart(){
+            if(cartDom == null){
+                $.ajax({
+                    type: 'GET',
+                    url: '/cart',
+                    contentType: "application/json",
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                }).done(function(response){
+                    cartDom = response;
+                    updateCartDom();
+                });
+            }else {
+                setTimeout(function() { updateCartDom() }, 10);
+            }
         }
 
-        function updateCartDom(response){
+        function getCart() {
+            axGetCart();
+            return '<div> ' +
+                '<div class="text-lg font-bold text-center mb-2">Giỏ hàng</div>' +
+                '<div class="my-cart">Loading...</div>' +
+                '<div class="text-right">' +
+                '<a id="close-cart" class="btn px-2 mr-2 rounded-2 bg-cyan-500 text-white hover:bg-cyan-700 text-sm">' +
+                '<i class="bi bi-x-circle"></i> Đóng </a>' +
+                '<a class="btn px-2 rounded-2 bg-red-500 text-white hover:bg-red-600 text-sm" href="/dat-hang">' +
+                '<i class="bi bi-cart"></i> Đặt hàng </a>' +
+                '</div>' +
+                '</div>';
+        }
+
+        function updateCartDom(){
             let html =
                 '<table class="table border-1">'+
                 '<tr class="bg-cyan-700 text-white">'+
@@ -368,7 +378,7 @@
                 '<th width="20%" class="text-center">Lựa chọn</th>' +
                 '<th width="10%" class="text-center">Xoá</th>' +
                 '</tr>';
-            let items = response.items;
+            let items = cartDom.items;
             for (const index in items) {
                 let optionHtml = '';
                 let option = items[index].options;
@@ -393,8 +403,8 @@
                 '<tr class="font-bold bg-cyan-700 text-white">'+
                 '<td class="text-center"> Tổng cộng </td>' +
                 '<td></td>' +
-                '<td class="text-center">'+ response.quantities_sum +'</td>' +
-                '<td class="text-center"><span class="text-red-600">'+ VND.format(response.subtotal) +'</span></td>' +
+                '<td class="text-center">'+ cartDom.quantities_sum +'</td>' +
+                '<td class="text-center"><span class="text-red-600">'+ VND.format(cartDom.subtotal) +'</span></td>' +
                 '<td></td>' +
                 '<td></td>' +
                 '</tr>';
@@ -402,8 +412,8 @@
             html += '</table>';
 
             $('.my-cart').html(html);
-            $('#cart-number').html(response.quantities_sum);
-            $('#total-pill').html(VND.format(response.subtotal - parseInt($('#coupon-down').text())));
+            $('#cart-number').html(cartDom.quantities_sum);
+            $('#total-pill').html(VND.format(cartDom.subtotal - parseInt($('#coupon-down').text())));
         }
 
         function showNavigation() {
@@ -444,7 +454,8 @@
                     "quantity": $(e).val(),
                 }
             }).done(function(response){
-                updateCartDom(response);
+                cartDom = response;
+                updateCartDom();
             });
         }
 
@@ -455,13 +466,14 @@
                     url: '/cart/'+id,
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 }).done(function(response){
-                    updateCartDom(response);
+                    cartDom = response;
+                    updateCartDom();
                 });
             }
         }
 
         function updateCartOptions(elem, options) {
-            cart.options = options
+            cartData.options = options
             $('.options-items').removeClass('bg-cyan-700 text-white');
             $(elem).addClass('bg-cyan-700 text-white');
             if(options.price && options.price > 0){
@@ -470,17 +482,18 @@
         }
 
         function addCart(e, item, link = ''){
-            cart.id =  item.id
+            cartData.id =  item.id
             let html = $(e).html();
             $(e).html('<div class="spinner-border h-[15px] w-[15px]"></div>');
             $.ajax({
                 type: 'POST',
                 url: '/cart',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: cart
+                data: cartData
             }).done(function(response){
                 $(e).html(html);
-                updateCartDom(response);
+                cartDom = response;
+                updateCartDom();
                 if(link !== ''){
                     window.location.href = '/'+link;
                 }
