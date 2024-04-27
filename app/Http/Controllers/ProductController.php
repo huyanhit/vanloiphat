@@ -47,11 +47,11 @@ class ProductController extends Controller
     }
 
     public function productCategory(Request $request){
-        $product = Product::select('id', 'title', 'price', 'product_category_id')->find($request->id);
-        $query   = Product::select('id', 'title', 'price')
+        $product = Product::select('id', 'title', 'price', 'image_id', 'product_category_id')->find($request->id);
+        $query   = Product::select('id', 'title', 'price', 'image_id')
                         ->where('product_category_id', $product->product_category_id)
                         ->where('title', 'like', '%' . $request->search . '%')
-                        ->where('id', '!=', $request->id);
+                        ->where('id', '!=', $request->id)->limit(20);
 
         return ['product' => $product, 'list' => $query->get()];
     }

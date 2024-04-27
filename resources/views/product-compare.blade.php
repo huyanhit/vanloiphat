@@ -19,7 +19,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="search" id="default-search" onkeyup="getProductCompare(this, {{$product->id}})" autocomplete="off"
+                <input type="search" id="default-search" onkeyup="getProductCompare({{$product->id}})" autocomplete="off"
                        value="{{ !empty($product2)?$product2->title:'' }}"
                        class="bg-white shadow inline-block w-full pl-[40px] h-[50px] text-sm text-gray-900 border border-gray-300 rounded-lg
                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
@@ -422,7 +422,10 @@
     </div>
 </div>
 <script>
-    function getProductCompare(elem, id){
+    @if(empty($product2))
+        getProductCompare({{$product->id}})
+    @endif
+    function getProductCompare(id){
         $.ajax({
             type: 'GET',
             url: '/ax-find-product',
@@ -430,7 +433,7 @@
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data:{
                 'id' : id,
-                'search': $(elem).val()
+                'search': $("#default-search").val()
             }
         }).done(function(response){
             updateSearchCompare(response);
@@ -440,7 +443,7 @@
     function updateSearchCompare(response){
         let products = response.list;
         let product  = response.product;
-        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-2 absolute top-1 border-1 rounded bg-gray-100 z-50 max-h-[400px] overflow-y-scroll">';
+        let html = '<ul class="text-sm text-gray-700 dark:text-gray-200 w-full p-2 bg-white absolute top-1 border-1 rounded z-50 max-h-[400px] overflow-y-scroll">';
         const VND = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
@@ -448,9 +451,10 @@
         for (const key in products) {
             html += '<li>' +
                 '<a type="button" href="/so-sanh/'+ product.slug + '/' + products[key].slug +'"' +
-                'class="inline-flex w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'+
-                    products[key].title +' <span class="ml-2 text-red-600"> Giá: '+ VND.format(products[key].price) +
-                '</span></a>' +
+                'class="inline-flex bg-gray-100 w-full p-2 border-1 mt-2 hover:border-gray-500 ">' +
+                '<img class="h-[50px] border-1 inline-block mr-2" src="http://vanloiphat.co/admin/get-image-thumbnail/'+ products[key].image_id+'" alt="'+products[key].title+'">' +
+                '<p class="mt-3">'+ products[key].title +'<span class="ml-2 text-red-600 font-bold"> Giá: '+ VND.format(products[key].price) +
+                '</span></p></a>' +
             '</li>' ;
         }
 
