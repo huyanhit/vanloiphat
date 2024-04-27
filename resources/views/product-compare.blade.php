@@ -373,22 +373,22 @@
             </div>
             <div class="mt-3">
                 <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                    <li class="nav-item" role="presentation ">
+                    <li class="nav-item">
                         <button class="nav-link text-gray-400 hover:text-gray-700 active" id="ts-tab2" data-bs-toggle="tab" data-bs-target="#ts-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                             <h3 class="font-bold text-sm lg:text-lg uppercase">Thông số</h3>
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item">
                         <button class="nav-link text-gray-400 hover:text-gray-700" id="ct-tab2" data-bs-toggle="tab" data-bs-target="#ct-tab-pane2" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                             <h3 class="font-bold text-sm lg:text-lg uppercase">Chi tiết</h3>
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item">
                         <button class="nav-link text-gray-400 hover:text-gray-700" id="bh-tab2" data-bs-toggle="tab" data-bs-target="#bh-tab-pane2" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                             <h3 class="font-bold text-sm lg:text-lg uppercase">Bảo hành</h3>
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item">
                         <button class="nav-link text-gray-400 hover:text-gray-700" id="cn-tab2" data-bs-toggle="tab" data-bs-target="#cn-tab-pane2" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
                             <h3 class="font-bold text-sm lg:text-lg uppercase">Chứng nhận</h3>
                         </button>

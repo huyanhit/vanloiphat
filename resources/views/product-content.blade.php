@@ -289,7 +289,7 @@
                     <a class="text-center basis-1/2 w-full text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 text-sm
                         px-2 py-2.5 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800 uppercase"
                         href="/lien-he?noi-dung=Thông báo cho tôi khi có ưu  ₫ãi sản phẩm: {{$product->title}}">
-                        Thông báo cho tôi <br><span class="font-bold uppercase">Khi có ưu  ₫ãi.</span></a>
+                        Thông báo cho tôi <br><span class="font-bold uppercase">Khi có ưu đãi.</span></a>
                 </div>
                 <div class="flex">
                     <a href="{{route('so-sanh', Str::slug($product->title).'-'.$product->id )}}" class="text-center basis-1/2 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-sm
