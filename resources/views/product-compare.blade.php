@@ -451,10 +451,10 @@
         for (const key in products) {
             html += '<li>' +
                 '<a type="button" href="/so-sanh/'+ product.slug + '/' + products[key].slug +'"' +
-                'class="inline-flex bg-gray-100 w-full p-2 border-1 mt-2 hover:border-gray-500 ">' +
-                '<img class="h-[50px] border-1 inline-block mr-2" src="/admin/get-image-thumbnail/'+ products[key].image_id+'" alt="'+products[key].title+'">' +
-                '<p class="mt-3">'+ products[key].title +'<span class="ml-2 text-red-600 font-bold"> Giá: '+ VND.format(products[key].price) +
-                '</span></p></a>' +
+                'class="inline-flex bg-gray-50 w-full p-2 border-1 mt-2 hover:border-gray-500 ">' +
+                '<img class="h-[50px] border-1 inline-block mr-3" src="/admin/get-image-thumbnail/'+ products[key].image_id+'" alt="'+products[key].title+'">' +
+                '<div><p class="mt-1">'+ products[key].title +'</p><p class="text-red-600 font-bold"> Giá: '+ VND.format(products[key].price) +
+                '</p></div></a>' +
             '</li>' ;
         }
 
